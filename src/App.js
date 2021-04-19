@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, Switch, Route } from "react-router-dom";
+import DetailBerita from "./Page/DetailBerita";
+import GalleryPhoto from "./Page/Gallery";
 import Landing from "./Page/Landing";
 import Footer from "./Page/layout/Footer";
 import Navbar from "./Page/layout/Navbar";
@@ -9,6 +11,12 @@ const App = () => {
     <>
       <Navbar />
       <Switch>
+        <Route path="/gallery">
+          <GalleryPhoto />
+        </Route>
+        <Route path="/detail-berita">
+          <DetailBerita />
+        </Route>
         <Route path="/">
           <Landing />
         </Route>
