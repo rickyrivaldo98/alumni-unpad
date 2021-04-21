@@ -4,10 +4,13 @@ import Berita from "./Page/Berita";
 import DetailBerita from "./Page/DetailBerita";
 import GalleryPhoto from "./Page/Gallery";
 import Landing from "./Page/Landing";
+import Footer from "./Page/layout/Footer";
+import Navbar from "./Page/layout/Navbar";
 
 const App = () => {
   return (
     <>
+      <Navbar />
       <Switch>
         <Route path="/gallery">
           <GalleryPhoto />
@@ -22,6 +25,7 @@ const App = () => {
           <Landing />
         </Route>
       </Switch>
+      <Footer />
     </>
   );
 };
