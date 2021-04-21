@@ -13,7 +13,7 @@ const DetailBerita = () => {
       >
         <div className="bg-detailBeritaOverlay"></div>
         <div className="container p-3 mx-auto">
-          <div className=" xl:mt-32 lg:mt-24 ml-32">
+          <div className=" xl:mt-96 lg:mt-24 ml-32">
             <div className="z-10 w-1/3 text-highlight text-3xl text-white font-semibold">
               IKA Unpad Gelar Sosialisasi dan Pelatihan Terkait UU Cipta Kerja
             </div>

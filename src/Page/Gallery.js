@@ -88,7 +88,9 @@ const GalleryPhoto = () => {
   return (
     <>
       <div className="text-center my-32 text-2xl font-bold">Gallery</div>
-      <Gallery photos={photos} />;
+      <div className="container mx-auto">
+        <Gallery photos={photos} />
+      </div>
     </>
   );
 };
