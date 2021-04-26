@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Switch, Route } from "react-router-dom";
 import About from "./Page/About";
+import Anggota from "./Page/Anggota";
 import Berita from "./Page/Berita";
 import DetailBerita from "./Page/DetailBerita";
 import GalleryPhoto from "./Page/Gallery";
@@ -24,6 +25,9 @@ const App = () => {
         </Route>
         <Route path="/about">
           <About />
+        </Route>
+        <Route path="/anggota">
+          <Anggota />
         </Route>
         <Route path="/">
           <Landing />
