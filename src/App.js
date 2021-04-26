@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Switch, Route } from "react-router-dom";
+import About from "./Page/About";
 import Berita from "./Page/Berita";
 import DetailBerita from "./Page/DetailBerita";
 import GalleryPhoto from "./Page/Gallery";
@@ -20,6 +21,9 @@ const App = () => {
         </Route>
         <Route path="/berita">
           <Berita />
+        </Route>
+        <Route>
+          <About />
         </Route>
         <Route path="/">
           <Landing />
