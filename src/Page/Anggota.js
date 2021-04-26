@@ -3,11 +3,13 @@ import React from "react";
 const Anggota = () => {
   return (
     <>
-      <div className="antialiased font-sans bg-gray-200">
+      <div className="antialiased font-sans ">
         <div className="container mx-auto px-4 sm:px-8">
           <div className="py-8">
             <div>
-              <h2 className="text-2xl font-semibold leading-tight">Users</h2>
+              <h2 className="text-2xl font-semibold leading-tight">
+                Anggota Ikatan Alumni Dharmavira
+              </h2>
             </div>
             <div className="my-2 flex sm:flex-row flex-col">
               <div className="flex flex-row mb-1 sm:mb-0">
