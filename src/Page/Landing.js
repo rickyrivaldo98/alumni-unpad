@@ -23,13 +23,12 @@ const Landing = () => {
           </div>
         </div>
 
-        <div className="items-center text-center justify-center">
-          <div className="flex justify-between items-end">
+        <div className="container m-auto">
+          <div className="flex  items-center justify-center mt-20">
             <div className="text-4xl font-semibold">Berita</div>
-            <div className="text-sm">Lihat Semua</div>
           </div>
-          <div className="flex justify-center justify-between">
-            <div className="flex text-justify justify-center">
+          <div className="flex items-center justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -52,7 +51,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -75,7 +74,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -98,7 +97,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -123,13 +122,12 @@ const Landing = () => {
             </div>
           </div>
         </div>
-        <div className="items-center text-center justify-center mt-28 mb-20">
-          <div className="flex justify-between items-end">
+        <div className="container m-auto">
+          <div className="flex  items-center justify-center mt-20">
             <div className="text-4xl font-semibold">Events</div>
-            <div className="text-sm">Lihat Semua</div>
           </div>
-          <div className="flex justify-center justify-between">
-            <div className="flex text-justify justify-center">
+          <div className="flex items-center justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -152,7 +150,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -175,7 +173,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -198,7 +196,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
