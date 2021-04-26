@@ -1,24 +1,28 @@
 import React from "react";
-
+import App from "../App";
+import Bg from "../assets/images/bg-unpad.jpg";
+import "../App.css";
 const Landing = () => {
   return (
     <>
-      <div className="ml-40 mr-40">
-        <div className="text-2xl">Halo</div>
-        <div className="flex text-center justify-center mb-20">
-          <div className="mr-10">
-            <div className="text-5xl mb-5 ">159</div>
-            <div>Alumni Terdaftar</div>
-          </div>
-          <div className="mr-10">
-            <div className="text-5xl mb-5">159</div>
-            <div>Even Terlaksana</div>
-          </div>
-          <div className="">
-            <div className="text-5xl mb-5">159</div>
-            <div>Artikel Terunggah</div>
+      <div className="">
+        <div className="jumbotron" style={{ backgroundImage: `url(${Bg})` }}>
+          <div className="flex text-center justify-center mb-20 pt-20">
+            <div className="mr-10">
+              <div className="text-5xl mb-5 ">159</div>
+              <div>Alumni Terdaftar</div>
+            </div>
+            <div className="mr-10">
+              <div className="text-5xl mb-5">159</div>
+              <div>Even Terlaksana</div>
+            </div>
+            <div className="">
+              <div className="text-5xl mb-5">159</div>
+              <div>Artikel Terunggah</div>
+            </div>
           </div>
         </div>
+
         <div className="items-center text-center justify-center">
           <div className="flex justify-between items-end">
             <div className="text-4xl font-semibold">Berita</div>
