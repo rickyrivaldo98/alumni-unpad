@@ -1,31 +1,34 @@
 import React from "react";
-
+import App from "../App";
+import Bg from "../assets/images/bg-unpad.jpg";
+import "../App.css";
 const Landing = () => {
   return (
     <>
-      <div className="ml-40 mr-40">
-        <div className="text-2xl">Halo</div>
-        <div className="flex text-center justify-center mb-20">
-          <div className="mr-10">
-            <div className="text-5xl mb-5 ">159</div>
-            <div>Alumni Terdaftar</div>
-          </div>
-          <div className="mr-10">
-            <div className="text-5xl mb-5">159</div>
-            <div>Even Terlaksana</div>
-          </div>
-          <div className="">
-            <div className="text-5xl mb-5">159</div>
-            <div>Artikel Terunggah</div>
+      <div className="">
+        <div className="jumbotron" style={{ backgroundImage: `url(${Bg})` }}>
+          <div className="flex text-center justify-center mb-20 pt-20">
+            <div className="mr-10">
+              <div className="text-5xl mb-5 ">159</div>
+              <div>Alumni Terdaftar</div>
+            </div>
+            <div className="mr-10">
+              <div className="text-5xl mb-5">159</div>
+              <div>Even Terlaksana</div>
+            </div>
+            <div className="">
+              <div className="text-5xl mb-5">159</div>
+              <div>Artikel Terunggah</div>
+            </div>
           </div>
         </div>
-        <div className="items-center text-center justify-center">
-          <div className="flex justify-between items-end">
+
+        <div className="container m-auto">
+          <div className="flex  items-center justify-center mt-20">
             <div className="text-4xl font-semibold">Berita</div>
-            <div className="text-sm">Lihat Semua</div>
           </div>
-          <div className="flex justify-center justify-between">
-            <div className="flex text-justify justify-center">
+          <div className="flex items-center justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -48,7 +51,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -71,7 +74,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -94,7 +97,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -119,13 +122,12 @@ const Landing = () => {
             </div>
           </div>
         </div>
-        <div className="items-center text-center justify-center mt-28 mb-20">
-          <div className="flex justify-between items-end">
+        <div className="container m-auto">
+          <div className="flex  items-center justify-center mt-20">
             <div className="text-4xl font-semibold">Events</div>
-            <div className="text-sm">Lihat Semua</div>
           </div>
-          <div className="flex justify-center justify-between">
-            <div className="flex text-justify justify-center">
+          <div className="flex items-center justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -148,7 +150,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -171,7 +173,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img
@@ -194,7 +196,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="flex text-justify justify-center">
+            <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
                   <img

@@ -45,7 +45,7 @@ const Berita = () => {
         </div>
       </div>
       <div className="bg-gray-50">
-        <div className="flex justify-center items-center ">
+        <div className="flex-none md:flex justify-center items-center ">
           <div className="m-auto px-4 py-8 max-w-2xl">
             <div className="bg-white shadow-2xl">
               <div>

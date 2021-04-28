@@ -31,7 +31,10 @@ const Navbar = ({ toggle }) => {
           2xl:mr-10 xl:mr-5 lg:mr-3"
             to="/"
           >
-            <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 ">
+            <button
+              className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 "
+              to="/"
+            >
               Home
             </button>
           </Link>
