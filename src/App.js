@@ -4,6 +4,7 @@ import Berita from "./Page/Berita";
 import DetailBerita from "./Page/DetailBerita";
 import GalleryPhoto from "./Page/Gallery";
 import Landing from "./Page/Landing";
+import Admin from "./Page/Admin";
 import Footer from "./Page/layout/Footer";
 import Navbar from "./Page/layout/Navbar";
 
@@ -12,6 +13,9 @@ const App = () => {
     <>
       <Navbar />
       <Switch>
+        <Route path="/admin">
+          <Admin />
+        </Route>
         <Route path="/gallery">
           <GalleryPhoto />
         </Route>

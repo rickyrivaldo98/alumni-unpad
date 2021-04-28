@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+body {
+  background-color: #fdfdfd !important;
+}
+
+.bg-admin {
+  background: linear-gradient(63.58deg, #0452cd 9.83%, #00fb4f 124.29%), #051df4;
+}
+
+input[type="text"],
+textarea[type="text"] {
+  color: black;
+}
