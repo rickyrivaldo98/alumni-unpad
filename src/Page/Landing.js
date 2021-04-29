@@ -1,6 +1,6 @@
 import React from "react";
 import App from "../App";
-import Bg from "../assets/images/bg-unpad.jpg";
+import Bg from "../assets/images/unpad.png";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import "../App.css";
@@ -10,52 +10,70 @@ const Landing = () => {
       <Navbar />
       <div className="">
         <div
-          className="jumbotron relative"
+          className="jumbotron relative mb-48"
           style={{ backgroundImage: `url(${Bg})` }}
         >
-          <div className="flex text-center justify-center mb-20 pt-20">
-            <div className="flex pb-10 hide-scroll-bar">
-              <div className="flex flex-nowrap ml-10">
-                <div className="inline-block mr-3">
-                  <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                    <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
-                    <div className="text-center mt-2 leading-none flex justify-center w-full">
-                      <span className=" inline-flex items-center leading-none text-sm">
-                        View number
-                      </span>
-                    </div>
-                  </div>
+          <div>
+            <div className="flex justify-center items-center">
+              <h1 className="md:text-4xl font-bold text-lg text-white mt-48">
+                Selamat Datang di Website ILUNI KMB
+              </h1>
+            </div>
+            <div className="flex justify-center items-center mt-2">
+              <p className="text-white text-lg">Ikatan Alumni Dharmavira</p>
+            </div>
+          </div>
+          <div className="flex-none md:flex absolute text-center justify-center -bottom-10  md:-bottom-20 pt-20 mx-auto left-0 right-0 ">
+            <div className="inline-block mr-3">
+              <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                <i
+                  style={{ color: "orange" }}
+                  className="fas fa-users fa-fw text-4xl"
+                ></i>
+                <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
+                <div className="text-center mt-2 leading-none flex justify-center w-full">
+                  <span className=" inline-flex items-center leading-none text-sm">
+                    Alumni Terdaftar
+                  </span>
                 </div>
-                <div className="inline-block mr-3">
-                  <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                    <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
-                    <div className="text-center mt-2 leading-none flex justify-center w-full">
-                      <span className=" inline-flex items-center leading-none text-sm">
-                        View number
-                      </span>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div className="inline-block mr-3">
+              <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                <i
+                  style={{ color: "orange" }}
+                  className="fas fa-calendar fa-fw text-4xl"
+                ></i>
+                <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
+                <div className="text-center mt-2 leading-none flex justify-center w-full">
+                  <span className=" inline-flex items-center leading-none text-sm">
+                    Events Terlaksana
+                  </span>
                 </div>
-                <div className="inline-block mr-3">
-                  <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                    <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
-                    <div className="text-center mt-2 leading-none flex justify-center w-full">
-                      <span className=" inline-flex items-center leading-none text-sm">
-                        View number
-                      </span>
-                    </div>
-                  </div>
+              </div>
+            </div>
+            <div className="inline-block mr-3">
+              <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                <i
+                  style={{ color: "orange" }}
+                  className="fas fa-book fa-fw text-4xl"
+                ></i>
+                <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
+                <div className="text-center mt-2 leading-none flex justify-center w-full">
+                  <span className=" inline-flex items-center leading-none text-sm">
+                    Artikel Terunggah
+                  </span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="container m-auto">
+        <div className="container m-auto ">
           <div className="flex  items-center justify-center mt-20">
             <div className="text-4xl font-semibold">Berita</div>
           </div>
-          <div className="flex-none md:flex items-center justify-center">
+          <div className="flex-none lg:flex items-center justify-center">
             <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
@@ -154,7 +172,7 @@ const Landing = () => {
           <div className="flex  items-center justify-center mt-20">
             <div className="text-4xl font-semibold">Events</div>
           </div>
-          <div className="flex-none md:flex items-center justify-center">
+          <div className="flex-none lg:flex items-center justify-center">
             <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">

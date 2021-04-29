@@ -27,7 +27,7 @@ const Navbar = ({ toggle }) => {
         </div>
         <div className="pr-10 hidden md:block 2xl:pr-72 xl:pr-64 lg:pr-28">
           <Link
-            className=" text-base lg:text-xl font-medium 
+            className=" text-base lg:text-normal font-medium 
           2xl:mr-10 xl:mr-5 lg:mr-3"
             to="/"
           >
@@ -39,7 +39,7 @@ const Navbar = ({ toggle }) => {
             </button>
           </Link>
           <Link
-            className=" text-base lg:text-xl 2xl:mr-10 xl:mr-5 lg:mr-3"
+            className=" text-base lg:text-normal 2xl:mr-10 xl:mr-5 lg:mr-3"
             to="/berita"
           >
             <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 ">
@@ -47,7 +47,7 @@ const Navbar = ({ toggle }) => {
             </button>
           </Link>
           <Link
-            className=" text-base lg:text-xl 2xl:mr-10 xl:mr-5 lg:mr-3"
+            className=" text-base lg:text-normal 2xl:mr-10 xl:mr-5 lg:mr-3"
             to="/events"
           >
             <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 ">
@@ -55,7 +55,7 @@ const Navbar = ({ toggle }) => {
             </button>
           </Link>
           <Link
-            className=" text-base lg:text-xl 2xl:mr-10 xl:mr-5 lg:mr-3"
+            className=" text-base lg:text-normal 2xl:mr-10 xl:mr-5 lg:mr-3"
             to="/gallery"
           >
             <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 ">
@@ -63,14 +63,14 @@ const Navbar = ({ toggle }) => {
             </button>
           </Link>
           <Link
-            className=" text-base lg:text-xl 2xl:mr-10 xl:mr-5 lg:mr-3 "
+            className=" text-base lg:text-normal 2xl:mr-10 xl:mr-5 lg:mr-3 "
             to="/anggota"
           >
             <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 ">
               Anggota
             </button>
           </Link>
-          <Link className=" text-base lg:text-xl " to="/about">
+          <Link className=" text-base lg:text-normal " to="/about">
             <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 ">
               About
             </button>
