@@ -11,17 +11,39 @@ const Landing = () => {
       <div className="">
         <div className="jumbotron" style={{ backgroundImage: `url(${Bg})` }}>
           <div className="flex text-center justify-center mb-20 pt-20">
-            <div className="mr-10">
-              <div className="text-5xl mb-5 ">159</div>
-              <div>Alumni Terdaftar</div>
-            </div>
-            <div className="mr-10">
-              <div className="text-5xl mb-5">159</div>
-              <div>Even Terlaksana</div>
-            </div>
-            <div className="">
-              <div className="text-5xl mb-5">159</div>
-              <div>Artikel Terunggah</div>
+            <div className="flex pb-10 hide-scroll-bar">
+              <div className="flex flex-nowrap ml-10">
+                <div className="inline-block mr-3">
+                  <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                    <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
+                    <div className="text-center mt-2 leading-none flex justify-center w-full">
+                      <span className=" inline-flex items-center leading-none text-sm">
+                        View number
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="inline-block mr-3">
+                  <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                    <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
+                    <div className="text-center mt-2 leading-none flex justify-center w-full">
+                      <span className=" inline-flex items-center leading-none text-sm">
+                        View number
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="inline-block mr-3">
+                  <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                    <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
+                    <div className="text-center mt-2 leading-none flex justify-center w-full">
+                      <span className=" inline-flex items-center leading-none text-sm">
+                        View number
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
