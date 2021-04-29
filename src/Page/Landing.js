@@ -9,7 +9,10 @@ const Landing = () => {
     <>
       <Navbar />
       <div className="">
-        <div className="jumbotron" style={{ backgroundImage: `url(${Bg})` }}>
+        <div
+          className="jumbotron relative"
+          style={{ backgroundImage: `url(${Bg})` }}
+        >
           <div className="flex text-center justify-center mb-20 pt-20">
             <div className="flex pb-10 hide-scroll-bar">
               <div className="flex flex-nowrap ml-10">
