@@ -20,7 +20,7 @@ export default function Sidebar() {
             className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm  font-bold p-4 px-0"
             to="/"
           >
-            Omorphia Admin
+            Alumni Unpad Admin
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
@@ -44,7 +44,7 @@ export default function Sidebar() {
                     className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm  font-bold p-4 px-0"
                     to="/"
                   >
-                    Omorphia
+                    Alumni Unpad
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">
@@ -104,7 +104,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs  font-bold block pt-1 pb-4 no-underline">
-              Admin Works Menu
+              Admin Berita dan Events Menu
             </h6>
             {/* Navigation */}
 
@@ -126,8 +126,8 @@ export default function Sidebar() {
                         ? "opacity-75"
                         : "text-gray-300")
                     }
-                  ></i>{" "}
-                  Project Works
+                  ></i>
+                  Berita
                 </Link>
               </li>
               <li className="items-center">
@@ -149,14 +149,14 @@ export default function Sidebar() {
                         : "text-gray-400")
                     }
                   ></i>
-                  Category Project
+                  Events
                 </Link>
               </li>
             </ul>
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs  font-bold block pt-1 pb-4 no-underline">
-              Admin Contacts
+              Admin Alumni Menu
             </h6>
             {/* Navigation */}
 
@@ -180,7 +180,7 @@ export default function Sidebar() {
                         : "text-gray-400")
                     }
                   ></i>{" "}
-                  See Contacts
+                  Alumni
                 </Link>
               </li>
             </ul>

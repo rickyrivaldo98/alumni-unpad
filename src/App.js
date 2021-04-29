@@ -13,7 +13,7 @@ import Navbar from "./Page/layout/Navbar";
 const App = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <Switch>
         <Route path="/admin">
           <Admin />
@@ -37,7 +37,7 @@ const App = () => {
           <Landing />
         </Route>
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

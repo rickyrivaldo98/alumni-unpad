@@ -1,9 +1,12 @@
 import React from "react";
 import Gambar from "../assets/images/image.jpg";
 import "../berita.css";
+import Navbar from "./layout/Navbar";
+import Footer from "./layout/Footer";
 const DetailBerita = () => {
   return (
     <>
+      <Navbar />
       <div
         className="bg-detailBerita relative z-10"
         // menampilkan gambar ketika di klik
@@ -190,6 +193,7 @@ const DetailBerita = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
