@@ -81,7 +81,7 @@ const Berita = () => {
             </div>
           </div>
 
-          <div className="w-3/6 flex-none mt-10">
+          <div className="w-3/6 xs:flex md:flex-none mt-10">
             <div className="flex justify-center items-center">
               <div className="max-w-2xl bg-white  p-5 rounded-lg tracking-wide shadow-lg mb-3">
                 <div id="header" className="flex">
