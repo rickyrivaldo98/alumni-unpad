@@ -1,10 +1,13 @@
 import React from "react";
 import App from "../App";
 import Bg from "../assets/images/bg-unpad.jpg";
+import Navbar from "./layout/Navbar";
+import Footer from "./layout/Footer";
 import "../App.css";
 const Landing = () => {
   return (
     <>
+      <Navbar />
       <div className="">
         <div className="jumbotron" style={{ backgroundImage: `url(${Bg})` }}>
           <div className="flex text-center justify-center mb-20 pt-20">
@@ -222,6 +225,7 @@ const Landing = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

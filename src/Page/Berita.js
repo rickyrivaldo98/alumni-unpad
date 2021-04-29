@@ -1,10 +1,12 @@
 import React from "react";
 import Gambar from "../assets/images/image.jpg";
 import { Link, Switch, Route } from "react-router-dom";
-
+import Navbar from "./layout/Navbar";
+import Footer from "./layout/Footer";
 const Berita = () => {
   return (
     <>
+      <Navbar />
       <div className="flex justify-center items-center">
         <div className="mt-32 mb-20">
           <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-5 rounded-full">
@@ -169,6 +171,7 @@ const Berita = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

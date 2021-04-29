@@ -3,10 +3,14 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
-
+import "./admin.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import Sidebar from "./components/Admin/Sidebar";
 import Navbar_admin from "./components/Admin/Navbar_admin";
 import Dashboard from "./components/Admin/Dashboard";
+import CardBerita from "./components/Admin/CardBerita";
+import CardEvents from "./components/Admin/CardEvents";
+import CardAlumni from "./components/Admin/CardAlumni";
 
 const StyledAdmin = styled.div`
   font-family: "Nunito";
@@ -24,6 +28,15 @@ const Admin = () => {
             <Switch>
               <Route path="/admin/dashboard">
                 <Dashboard />
+              </Route>
+              <Route path="/admin/berita">
+                <CardBerita />
+              </Route>
+              <Route path="/admin/events">
+                <CardEvents />
+              </Route>
+              <Route path="/admin/alumni">
+                <CardAlumni />
               </Route>
             </Switch>
           </div>

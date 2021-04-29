@@ -1,8 +1,10 @@
 import React from "react";
-
+import Navbar from "./layout/Navbar";
+import Footer from "./layout/Footer";
 const Anggota = () => {
   return (
     <>
+      <Navbar />
       <div className="antialiased font-sans ">
         <div className="container mx-auto px-4 sm:px-8">
           <div className="py-8">
@@ -249,6 +251,7 @@ const Anggota = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

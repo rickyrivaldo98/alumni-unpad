@@ -1,7 +1,8 @@
 import React from "react";
 import { render } from "react-dom";
 import Gallery from "react-photo-gallery";
-
+import Navbar from "./layout/Navbar";
+import Footer from "./layout/Footer";
 const GalleryPhoto = () => {
   const photos = [
     {
@@ -87,10 +88,12 @@ const GalleryPhoto = () => {
   ];
   return (
     <>
+      <Navbar />
       <div className="text-center my-32 text-2xl font-bold">Gallery</div>
       <div className="container mx-auto">
         <Gallery photos={photos} />
       </div>
+      <Footer />
     </>
   );
 };
