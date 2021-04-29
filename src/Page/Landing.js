@@ -30,7 +30,7 @@ const Landing = () => {
           <div className="flex  items-center justify-center mt-20">
             <div className="text-4xl font-semibold">Berita</div>
           </div>
-          <div className="flex items-center justify-center">
+          <div className="flex-none md:flex items-center justify-center">
             <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
@@ -129,7 +129,7 @@ const Landing = () => {
           <div className="flex  items-center justify-center mt-20">
             <div className="text-4xl font-semibold">Events</div>
           </div>
-          <div className="flex items-center justify-center">
+          <div className="flex-none md:flex items-center justify-center">
             <div className="flex text-justify justify-center mr-4">
               <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
                 <div id="header" className="pt-5 w-80">
