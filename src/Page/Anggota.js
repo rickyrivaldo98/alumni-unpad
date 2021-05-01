@@ -116,7 +116,7 @@ const Anggota = () => {
                             aria-hidden
                             className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
                           />
-                          <span className="relative">Activo</span>
+                          <span className="relative">Active</span>
                         </span>
                       </td>
                     </tr>
@@ -153,7 +153,7 @@ const Anggota = () => {
                             aria-hidden
                             className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
                           />
-                          <span className="relative">Activo</span>
+                          <span className="relative">Active</span>
                         </span>
                       </td>
                     </tr>

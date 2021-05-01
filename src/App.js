@@ -9,7 +9,8 @@ import Landing from "./Page/Landing";
 import Admin from "./Page/Admin";
 import Footer from "./Page/layout/Footer";
 import Navbar from "./Page/layout/Navbar";
-
+import Aos from "aos";
+import "aos/dist/aos.css";
 const App = () => {
   return (
     <>

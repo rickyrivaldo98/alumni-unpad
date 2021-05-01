@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import App from "../App";
 import Bg from "../assets/images/unpad.png";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import "../App.css";
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 const Landing = () => {
+  useEffect(() => {
+    Aos.init({
+      duration: 2000,
+      once: true,
+    });
+  }, []);
   return (
     <>
       <Navbar />
@@ -15,16 +24,21 @@ const Landing = () => {
         >
           <div>
             <div className="flex justify-center items-center">
-              <h1 className="md:text-4xl font-bold text-lg text-white mt-48">
+              <h1
+                data-aos="fade-up"
+                className="md:text-4xl font-bold text-lg text-white mt-48"
+              >
                 Selamat Datang di Website ILUNI KMB
               </h1>
             </div>
             <div className="flex justify-center items-center mt-2">
-              <p className="text-white text-lg">Ikatan Alumni Dharmavira</p>
+              <p data-aos="fade-up" className="text-white text-lg">
+                Ikatan Alumni Dharmavira
+              </p>
             </div>
           </div>
           <div className="flex-none md:flex absolute text-center justify-center -bottom-10  md:-bottom-20 pt-20 mx-auto left-0 right-0 ">
-            <div className="inline-block mr-3">
+            <div data-aos="fade-up" className="inline-block mr-3">
               <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
                 <i
                   style={{ color: "orange" }}
@@ -38,7 +52,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="inline-block mr-3">
+            <div data-aos="fade-up" className="inline-block mr-3">
               <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
                 <i
                   style={{ color: "orange" }}
@@ -52,7 +66,7 @@ const Landing = () => {
                 </div>
               </div>
             </div>
-            <div className="inline-block mr-3">
+            <div data-aos="fade-up" className="inline-block mr-3">
               <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
                 <i
                   style={{ color: "orange" }}
