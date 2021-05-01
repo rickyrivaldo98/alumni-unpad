@@ -11,6 +11,8 @@ import Footer from "./Page/layout/Footer";
 import Navbar from "./Page/layout/Navbar";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import Events from "./Page/Events";
+
 const App = () => {
   return (
     <>
@@ -27,6 +29,9 @@ const App = () => {
         </Route>
         <Route path="/berita">
           <Berita />
+        </Route>
+        <Route path="/events">
+          <Events />
         </Route>
         <Route path="/about">
           <About />
