@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
+import Modal from "./Modal";
 const Anggota = () => {
+  const [show, setShow] = useState(false);
   return (
     <>
       <Navbar />
@@ -12,6 +14,12 @@ const Anggota = () => {
               <h2 className="text-2xl font-semibold leading-tight">
                 Anggota Ikatan Alumni Dharmavira
               </h2>
+              <button
+                onClick={() => setShow(true)}
+                class="my-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Tambah Anggota
+              </button>
             </div>
             <div className="my-2 flex sm:flex-row flex-col">
               <div className="flex flex-row mb-1 sm:mb-0">
@@ -251,6 +259,7 @@ const Anggota = () => {
           </div>
         </div>
       </div>
+      <Modal onClose={() => setShow(false)} show={show} />
       <Footer />
     </>
   );
