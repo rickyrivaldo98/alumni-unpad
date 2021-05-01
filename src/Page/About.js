@@ -1,7 +1,10 @@
 import React from "react";
+import Footer from "./layout/Footer";
+import Navbar from "./layout/Navbar";
 const About = () => {
   return (
     <>
+      <Navbar />
       <div className="flex justify-center items-center my-20">
         <h1 className="text-3xl font-bold">Tentang Kami</h1>{" "}
       </div>
@@ -52,6 +55,7 @@ const About = () => {
           aliqua sunt dolor eiusmod ea fugiat consequat.
         </div>
       </div>
+      <Footer />
     </>
   );
 };
