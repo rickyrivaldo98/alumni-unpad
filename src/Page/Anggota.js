@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import Modal from "./Modal";
+import "../App.css";
+
 const Anggota = () => {
   const [show, setShow] = useState(false);
   return (
