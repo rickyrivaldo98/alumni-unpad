@@ -7,6 +7,7 @@ import DetailBerita from "./Page/DetailBerita";
 import GalleryPhoto from "./Page/Gallery";
 import Landing from "./Page/Landing";
 import Admin from "./Page/Admin";
+import Login from "./Page/auth/Login";
 import Footer from "./Page/layout/Footer";
 import Navbar from "./Page/layout/Navbar";
 import Aos from "aos";
@@ -18,6 +19,9 @@ const App = () => {
     <>
       {/* <Navbar /> */}
       <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
         <Route path="/admin">
           <Admin />
         </Route>
