@@ -11,6 +11,8 @@ import Dashboard from "./components/Admin/Dashboard";
 import CardBerita from "./components/Admin/CardBerita";
 import CardEvents from "./components/Admin/CardEvents";
 import CardAlumni from "./components/Admin/CardAlumni";
+import AdminBerita from "./components/AdminBerita";
+import AddBerita from "./components/Admin/Form/AddBerita";
 
 const StyledAdmin = styled.div`
   font-family: "Nunito";
@@ -30,7 +32,10 @@ const Admin = () => {
                 <Dashboard />
               </Route>
               <Route path="/admin/berita">
-                <CardBerita />
+                <AdminBerita />
+              </Route>
+              <Route path="/admin/addberita">
+                <AddBerita />
               </Route>
               <Route path="/admin/events">
                 <CardEvents />
