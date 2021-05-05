@@ -26,18 +26,21 @@ const Landing = () => {
             <div className="flex justify-center items-center">
               <h1
                 data-aos="fade-up"
-                className="md:text-4xl font-bold text-lg text-white mt-48"
+                className="md:text-4xl font-bold text-lg text-white mt-48 tracking-wider"
               >
                 Selamat Datang di Website ILUNI KMB
               </h1>
             </div>
             <div className="flex justify-center items-center mt-2">
-              <p data-aos="fade-up" className="text-white text-lg">
+              <p
+                data-aos="fade-up"
+                className="text-white text-lg tracking-wide"
+              >
                 Ikatan Alumni Dharmavira
               </p>
             </div>
           </div>
-          <div className="flex-none md:flex absolute text-center justify-center -bottom-10  md:-bottom-20 pt-20 mx-auto left-0 right-0 ">
+          <div className="flex-none md:flex absolute text-center justify-center -bottom-84   md:-bottom-20 pt-20 mx-auto left-0 right-0">
             <div data-aos="fade-up" className="inline-block mr-3">
               <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
                 <i
@@ -83,8 +86,8 @@ const Landing = () => {
           </div>
         </div>
 
-        <div className="container m-auto ">
-          <div className="flex  items-center justify-center mt-20">
+        <div className="container m-auto">
+          <div className="flex  items-center justify-center md:mt-20 mt-96">
             <div className="text-4xl font-semibold">Berita</div>
           </div>
           <div className="flex-none lg:flex items-center justify-center">
@@ -180,6 +183,11 @@ const Landing = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="flex  items-center justify-center mt-10">
+            <button class="bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white  py-1 px-5 rounded-full ">
+              Lebih Banyak
+            </button>
           </div>
         </div>
         <div className="container m-auto">

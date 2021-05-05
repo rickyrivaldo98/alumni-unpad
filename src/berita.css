@@ -6,6 +6,12 @@
   background-repeat: no-repeat;
 }
 
+@media screen and (max-width: 768px) {
+  .bg-detailBerita {
+    height: 70vh;
+  }
+}
+
 .bg-detailBeritaOverlay {
   position: absolute;
   top: 0;

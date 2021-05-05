@@ -83,10 +83,10 @@ const Berita = () => {
             </div>
           </div>
 
-          <div className="w-3/6 xs:flex md:flex-none mt-10">
+          <div className="md:w-3/6 flex-none mt-10 p-2">
             <div className="flex justify-center items-center">
               <div className="max-w-2xl bg-white  p-5 rounded-lg tracking-wide shadow-lg mb-3">
-                <div id="header" className="flex">
+                <div id="header" className="flex-none md:flex">
                   <img
                     alt="mountain"
                     className="w-45 rounded-md border-2 border-gray-300"
@@ -114,7 +114,7 @@ const Berita = () => {
             </div>
             <div className="  flex justify-center items-center">
               <div className="max-w-2xl bg-white  p-5 rounded-lg tracking-wide shadow-lg mb-3">
-                <div id="header" className="flex">
+                <div id="header" className="flex-none md:flex">
                   <img
                     alt="mountain"
                     className="w-45 rounded-md border-2 border-gray-300"
@@ -142,7 +142,7 @@ const Berita = () => {
             </div>
             <div className=" flex justify-center items-center">
               <div className="max-w-2xl bg-white  p-5 rounded-lg tracking-wide shadow-lg mb-3">
-                <div id="header" className="flex">
+                <div id="header" className="flex-none md:flex">
                   <img
                     alt="mountain"
                     className="w-45 rounded-md border-2 border-gray-300"
