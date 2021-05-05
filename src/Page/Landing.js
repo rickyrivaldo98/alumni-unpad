@@ -6,6 +6,7 @@ import Footer from "./layout/Footer";
 import "../App.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { Link } from "react-router-dom";
 
 const Landing = () => {
   useEffect(() => {
@@ -40,7 +41,7 @@ const Landing = () => {
               </p>
             </div>
           </div>
-          <div className="flex-none md:flex absolute text-center justify-center -bottom-84   md:-bottom-20 pt-20 mx-auto left-0 right-0">
+          <div className="flex-none md:flex absolute text-center justify-center -bottom-84   md:-bottom-20 pt-20 mx-auto left-0 right-0 text-gray-700">
             <div data-aos="fade-up" className="inline-block mr-3">
               <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
                 <i
@@ -86,207 +87,137 @@ const Landing = () => {
           </div>
         </div>
 
-        <div className="container m-auto">
+        <div className="container m-auto text-gray-700">
           <div className="flex  items-center justify-center md:mt-20 mt-96">
-            <div className="text-4xl font-semibold">Berita</div>
+            <div className="text-4xl font-semibold tracking-wide">Berita</div>
           </div>
+
           <div className="flex-none lg:flex items-center justify-center">
-            <div className="flex text-justify justify-center mr-4">
-              <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                <div id="header" className="pt-5 w-80">
-                  <img
-                    alt="mountain"
-                    className="w-full h-auto rounded-md border-2 border-gray-300 "
-                    src="https://picsum.photos/seed/picsum/200"
-                  />
-                  <div className="text-sm p-2" id="body">
-                    <div id="name" className="font-semibold mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            <Link className="link-berita">
+              <div className="flex text-justify justify-center mr-4">
+                <div className=" pb-2 rounded-lg tracking-wide shadow-lg my-3">
+                  <div className="w-80">
+                    <img
+                      alt="mountain"
+                      className="w-full h-auto rounded-md "
+                      src="https://picsum.photos/seed/picsum/200"
+                    />
+                    <div className="text-sm p-2" id="body">
+                      <div id="name" className="font-semibold mb-2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                      </div>
+                      <div id="job" className="text-gray-800 text-xs">
+                        Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </div>
+                      <div className="float-right pt-2">
+                        <p>5 April 2021</p>
+                      </div>
                     </div>
-                    <div id="job" className="text-gray-800 text-xs">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div className="float-right pt-2">
-                      <p>5 April 2021</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex text-justify justify-center mr-4">
-              <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                <div id="header" className="pt-5 w-80">
-                  <img
-                    alt="mountain"
-                    className="w-full h-auto rounded-md border-2 border-gray-300 "
-                    src="https://picsum.photos/seed/picsum/200"
-                  />
-                  <div className="text-sm p-2" id="body">
-                    <div id="name" className="font-semibold mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </div>
-                    <div id="job" className="text-gray-800 text-xs">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div className="float-right pt-2">
-                      <p>5 April 2021</p>
+                    <div className="flex  items-center justify-center my-7 ">
+                      <button class="bg-blue-500 transition duration-500 hover:bg-blue-700 text-white  py-1 px-5 rounded-full ">
+                        Selengkapnya
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="flex text-justify justify-center mr-4">
-              <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                <div id="header" className="pt-5 w-80">
-                  <img
-                    alt="mountain"
-                    className="w-full h-auto rounded-md border-2 border-gray-300 "
-                    src="https://picsum.photos/seed/picsum/200"
-                  />
-                  <div className="text-sm p-2" id="body">
-                    <div id="name" className="font-semibold mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            </Link>
+            <Link className="link-berita">
+              <div className="flex text-justify justify-center mr-4">
+                <div className=" pb-2 rounded-lg tracking-wide shadow-lg my-3">
+                  <div className="w-80">
+                    <img
+                      alt="mountain"
+                      className="w-full h-auto rounded-md "
+                      src="https://picsum.photos/seed/picsum/200"
+                    />
+                    <div className="text-sm p-2" id="body">
+                      <div id="name" className="font-semibold mb-2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                      </div>
+                      <div id="job" className="text-gray-800 text-xs">
+                        Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </div>
+                      <div className="float-right pt-2">
+                        <p>5 April 2021</p>
+                      </div>
                     </div>
-                    <div id="job" className="text-gray-800 text-xs">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div className="float-right pt-2">
-                      <p>5 April 2021</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex text-justify justify-center mr-4">
-              <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                <div id="header" className="pt-5 w-80">
-                  <img
-                    alt="mountain"
-                    className="w-full h-auto rounded-md border-2 border-gray-300 "
-                    src="https://picsum.photos/seed/picsum/200"
-                  />
-                  <div className="text-sm p-2" id="body">
-                    <div id="name" className="font-semibold mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </div>
-                    <div id="job" className="text-gray-800 text-xs">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div className="float-right pt-2">
-                      <p>5 April 2021</p>
+                    <div className="flex  items-center justify-center my-7 ">
+                      <button class="bg-blue-500 transition duration-500 hover:bg-blue-700 text-white  py-1 px-5 rounded-full ">
+                        Selengkapnya
+                      </button>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
+            <Link className="link-berita">
+              <div className="flex text-justify justify-center mr-4">
+                <div className=" pb-2 rounded-lg tracking-wide shadow-lg my-3">
+                  <div className="w-80">
+                    <img
+                      alt="mountain"
+                      className="w-full h-auto rounded-md "
+                      src="https://picsum.photos/seed/picsum/200"
+                    />
+                    <div className="text-sm p-2" id="body">
+                      <div id="name" className="font-semibold mb-2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                      </div>
+                      <div id="job" className="text-gray-800 text-xs">
+                        Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </div>
+                      <div className="float-right pt-2">
+                        <p>5 April 2021</p>
+                      </div>
+                    </div>
+                    <div className="flex  items-center justify-center my-7 ">
+                      <button class="bg-blue-500 transition duration-500 hover:bg-blue-700 text-white  py-1 px-5 rounded-full ">
+                        Selengkapnya
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+            <Link className="link-berita">
+              <div className="flex text-justify justify-center mr-4">
+                <div className=" pb-2 rounded-lg tracking-wide shadow-lg my-3">
+                  <div className="w-80">
+                    <img
+                      alt="mountain"
+                      className="w-full h-auto rounded-md "
+                      src="https://picsum.photos/seed/picsum/200"
+                    />
+                    <div className="text-sm p-2" id="body">
+                      <div id="name" className="font-semibold mb-2">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                      </div>
+                      <div id="job" className="text-gray-800 text-xs">
+                        Ut enim ad minim veniam, quis nostrud exercitation
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      </div>
+                      <div className="float-right pt-2">
+                        <p>5 April 2021</p>
+                      </div>
+                    </div>
+                    <div className="flex  items-center justify-center my-7 ">
+                      <button class="bg-blue-500 transition duration-500 hover:bg-blue-700 text-white  py-1 px-5 rounded-full ">
+                        Selengkapnya
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
-          <div className="flex  items-center justify-center mt-10">
+          <div className="flex  items-center justify-center mt-10 ">
             <button class="bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white  py-1 px-5 rounded-full ">
               Lebih Banyak
             </button>
-          </div>
-        </div>
-        <div className="container m-auto">
-          <div className="flex  items-center justify-center mt-20">
-            <div className="text-4xl font-semibold">Events</div>
-          </div>
-          <div className="flex-none lg:flex items-center justify-center">
-            <div className="flex text-justify justify-center mr-4">
-              <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                <div id="header" className="pt-5 w-80">
-                  <img
-                    alt="mountain"
-                    className="w-full h-auto rounded-md border-2 border-gray-300 "
-                    src="https://picsum.photos/seed/picsum/200"
-                  />
-                  <div className="text-sm p-2" id="body">
-                    <div id="name" className="font-semibold mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </div>
-                    <div id="job" className="text-gray-800 text-xs">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div className="float-right pt-2">
-                      <p>5 April 2021</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex text-justify justify-center mr-4">
-              <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                <div id="header" className="pt-5 w-80">
-                  <img
-                    alt="mountain"
-                    className="w-full h-auto rounded-md border-2 border-gray-300 "
-                    src="https://picsum.photos/seed/picsum/200"
-                  />
-                  <div className="text-sm p-2" id="body">
-                    <div id="name" className="font-semibold mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </div>
-                    <div id="job" className="text-gray-800 text-xs">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div className="float-right pt-2">
-                      <p>5 April 2021</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex text-justify justify-center mr-4">
-              <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                <div id="header" className="pt-5 w-80">
-                  <img
-                    alt="mountain"
-                    className="w-full h-auto rounded-md border-2 border-gray-300 "
-                    src="https://picsum.photos/seed/picsum/200"
-                  />
-                  <div className="text-sm p-2" id="body">
-                    <div id="name" className="font-semibold mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </div>
-                    <div id="job" className="text-gray-800 text-xs">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div className="float-right pt-2">
-                      <p>5 April 2021</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex text-justify justify-center mr-4">
-              <div className="bg-white pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                <div id="header" className="pt-5 w-80">
-                  <img
-                    alt="mountain"
-                    className="w-full h-auto rounded-md border-2 border-gray-300 "
-                    src="https://picsum.photos/seed/picsum/200"
-                  />
-                  <div className="text-sm p-2" id="body">
-                    <div id="name" className="font-semibold mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </div>
-                    <div id="job" className="text-gray-800 text-xs">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                    </div>
-                    <div className="float-right pt-2">
-                      <p>5 April 2021</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

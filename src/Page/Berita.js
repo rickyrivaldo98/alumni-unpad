@@ -26,7 +26,7 @@ const Berita = () => {
             />
           </div>
           <div className="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-1/2">
-            <h2 className="text-3xl text-gray-800 font-bold">
+            <h2 className="text-xl md:text-3xl text-gray-800 font-bold">
               IKA Unpad Gelar Sosialisasi dan Pelatihan Terkait UU Cipta Kerja
             </h2>
             <p className="mt-4 text-gray-600">
@@ -85,15 +85,15 @@ const Berita = () => {
 
           <div className="md:w-3/6 flex-none mt-10 p-2">
             <div className="flex justify-center items-center">
-              <div className="max-w-2xl bg-white  p-5 rounded-lg tracking-wide shadow-lg mb-3">
+              <div className="max-w-2xl bg-white  p-5 rounded-lg shadow-lg mb-3">
                 <div id="header" className="flex-none md:flex">
                   <img
                     alt="mountain"
                     className="w-45 rounded-md border-2 border-gray-300"
                     src="https://picsum.photos/seed/picsum/200"
                   />
-                  <div id="body" className="flex flex-col ml-5">
-                    <h4 id="name" className="text-xl font-semibold mb-2">
+                  <div className="flex flex-col md:ml-5">
+                    <h4 className="text-xl  text-gray-800 font-bold mb-2">
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit
                     </h4>
                     <p id="job" className="text-gray-800 mt-2">
