@@ -12,6 +12,27 @@
   }
 }
 
+.DraftEditor-editorContainer {
+  background-color: #fff !important;
+  position: relative;
+  z-index: 1;
+  border-radius: 2px;
+  border: 1px solid #f1f1f1 !important;
+}
+
+.wrapper-class {
+  padding: 1rem;
+  border: 1px solid #ccc !important;
+}
+.editor-class {
+  background-color: #ccc !important;
+  padding: 1rem;
+  border: 1px solid #ccc !important;
+}
+.toolbar-class {
+  border: 1px solid #ccc !important;
+}
+
 .bg-detailBeritaOverlay {
   position: absolute;
   top: 0;

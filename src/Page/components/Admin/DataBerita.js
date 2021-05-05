@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-// import { css } from "@emotion/core";
+// import { css } from "@emotion/core"; 
 import Loader from "react-loader-spinner";
 // components
 
@@ -16,7 +16,7 @@ export default function DataBerita({ color }) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://api.sarafdesign.com/gallery")
+      .get("https://unpad.sarafdesign.com/berita")
       .then((res) => {
         setData(res.data);
       })
@@ -30,14 +30,16 @@ export default function DataBerita({ color }) {
   let handleDelete = (e) => {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
-      axios.delete(`https://api.sarafdesign.com/gallery/${e}`).then((res) => {
+      axios.delete(`https://unpad.sarafdesign.com/berita/${e}`).then((res) => {
         alert("Kehapus");
       });
       setLoading(false);
     } else {
     }
   };
+
   let i = 1;
+  
   return (
     <>
       <div
@@ -55,16 +57,16 @@ export default function DataBerita({ color }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Project Works
+                Berita
+                <Link to={`/admin/addberita`}>
+                  <button
+                    className="bg-green-500 text-white  font-bold float-right text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                    type="button"
+                  >
+                    Add Berita
+                  </button>
+                </Link>
               </h3>
-              <Link to={`/admin/addberita`}>
-                <button
-                  className="bg-green-500 text-white  font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                  type="button"
-                >
-                  Add Project
-                </button>
-              </Link>
             </div>
           </div>
         </div>
@@ -91,7 +93,7 @@ export default function DataBerita({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Project Name
+                  Title
                 </th>
                 <th
                   className={
@@ -101,7 +103,7 @@ export default function DataBerita({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Category Name
+                  Content
                 </th>
                 <th
                   className={
@@ -111,7 +113,7 @@ export default function DataBerita({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Description
+                  Thumbnail
                 </th>
                 <th
                   className={
@@ -127,8 +129,8 @@ export default function DataBerita({ color }) {
             </thead>
             <tbody>
               {empty ? (
-                <div className="w-full justify-center items-center flex flex-col p-5">
-                  data kosong
+                <div className="w-full justify-center items-center flex flex-col p-6">
+                  Data Kosong
                 </div>
               ) : (
                 <>
@@ -150,18 +152,18 @@ export default function DataBerita({ color }) {
                           {i++}
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
-                          {x.nama}
+                          {x.title}
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                          {x.category_nama}
+                          {x.content}
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4">
-                          {x.deskripsi}
+                          <img className="h-24 w-24" src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`} alt=""/>
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4">
                           <div className="flex">
-                            <Link
-                              to={`/admin/adminworksdetail/${x.id_gallery}`}
+                            {/* <Link
+                              to={`/admin/adminworksdetail/${x.id}`}
                             >
                               <button
                                 className="bg-blue-500 text-white active:bg-blue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
@@ -169,8 +171,8 @@ export default function DataBerita({ color }) {
                               >
                                 Details
                               </button>
-                            </Link>
-                            <Link to={`/admin/editgallery/${x.id_gallery}`}>
+                            </Link> */}
+                            <Link to={`/admin/editgallery/${x.id}`}>
                               <button
                                 className="bg-yellow-500 text-white active:bg-blue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
@@ -181,7 +183,7 @@ export default function DataBerita({ color }) {
                             <button
                               className="bg-red-500 text-white active:bg-blue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                               type="button"
-                              onClick={() => handleDelete(x.id_gallery)}
+                              onClick={() => handleDelete(x.id)}
                             >
                               Delete
                             </button>

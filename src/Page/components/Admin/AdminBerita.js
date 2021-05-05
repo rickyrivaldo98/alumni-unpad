@@ -1,5 +1,5 @@
 import React from "react";
-import DataBerita from "./Admin/DataBerita";
+import DataBerita from "./DataBerita";
 
 const AdminBerita = () => {
   return (
