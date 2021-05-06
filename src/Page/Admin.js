@@ -5,6 +5,8 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import "./admin.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { useAlert } from "react-alert";
+
 import Sidebar from "./components/Admin/Sidebar";
 import Navbar_admin from "./components/Admin/Navbar_admin";
 import Dashboard from "./components/Admin/Dashboard";
@@ -27,6 +29,39 @@ const StyledAdmin = styled.div`
 `;
 
 const Admin = () => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const alert = useAlert();
+
+  let history = useHistory();
+
+  useEffect(() => {
+    // setLoading(true);
+    axios
+      .get("https://api.sarafdesign.com/checkUser", {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        // history.push("/admin");
+        setLoading(false);
+      })
+      .catch((err) => {
+        // console.log(err);
+        if (err.response.status === 401) {
+          history.push("/login");
+          // setTimeout(() => {
+          //   history.push("/login");
+          // }, 1000);
+          alert.show("Anda belum login");
+          // console.log(error);
+        }
+        // alert.show("Anda belum login");
+        // console.log(err);
+      });
+  }, []);
+
   return (
     <>
       <StyledAdmin>
