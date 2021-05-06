@@ -202,7 +202,7 @@ export default function Sidebar() {
                         : "text-gray-400")
                     }
                   ></i>{" "}
-                  Alumni
+                  Alumni Terverifikasi
                 </Link>
               </li>
               <li className="items-center">

@@ -1,11 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "./layout/Navbar";
+import { useAlert } from "react-alert";
+import { useHistory } from "react-router-dom";
 import Footer from "./layout/Footer";
 import Modal from "./Modal";
 import "../App.css";
 
 const Anggota = () => {
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [empty, setEmpty] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("https://unpad.sarafdesign.com/verified")
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((error) => {
+        setData([]);
+        setEmpty(true);
+      });
+    setLoading(false);
+  }, [data]);
+
   return (
     <>
       <Navbar />

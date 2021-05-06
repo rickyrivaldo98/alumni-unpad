@@ -59,13 +59,13 @@ export default function DataBerita({ color }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Anggota
+                Alumni
                 <Link to={`/admin/addanggota`}>
                   <button
                     className="bg-green-500 text-white  font-bold float-right text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     type="button"
                   >
-                    Add Anggota
+                    Add Alumni
                   </button>
                 </Link>
               </h3>
