@@ -16,6 +16,11 @@ import AdminCategory from "./components/Admin/AdminCategory";
 import AddBerita from "./components/Admin/Forms/AddBerita";
 import AddCategory from "./components/Admin/Forms/AddCategory";
 import EditCategory from "./components/Admin/Forms/EditCategory";
+import AdminAnggota from "./components/Admin/AdminAnggota";
+import AddAnggota from "./components/Admin/Forms/AddAnggota";
+import EditAnggota from "./components/Admin/Forms/EditAnggota";
+import AdminUnverified from "./components/Admin/AdminUnverified";
+
 
 const StyledAdmin = styled.div`
   font-family: "Nunito";
@@ -52,8 +57,17 @@ const Admin = () => {
               <Route path="/admin/events">
                 <CardEvents />
               </Route>
-              <Route path="/admin/alumni">
-                <CardAlumni />
+              <Route path="/admin/anggota">
+                <AdminAnggota />
+              </Route>
+              <Route path="/admin/addanggota">
+                <AddAnggota />
+              </Route>
+              <Route path="/admin/editanggota/:id">
+                <EditAnggota />
+              </Route>
+              <Route path="/admin/verification">
+                <AdminUnverified />
               </Route>
             </Switch>
           </div>

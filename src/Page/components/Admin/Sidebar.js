@@ -104,7 +104,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs  font-bold block pt-1 pb-4 no-underline">
-              Manajemen
+              Manajemen Data
             </h6>
             {/* Navigation */}
 
@@ -178,7 +178,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs  font-bold block pt-1 pb-4 no-underline">
-              Admin Alumni Menu
+              Manajemen Anggota Alumni
             </h6>
             {/* Navigation */}
 
@@ -187,22 +187,44 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs  py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/admincontacts") !== -1
+                    (window.location.href.indexOf("/admin/anggota") !== -1
                       ? "text-blue-500 hover:text-blue-600"
                       : "text-gray-800 hover:text-gray-600")
                   }
-                  to="/admin/admincontacts"
+                  to="/admin/anggota"
                 >
                   <i
                     className={
                       "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/admincontacts") !==
+                      (window.location.href.indexOf("/admin/anggota") !==
                       -1
                         ? "opacity-75"
                         : "text-gray-400")
                     }
                   ></i>{" "}
                   Alumni
+                </Link>
+              </li>
+              <li className="items-center">
+                <Link
+                  className={
+                    "text-xs  py-3 font-bold block " +
+                    (window.location.href.indexOf("/admin/verification") !== -1
+                      ? "text-blue-500 hover:text-blue-600"
+                      : "text-gray-800 hover:text-gray-600")
+                  }
+                  to="/admin/verification"
+                >
+                  <i
+                    className={
+                      "fas fa-table mr-2 text-sm " +
+                      (window.location.href.indexOf("/admin/verification") !==
+                      -1
+                        ? "opacity-75"
+                        : "text-gray-400")
+                    }
+                  ></i>{" "}
+                  Verifikasi Alumni
                 </Link>
               </li>
             </ul>
