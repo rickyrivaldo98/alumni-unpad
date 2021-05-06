@@ -18,7 +18,7 @@ const Landing = () => {
   return (
     <>
       <Navbar />
-      <div className="">
+      <div className="overflow-hidden">
         <div
           className="jumbotron relative mb-48"
           style={{ backgroundImage: `url(${Bg})` }}

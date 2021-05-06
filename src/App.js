@@ -4,7 +4,7 @@ import About from "./Page/About";
 import Anggota from "./Page/Anggota";
 import Berita from "./Page/Berita";
 import DetailBerita from "./Page/DetailBerita";
-import GalleryPhoto from "./Page/Gallery";
+import GalleryPhoto from "./Page/DetailGallery";
 import Landing from "./Page/Landing";
 import Admin from "./Page/Admin";
 import Login from "./Page/auth/Login";
@@ -13,6 +13,8 @@ import Navbar from "./Page/layout/Navbar";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import Events from "./Page/Events";
+import Gallery from "./Page/Gallery";
+import SimpleReactLightbox from "simple-react-lightbox";
 
 const App = () => {
   return (
@@ -26,7 +28,12 @@ const App = () => {
           <Admin />
         </Route>
         <Route path="/gallery">
-          <GalleryPhoto />
+          <Gallery />
+        </Route>
+        <Route path="/detail-gallery/:galleryname">
+          <SimpleReactLightbox>
+            <GalleryPhoto />
+          </SimpleReactLightbox>
         </Route>
         <Route path="/detail-berita">
           <DetailBerita />

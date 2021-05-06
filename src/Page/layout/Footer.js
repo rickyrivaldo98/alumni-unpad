@@ -19,8 +19,8 @@ const Footer = () => {
             <div className="text-normal md:text-4xl font-bold mb-5 tracking-wider">
               Contact Person
             </div>
-            <div className="w-full md:w-3/4 text-lg">0821664555</div>
-            <div className="w-full md:w-3/4 text-lg">Admin@gmail.com</div>
+            <div className="w-full md:w-3/4 md:text-lg">0821664555</div>
+            <div className="w-full md:w-3/4 md:text-lg">Admin@gmail.com</div>
           </div>
           <div className="w-1/6"></div>
         </div>

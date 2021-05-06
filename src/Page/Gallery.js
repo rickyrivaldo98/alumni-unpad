@@ -1,101 +1,69 @@
-import React from "react";
-import { render } from "react-dom";
-import Gallery from "react-photo-gallery";
-import Navbar from "./layout/Navbar";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Footer from "./layout/Footer";
-const GalleryPhoto = () => {
-  const photos = [
-    {
-      src: "https://source.unsplash.com/2ShvY8Lf6l0/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/Dm-qxdynoEc/800x799",
-      width: 1,
-      height: 1,
-    },
-    {
-      src: "https://source.unsplash.com/qDkso9nvCg0/600x799",
-      width: 3,
-      height: 4,
-    },
-    {
-      src: "https://source.unsplash.com/iecJiKe_RNg/600x799",
-      width: 3,
-      height: 4,
-    },
-    {
-      src: "https://source.unsplash.com/epcsn8Ed8kY/600x799",
-      width: 3,
-      height: 4,
-    },
-    {
-      src: "https://source.unsplash.com/NQSWvyVRIJk/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/zh7GEuORbUw/600x799",
-      width: 3,
-      height: 4,
-    },
-    {
-      src: "https://source.unsplash.com/PpOHJezOalU/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/I1ASdgphUH4/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/XiDA78wAZVw/600x799",
-      width: 3,
-      height: 4,
-    },
-    {
-      src: "https://source.unsplash.com/x8xJpClTvR0/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/qGQNmBE7mYw/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/NuO6iTBkHxE/800x599",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/pF1ug8ysTtY/600x400",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/A-fubu9QJxE/800x533",
-      width: 4,
-      height: 3,
-    },
-    {
-      src: "https://source.unsplash.com/5P91SF0zNsI/740x494",
-      width: 4,
-      height: 3,
-    },
-  ];
+import Navbar from "./layout/Navbar";
+import Moment from "react-moment";
+import moment from "moment";
+import { Link } from "react-router-dom";
+
+const Gallery = () => {
+  const [loading, setLoading] = useState(false);
+  const [GalleryData, setGalleryData] = useState([]);
+  const [ImageData, setImageData] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    axios.get("https://unpad.sarafdesign.com/gallery").then((res) => {
+      setGalleryData(res.data);
+    });
+    setLoading(false);
+  }, []);
   return (
     <>
       <Navbar />
-      <div className="text-center my-32 text-2xl font-bold">Gallery</div>
-      <div className="container mx-auto">
-        <Gallery photos={photos} />
+
+      <div className="container mx-auto mt-20">
+        <div
+          style={{ color: "#4b5563" }}
+          className="text-center my-32 text-2xl font-bold"
+        >
+          Gallery Iluni KMB
+        </div>
+        <div className="flex flex-wrap justify-center items-center ">
+          {GalleryData.map((x) => (
+            <>
+              <Link
+                to={`/detail-gallery/${x.slug_gallery}`}
+                key={x.slug_gallery}
+              >
+                <div
+                  style={{
+                    backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                  }}
+                  className="container-gallery gambar-gallery  shadow-lg ml-2 mb-4"
+                >
+                  <div className="overlay">
+                    <div className="flex flex-col justify-center items-center text-white mt-20">
+                      <div className="text-2xl font-bold text-center tracking-wide">
+                        {x.name}
+                      </div>
+                      <div>{x.description}</div>
+                      <div>
+                        <p className="mt-16">
+                          dibuat {moment(x.created_at).format("LL")}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </>
+          ))}
+        </div>
       </div>
       <Footer />
     </>
   );
 };
 
-export default GalleryPhoto;
+export default Gallery;
