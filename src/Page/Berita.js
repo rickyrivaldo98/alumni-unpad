@@ -9,9 +9,9 @@ const Berita = () => {
       <Navbar />
       <div className="flex justify-center items-center">
         <div className="mt-32 mb-20">
-          <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-5 rounded-full">
+          <div class="cursor-default bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white font-bold py-1 px-5 rounded-full">
             Berita Terbaru
-          </button>
+          </div>
         </div>
       </div>
       <div className=" lg:py-12 lg:flex lg:justify-center">
@@ -89,7 +89,7 @@ const Berita = () => {
                 <div id="header" className="flex-none md:flex">
                   <img
                     alt="mountain"
-                    className="w-45 rounded-md border-2 border-gray-300"
+                    className="w-45 rounded-md "
                     src="https://picsum.photos/seed/picsum/200"
                   />
                   <div className="flex flex-col md:ml-5">
@@ -103,7 +103,7 @@ const Berita = () => {
                     <div className="flex mt-5">
                       <img
                         alt="avatar"
-                        className="w-6 rounded-full border-2 border-gray-300"
+                        className="w-6 rounded-full "
                         src="https://picsum.photos/seed/picsum/200"
                       />
                       <p className="ml-3">John Doe</p>
@@ -117,7 +117,7 @@ const Berita = () => {
                 <div id="header" className="flex-none md:flex">
                   <img
                     alt="mountain"
-                    className="w-45 rounded-md border-2 border-gray-300"
+                    className="w-45 rounded-md "
                     src="https://picsum.photos/seed/picsum/200"
                   />
                   <div id="body" className="flex flex-col ml-5">
@@ -131,7 +131,7 @@ const Berita = () => {
                     <div className="flex mt-5">
                       <img
                         alt="avatar"
-                        className="w-6 rounded-full border-2 border-gray-300"
+                        className="w-6 rounded-full"
                         src="https://picsum.photos/seed/picsum/200"
                       />
                       <p className="ml-3">John Doe</p>
@@ -145,7 +145,7 @@ const Berita = () => {
                 <div id="header" className="flex-none md:flex">
                   <img
                     alt="mountain"
-                    className="w-45 rounded-md border-2 border-gray-300"
+                    className="w-45 rounded-md"
                     src="https://picsum.photos/seed/picsum/200"
                   />
                   <div id="body" className="flex flex-col ml-5">
@@ -159,7 +159,7 @@ const Berita = () => {
                     <div className="flex mt-5">
                       <img
                         alt="avatar"
-                        className="w-6 rounded-full border-2 border-gray-300"
+                        className="w-6 rounded-full"
                         src="https://picsum.photos/seed/picsum/200"
                       />
                       <p className="ml-3">John Doe</p>
