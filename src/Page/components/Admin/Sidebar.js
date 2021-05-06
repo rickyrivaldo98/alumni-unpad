@@ -73,7 +73,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs  font-bold block pt-1 pb-4 no-underline">
-              Admin Menu
+              Admin
             </h6>
             {/* Navigation */}
 
@@ -104,7 +104,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs  font-bold block pt-1 pb-4 no-underline">
-              Admin Berita dan Events Menu
+              Manajemen
             </h6>
             {/* Navigation */}
 

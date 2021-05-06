@@ -14,7 +14,7 @@ const Events = () => {
           <FullCalendar
             events={[
               { title: "event 1", date: "2021-05-06" },
-              { title: "event 2", date: "2020-05-12" },
+              { title: "event 2", date: "2021-05-12" },
             ]}
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"

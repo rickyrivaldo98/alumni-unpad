@@ -8,11 +8,12 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import Sidebar from "./components/Admin/Sidebar";
 import Navbar_admin from "./components/Admin/Navbar_admin";
 import Dashboard from "./components/Admin/Dashboard";
-import CardBerita from "./components/Admin/CardBerita";
-import CardEvents from "./components/Admin/CardEvents";
-import CardAlumni from "./components/Admin/CardAlumni";
-import AdminBerita from "./components/AdminBerita";
-import AddBerita from "./components/Admin/Form/AddBerita";
+import CardBerita from "./components/Admin/Cards/CardBerita";
+import CardEvents from "./components/Admin/Cards/CardEvents";
+import CardAlumni from "./components/Admin/Cards/CardAlumni";
+import CardCategory from "./components/Admin/Cards/CardCategory";
+import AdminBerita from "./components/Admin/AdminBerita";
+import AddBerita from "./components/Admin/Forms/AddBerita";
 
 const StyledAdmin = styled.div`
   font-family: "Nunito";
@@ -29,13 +30,16 @@ const Admin = () => {
           <div className="px-4 md:px-10 mx-auto w-full -m-24">
             <Switch>
               <Route path="/admin/dashboard">
-                <Dashboard />
+                {/* <Dashboard /> */}
               </Route>
               <Route path="/admin/berita">
                 <AdminBerita />
               </Route>
               <Route path="/admin/addberita">
                 <AddBerita />
+              </Route>
+              <Route path="/admin/category">
+                <CardCategory />
               </Route>
               <Route path="/admin/events">
                 <CardEvents />

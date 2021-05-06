@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CardStats from "./CardStats";
+import CardStats from "./Cards/CardStats";
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
