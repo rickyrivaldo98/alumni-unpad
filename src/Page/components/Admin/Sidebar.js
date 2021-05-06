@@ -73,7 +73,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs  font-bold block pt-1 pb-4 no-underline">
-              Admin Menu
+              Admin
             </h6>
             {/* Navigation */}
 
@@ -104,7 +104,7 @@ export default function Sidebar() {
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-gray-600 text-xs  font-bold block pt-1 pb-4 no-underline">
-              Admin Berita dan Events Menu
+              Manajemen
             </h6>
             {/* Navigation */}
 
@@ -113,16 +113,16 @@ export default function Sidebar() {
                 <Link
                   className={
                     "text-xs  py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/adminworks") !== -1
+                    (window.location.href.indexOf("/admin/berita") !== -1
                       ? "text-blue-500 hover:text-blue-600"
                       : "text-gray-800 hover:text-gray-500")
                   }
-                  to="/admin/adminworks"
+                  to="/admin/berita"
                 >
                   <i
                     className={
                       "fas fa-tools mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/adminworks") !== -1
+                      (window.location.href.indexOf("/admin/berita") !== -1
                         ? "opacity-75"
                         : "text-gray-300")
                     }
