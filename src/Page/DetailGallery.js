@@ -22,7 +22,9 @@ const GalleryPhoto = () => {
   return (
     <>
       <Navbar />
-      <div className="text-center my-32 text-2xl font-bold">Gallery</div>
+      <div className="text-center my-32 text-2xl font-bold">
+        Gallery {ImageData[0].gallery_name}
+      </div>
       <SRLWrapper>
         <div className="container mx-auto">
           <div className="flex flex-wrap justify-center items-center ">
@@ -30,7 +32,7 @@ const GalleryPhoto = () => {
             {!loading &&
               ImageData.map((x) => (
                 <>
-                  <div className="w-full image-container image md:ml-5 mb-5">
+                  <div className="w-full image-container image md:ml-5 mb-5 cursor-pointer">
                     <img
                       className="w-full image-container image"
                       alt={x.name}
