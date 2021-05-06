@@ -9,6 +9,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 const Events = () => {
   const [upComing, setUpcoming] = useState([]);
   const [month, setMonth] = useState("");
+  const [namaMonth, setnamaMonth] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -43,6 +44,8 @@ const Events = () => {
             <div className="h-screen w-3/4">
               <FullCalendar
                 datesSet={(arg) => {
+                  setnamaMonth(arg.view.title.substr(0, 3));
+                  console.log(arg.view.title.substr(0, 3));
                   setMonth(arg.view.currentEnd.toISOString().substr(5, 2));
                 }}
                 events={upComing}
@@ -58,7 +61,9 @@ const Events = () => {
             </div>
           ) : (
             <>
-              <div className="mt-20 text-center text-5xl ">Bulan {month}</div>
+              <div className="mt-20 text-center text-5xl ">
+                Bulan {namaMonth}
+              </div>
               {checkComingMonth.map((x) => (
                 <div className="mt-10">
                   <div className="flex text-center items-center justify-center mt-5">
