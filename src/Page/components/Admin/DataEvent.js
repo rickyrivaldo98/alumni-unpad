@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Loader from "react-loader-spinner";
 // components
 
-export default function DataCategory({ color }) {
+export default function DataEvent({ color }) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [empty, setEmpty] = useState(false);
@@ -16,7 +16,7 @@ export default function DataCategory({ color }) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://unpad.sarafdesign.com/category")
+      .get("https://unpad.sarafdesign.com/event")
       .then((res) => {
         setData(res.data);
       })
@@ -30,9 +30,11 @@ export default function DataCategory({ color }) {
   let handleDelete = (e) => {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
-      axios.delete(`https://unpad.sarafdesign.com/category/${e}`).then((res) => {
-        alert("Kehapus");
-      });
+      axios
+        .delete(`https://unpad.sarafdesign.com/event/${e}`)
+        .then((res) => {
+          alert("Kehapus");
+        });
       setLoading(false);
     } else {
     }
@@ -57,13 +59,13 @@ export default function DataCategory({ color }) {
                   (color === "light" ? "text-blueGray-700" : "text-white")
                 }
               >
-                Category
-                <Link to={`/admin/addcategory`}>
+                Event
+                <Link to={`/admin/addevent`}>
                   <button
                     className="bg-green-500 text-white  font-bold float-right text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     type="button"
                   >
-                    Add Category
+                    Add Event
                   </button>
                 </Link>
               </h3>
@@ -93,7 +95,27 @@ export default function DataCategory({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Category Name
+                  Title
+                </th>
+                <th
+                  className={
+                    "px-6 align-middle border border-solid py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                    (color === "light"
+                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                  }
+                >
+                  Content
+                </th>
+                <th
+                  className={
+                    "px-6 align-middle border border-solid py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
+                    (color === "light"
+                      ? "bg-blueGray-50 text-blueGray-500 border-blueGray-100"
+                      : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
+                  }
+                >
+                  Date
                 </th>
                 <th
                   className={
@@ -132,7 +154,13 @@ export default function DataCategory({ color }) {
                           {i++}
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
-                          {x.name}
+                          {x.title}
+                        </td>
+                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
+                          {x.content}
+                        </td>
+                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
+                          {x.date.substr(0, 10)}
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4">
                           <div className="flex">
@@ -146,7 +174,7 @@ export default function DataCategory({ color }) {
                                 Details
                               </button>
                             </Link> */}
-                            <Link to={`/admin/editcategory/${x.id}`}>
+                            <Link to={`/admin/editevent/${x.id}`}>
                               <button
                                 className="bg-yellow-500 text-white active:bg-blue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
@@ -175,10 +203,10 @@ export default function DataCategory({ color }) {
   );
 }
 
-DataCategory.defaultProps = {
+DataEvent.defaultProps = {
   color: "light",
 };
 
-DataCategory.propTypes = {
+DataEvent.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

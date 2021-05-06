@@ -11,7 +11,7 @@ import * as yup from "yup";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 // import { FaWindows } from "react-icons/fa";
-const AddBerita = () => {
+const EditCategory = () => {
   let { id } = useParams();
   const alert = useAlert();
   let history = useHistory();
@@ -116,4 +116,4 @@ const AddBerita = () => {
   );
 };
 
-export default AddBerita;
+export default EditCategory;

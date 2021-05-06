@@ -1,7 +1,7 @@
 import React from "react";
 import DataCategory from "./DataCategory";
 
-const AdminBerita = () => {
+const AdminCategory = () => {
   return (
     <>
       <div className="flex flex-wrap mt-4">
@@ -13,4 +13,4 @@ const AdminBerita = () => {
   );
 };
 
-export default AdminBerita;
+export default AdminCategory;

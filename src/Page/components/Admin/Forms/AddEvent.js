@@ -11,26 +11,31 @@ import * as yup from "yup";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 // import { FaWindows } from "react-icons/fa";
-const AddCategory = () => {
+const AddEvent = () => {
   const alert = useAlert();
   let history = useHistory();
 
-  const [CategoryName, setCategoryName] = useState("");
-  console.log(CategoryName);
+  const [Title, setTitle] = useState("");
+  const [Content, setContent] = useState("");
+  const [Date, setDate] = useState("");
 
-  const handleChange1 = (e) => setCategoryName(e.target.value);
+  const handleTitle = (e) => setTitle(e.target.value);
+  const handleContent = (e) => setContent(e.target.value);
+  const handleDate = (e) => setDate(e.target.value);
 
-  const handleCategory = (e) => {
+  const handleEvent = (e) => {
     e.preventDefault();
-    const category = {
-      name: CategoryName,
+    const event = {
+      title: Title,
+      content: Content,
+      date: Date,
     };
     axios
-      .post("https://unpad.sarafdesign.com/category", category)
+      .post("https://unpad.sarafdesign.com/event", event)
       .then((res) => {
-        alert.show("Category Succesfully Added!");
+        alert.show("Event Succesfully Added!");
         setTimeout(() => {
-          history.push("/admin/category");
+          history.push("/admin/events");
         }, 3000);
       }, [])
       .catch((error) => {
@@ -62,12 +67,12 @@ const AddCategory = () => {
                   Back
                 </button>
                 <h6 className="m-2 text-blueGray-700 text-xl font-bold">
-                  Add Category
+                  Add Event
                 </h6>
               </div>
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-              <form onSubmit={handleCategory}>
+              <form onSubmit={handleEvent}>
                 <div className="flex flex-col flex-wrap">
                   <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
@@ -75,14 +80,52 @@ const AddCategory = () => {
                         className="block   text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
                       >
-                        Category Name
+                        Title
                       </label>
                       <input
                         type="text"
                         name="Category"
-                        placeholder="Insert Category"
+                        placeholder="Insert Title"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        onChange={handleChange1}
+                        onChange={handleTitle}
+                        // ref={register}
+                      />
+                      {/* <p style={{ color: "red" }}>
+                        {errors.categoryName?.message}
+                      </p> */}
+                    </div>
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block   text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Content
+                      </label>
+                      <textarea
+                        type="text"
+                        name="Category"
+                        placeholder="Insert Content"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        onChange={handleContent}
+                        // ref={register}
+                      />
+                      {/* <p style={{ color: "red" }}>
+                        {errors.categoryName?.message}
+                      </p> */}
+                    </div>
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block   text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Date
+                      </label>
+                      <input
+                        type="date"
+                        name="Category"
+                        placeholder="Insert Angkatan"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        onChange={handleDate}
                         // ref={register}
                       />
                       {/* <p style={{ color: "red" }}>
@@ -106,4 +149,4 @@ const AddCategory = () => {
   );
 };
 
-export default AddCategory;
+export default AddEvent;

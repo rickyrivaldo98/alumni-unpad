@@ -11,35 +11,28 @@ import * as yup from "yup";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 // import { FaWindows } from "react-icons/fa";
-const EditAnggota = () => {
+const EditEvent = () => {
   let { id } = useParams();
   const alert = useAlert();
   let history = useHistory();
 
-  const [Name, setName] = useState("");
-  const [Alamat, setAlamat] = useState("");
-  const [Angkatan, setAngkatan] = useState("");
-  const [Jurusan, setJurusan] = useState("");
-  const [Provinsi, setProvinsi] = useState("");
+  const [Title, setTitle] = useState("");
+  const [Content, setContent] = useState("");
+  const [Date, setDate] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  //   console.log(CategoryName);
 
-  const handleName = (e) => setName(e.target.value);
-  const handleAlamat = (e) => setAlamat(e.target.value);
-  const handleAngkatan = (e) => setAngkatan(e.target.value);
-  const handleJurusan = (e) => setJurusan(e.target.value);
-  const handleProvinsi = (e) => setProvinsi(e.target.value);
-  
+  const handleTitle = (e) => setTitle(e.target.value);
+  const handleContent = (e) => setContent(e.target.value);
+  const handleDate = (e) => setDate(e.target.value);
+
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://unpad.sarafdesign.com/anggota/${id}`).then((res) => {
+    axios.get(`https://unpad.sarafdesign.com/event/${id}`).then((res) => {
       setData(res.data[0]);
-      setName(res.data[0].name);
-      setAlamat(res.data[0].alamat);
-      setAngkatan(res.data[0].angkatan);
-      setJurusan(res.data[0].jurusan);
-      setProvinsi(res.data[0].provinsi);
+      setTitle(res.data[0].title);
+      setContent(res.data[0].content);
+      setDate(res.data[0].date.substr(0, 10));
       console.log(res.data);
     });
     setLoading(false);
@@ -48,19 +41,17 @@ const EditAnggota = () => {
   let edit = (e) => {
     e.preventDefault();
     if (window.confirm("Apakah anda yakin ingin mengedit?")) {
-      const anggota = {
-        name: Name,
-        alamat: Alamat,
-        angkatan: Angkatan,
-        jurusan: Jurusan,
-        provinsi: Provinsi,
+      const event = {
+        title: Title,
+        content: Content,
+        date: Date,
       };
       axios
-        .put(`https://unpad.sarafdesign.com/anggota/${id}`, anggota)
+        .put(`https://unpad.sarafdesign.com/event/${id}`, event)
         .then((res) => {
           alert("Teredit");
           setTimeout(() => {
-            history.push(`/admin/anggota`);
+            history.push(`/admin/events`);
           }, 2000);
         })
 
@@ -85,7 +76,7 @@ const EditAnggota = () => {
                   Back
                 </button>
                 <h6 className="m-2 text-blueGray-700 text-xl font-bold">
-                  Add Category
+                  Add Events
                 </h6>
               </div>
             </div>
@@ -98,16 +89,16 @@ const EditAnggota = () => {
                         className="block   text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
                       >
-                        Nama
+                        Title
                       </label>
                       <input
                         type="text"
                         name="Category"
-                        placeholder="Insert Nama"
+                        placeholder="Insert Title"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        value={Name}
+                        value={Title}
                         onChange={(e) => {
-                          handleName(e);
+                          handleTitle(e);
                         }}
                         // ref={register}
                       />
@@ -120,16 +111,16 @@ const EditAnggota = () => {
                         className="block   text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
                       >
-                        Alamat
+                        Content
                       </label>
-                      <input
+                      <textarea
                         type="text"
                         name="Category"
-                        placeholder="Insert Alamat"
+                        placeholder="Insert Content"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        value={Alamat}
+                        value={Content}
                         onChange={(e) => {
-                          handleAlamat(e);
+                          handleContent(e);
                         }}
                         // ref={register}
                       />
@@ -142,60 +133,16 @@ const EditAnggota = () => {
                         className="block   text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
                       >
-                        Angkatan
+                        Date
                       </label>
                       <input
-                        type="text"
+                        type="date"
                         name="Category"
-                        placeholder="Insert Angkatan"
+                        placeholder="Insert Date"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        value={Angkatan}
+                        value={Date}
                         onChange={(e) => {
-                          handleAngkatan(e);
-                        }}
-                        // ref={register}
-                      />
-                      {/* <p style={{ color: "red" }}>
-                        {errors.categoryName?.message}
-                      </p> */}
-                    </div>
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block   text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Jurusan
-                      </label>
-                      <input
-                        type="text"
-                        name="Category"
-                        placeholder="Insert Jurusan"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        value={Jurusan}
-                        onChange={(e) => {
-                          handleJurusan(e);
-                        }}
-                        // ref={register}
-                      />
-                      {/* <p style={{ color: "red" }}>
-                        {errors.categoryName?.message}
-                      </p> */}
-                    </div>
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block   text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Provinsi
-                      </label>
-                      <input
-                        type="text"
-                        name="Category"
-                        placeholder="Insert Provinsi"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        value={Provinsi}
-                        onChange={(e) => {
-                          handleProvinsi(e);
+                          handleDate(e);
                         }}
                         // ref={register}
                       />
@@ -220,4 +167,4 @@ const EditAnggota = () => {
   );
 };
 
-export default EditAnggota;
+export default EditEvent;

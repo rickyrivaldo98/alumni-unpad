@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Loader from "react-loader-spinner";
 // components
 
-export default function DataBerita({ color }) {
+export default function DataUnverified({ color }) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [empty, setEmpty] = useState(false);
@@ -228,10 +228,10 @@ export default function DataBerita({ color }) {
   );
 }
 
-DataBerita.defaultProps = {
+DataUnverified.defaultProps = {
   color: "light",
 };
 
-DataBerita.propTypes = {
+DataUnverified.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };

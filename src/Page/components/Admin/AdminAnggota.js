@@ -1,7 +1,7 @@
 import React from "react";
 import DataAnggota from "./DataAnggota";
 
-const AdminBerita = () => {
+const AdminAnggota = () => {
   return (
     <>
       <div className="flex flex-wrap mt-4">
@@ -13,4 +13,4 @@ const AdminBerita = () => {
   );
 };
 
-export default AdminBerita;
+export default AdminAnggota;

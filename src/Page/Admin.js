@@ -10,9 +10,7 @@ import { useAlert } from "react-alert";
 import Sidebar from "./components/Admin/Sidebar";
 import Navbar_admin from "./components/Admin/Navbar_admin";
 import Dashboard from "./components/Admin/Dashboard";
-import CardBerita from "./components/Admin/Cards/CardBerita";
 import CardEvents from "./components/Admin/Cards/CardEvents";
-import CardAlumni from "./components/Admin/Cards/CardAlumni";
 import AdminBerita from "./components/Admin/AdminBerita";
 import AdminCategory from "./components/Admin/AdminCategory";
 import AddBerita from "./components/Admin/Forms/AddBerita";
@@ -22,7 +20,9 @@ import AdminAnggota from "./components/Admin/AdminAnggota";
 import AddAnggota from "./components/Admin/Forms/AddAnggota";
 import EditAnggota from "./components/Admin/Forms/EditAnggota";
 import AdminUnverified from "./components/Admin/AdminUnverified";
-
+import AdminEvent from "./components/Admin/AdminEvent";
+import AddEvent from "./components/Admin/Forms/AddEvent";
+import EditEvent from "./components/Admin/Forms/EditEvent";
 
 const StyledAdmin = styled.div`
   font-family: "Nunito";
@@ -38,7 +38,7 @@ const Admin = () => {
   useEffect(() => {
     // setLoading(true);
     axios
-      .get("https://api.sarafdesign.com/checkUser", {
+      .get("https://unpad.sarafdesign.com/checkUser", {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
@@ -89,9 +89,6 @@ const Admin = () => {
               <Route path="/admin/editcategory/:id">
                 <EditCategory />
               </Route>
-              <Route path="/admin/events">
-                <CardEvents />
-              </Route>
               <Route path="/admin/anggota">
                 <AdminAnggota />
               </Route>
@@ -103,6 +100,15 @@ const Admin = () => {
               </Route>
               <Route path="/admin/verification">
                 <AdminUnverified />
+              </Route>
+              <Route path="/admin/events">
+                <AdminEvent />
+              </Route>
+              <Route path="/admin/addevent">
+                <AddEvent />
+              </Route>
+              <Route path="/admin/editevent/:id">
+                <EditEvent />
               </Route>
             </Switch>
           </div>

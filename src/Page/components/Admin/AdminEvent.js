@@ -1,16 +1,16 @@
 import React from "react";
-import DataUnverified from "./DataUnverified";
+import DataEvent from "./DataEvent";
 
-const AdminUnverified = () => {
+const AdminEvent = () => {
   return (
     <>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          <DataUnverified />
+          <DataEvent />
         </div>
       </div>
     </>
   );
 };
 
-export default AdminUnverified;
+export default AdminEvent;
