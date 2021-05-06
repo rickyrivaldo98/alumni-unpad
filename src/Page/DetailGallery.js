@@ -4,17 +4,23 @@ import Footer from "./layout/Footer";
 import { Link, useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import { SRLWrapper } from "simple-react-lightbox";
+import { data } from "autoprefixer";
+import Moment from "react-moment";
+import moment from "moment";
 
 const GalleryPhoto = () => {
   let { galleryname } = useParams();
   const [loading, setLoading] = useState(false);
   const [ImageData, setImageData] = useState([]);
+  const [Data, setData] = useState([]);
+
   useEffect(() => {
     setLoading(true);
     axios
       .get(`https://unpad.sarafdesign.com/images/gallery/${galleryname}`)
       .then((res) => {
         setImageData(res.data);
+        setData(res.data[0]);
       });
     setLoading(false);
   }, []);
@@ -22,9 +28,12 @@ const GalleryPhoto = () => {
   return (
     <>
       <Navbar />
-      <div className="text-center my-32 text-2xl font-bold">
-        Gallery {ImageData[0].gallery_name}
+      <div className="text-center my-32 ">
+        <h2 className="text-2xl font-bold">Gallery {Data.gallery_name}</h2>
+        <p>dibuat {moment(Data.created_at).format("LL")}</p>
+        <p className="mt-5">{Data.description}</p>
       </div>
+
       <SRLWrapper>
         <div className="container mx-auto">
           <div className="flex flex-wrap justify-center items-center ">
@@ -32,7 +41,7 @@ const GalleryPhoto = () => {
             {!loading &&
               ImageData.map((x) => (
                 <>
-                  <div className="w-full image-container image md:ml-5 mb-5 cursor-pointer">
+                  <div className="w-full image-container image ml-3 md:ml-5  mb-5 cursor-pointer shadow-lg">
                     <img
                       className="w-full image-container image"
                       alt={x.name}
