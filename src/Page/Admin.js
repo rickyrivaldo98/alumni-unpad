@@ -11,9 +11,11 @@ import Dashboard from "./components/Admin/Dashboard";
 import CardBerita from "./components/Admin/Cards/CardBerita";
 import CardEvents from "./components/Admin/Cards/CardEvents";
 import CardAlumni from "./components/Admin/Cards/CardAlumni";
-import CardCategory from "./components/Admin/Cards/CardCategory";
 import AdminBerita from "./components/Admin/AdminBerita";
+import AdminCategory from "./components/Admin/AdminCategory";
 import AddBerita from "./components/Admin/Forms/AddBerita";
+import AddCategory from "./components/Admin/Forms/AddCategory";
+import EditCategory from "./components/Admin/Forms/EditCategory";
 
 const StyledAdmin = styled.div`
   font-family: "Nunito";
@@ -39,7 +41,13 @@ const Admin = () => {
                 <AddBerita />
               </Route>
               <Route path="/admin/category">
-                <CardCategory />
+                <AdminCategory />
+              </Route>
+              <Route path="/admin/addcategory">
+                <AddCategory />
+              </Route>
+              <Route path="/admin/editcategory/:id">
+                <EditCategory />
               </Route>
               <Route path="/admin/events">
                 <CardEvents />

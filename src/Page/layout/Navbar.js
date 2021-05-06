@@ -32,7 +32,7 @@ const Navbar = ({ toggle }) => {
             to="/"
           >
             <button
-              className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 hover:text-white"
+              className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-500 hover:text-white"
               to="/"
             >
               Home
@@ -42,7 +42,7 @@ const Navbar = ({ toggle }) => {
             className=" text-base lg:text-normal 2xl:mr-10 xl:mr-5 lg:mr-3"
             to="/berita"
           >
-            <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 hover:text-white">
+            <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-500 hover:text-white">
               Berita
             </button>
           </Link>
@@ -50,7 +50,7 @@ const Navbar = ({ toggle }) => {
             className=" text-base lg:text-normal 2xl:mr-10 xl:mr-5 lg:mr-3"
             to="/events"
           >
-            <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 hover:text-white">
+            <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-500 hover:text-white">
               Events
             </button>
           </Link>
@@ -58,7 +58,7 @@ const Navbar = ({ toggle }) => {
             className=" text-base lg:text-normal 2xl:mr-10 xl:mr-5 lg:mr-3"
             to="/gallery"
           >
-            <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 hover:text-white">
+            <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-500 hover:text-white">
               Gallery
             </button>
           </Link>
@@ -66,12 +66,12 @@ const Navbar = ({ toggle }) => {
             className=" text-base lg:text-normal 2xl:mr-10 xl:mr-5 lg:mr-3 "
             to="/anggota"
           >
-            <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 hover:text-white ">
+            <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-500 hover:text-white ">
               Anggota
             </button>
           </Link>
           <Link className=" text-base lg:text-normal " to="/about">
-            <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-700 hover:text-white ">
+            <button className="py-6 px-4 transition duration-500 bg-transparent hover:bg-yellow-500 hover:text-white ">
               About
             </button>
           </Link>
