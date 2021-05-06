@@ -16,10 +16,7 @@ export const removeUserSession = () => {
 };
 
 // set the token and user from the session storage
-export const setUserSession = (token, id, fullName, photoProfile, email) => {
+export const setUserSession = (token, username) => {
   sessionStorage.setItem("token", token);
-  sessionStorage.setItem("id", id);
-  sessionStorage.setItem("fullName", fullName);
-  sessionStorage.setItem("photoProfile", photoProfile);
-  sessionStorage.setItem("email", email);
+  sessionStorage.setItem("username", username);
 };

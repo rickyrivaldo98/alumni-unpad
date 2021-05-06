@@ -5,21 +5,63 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import "./admin.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import { useAlert } from "react-alert";
+
 import Sidebar from "./components/Admin/Sidebar";
 import Navbar_admin from "./components/Admin/Navbar_admin";
 import Dashboard from "./components/Admin/Dashboard";
-import CardBerita from "./components/Admin/Cards/CardBerita";
 import CardEvents from "./components/Admin/Cards/CardEvents";
-import CardAlumni from "./components/Admin/Cards/CardAlumni";
-import CardCategory from "./components/Admin/Cards/CardCategory";
 import AdminBerita from "./components/Admin/AdminBerita";
+import AdminCategory from "./components/Admin/AdminCategory";
 import AddBerita from "./components/Admin/Forms/AddBerita";
+import AddCategory from "./components/Admin/Forms/AddCategory";
+import EditCategory from "./components/Admin/Forms/EditCategory";
+import AdminAnggota from "./components/Admin/AdminAnggota";
+import AddAnggota from "./components/Admin/Forms/AddAnggota";
+import EditAnggota from "./components/Admin/Forms/EditAnggota";
+import AdminUnverified from "./components/Admin/AdminUnverified";
+import AdminEvent from "./components/Admin/AdminEvent";
+import AddEvent from "./components/Admin/Forms/AddEvent";
+import EditEvent from "./components/Admin/Forms/EditEvent";
 
 const StyledAdmin = styled.div`
   font-family: "Nunito";
 `;
 
 const Admin = () => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const alert = useAlert();
+
+  let history = useHistory();
+
+  useEffect(() => {
+    // setLoading(true);
+    axios
+      .get("https://unpad.sarafdesign.com/checkUser", {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        // history.push("/admin");
+        setLoading(false);
+      })
+      .catch((err) => {
+        // console.log(err);
+        if (err.response.status === 401) {
+          history.push("/login");
+          // setTimeout(() => {
+          //   history.push("/login");
+          // }, 1000);
+          alert.show("Anda belum login");
+          // console.log(error);
+        }
+        // alert.show("Anda belum login");
+        // console.log(err);
+      });
+  }, []);
+
   return (
     <>
       <StyledAdmin>
@@ -39,13 +81,34 @@ const Admin = () => {
                 <AddBerita />
               </Route>
               <Route path="/admin/category">
-                <CardCategory />
+                <AdminCategory />
+              </Route>
+              <Route path="/admin/addcategory">
+                <AddCategory />
+              </Route>
+              <Route path="/admin/editcategory/:id">
+                <EditCategory />
+              </Route>
+              <Route path="/admin/anggota">
+                <AdminAnggota />
+              </Route>
+              <Route path="/admin/addanggota">
+                <AddAnggota />
+              </Route>
+              <Route path="/admin/editanggota/:id">
+                <EditAnggota />
+              </Route>
+              <Route path="/admin/verification">
+                <AdminUnverified />
               </Route>
               <Route path="/admin/events">
-                <CardEvents />
+                <AdminEvent />
               </Route>
-              <Route path="/admin/alumni">
-                <CardAlumni />
+              <Route path="/admin/addevent">
+                <AddEvent />
+              </Route>
+              <Route path="/admin/editevent/:id">
+                <EditEvent />
               </Route>
             </Switch>
           </div>
