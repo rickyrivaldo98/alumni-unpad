@@ -61,15 +61,16 @@ const AddBerita = () => {
       .catch((error) => {
         setData([]);
       });
-  }, [data]);
+  });
 
   //validation form
-  const schema = yup.object().shape({
-    Title: yup.string().required(),
-  });
-  const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(schema),
-  });
+  // const schema = yup.object().shape({
+  //   Title: yup.string().required(),
+  // });
+  // const { register, handleSubmit, errors } = useForm({
+  //   resolver: yupResolver(schema),
+  // });
+  // console.log(Category);
 
   let html = "";
   return (
@@ -92,7 +93,7 @@ const AddBerita = () => {
               </div>
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-              <form onSubmit={handleSubmit(handleBerita)}>
+              <form onSubmit={handleBerita}>
                 <div className="flex flex-col flex-wrap">
                   <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
@@ -107,9 +108,11 @@ const AddBerita = () => {
                         onChange={handleCategory}
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         id="Category"
-                        {...register("Category", { required: true })}
+                        // {...register("Category", { required: true })}
                       >
-                        <option value="" selected>Choose Category</option>
+                        <option value="" selected>
+                          Choose Category
+                        </option>
 
                         {data.map((x) => (
                           <option value={x.id}>{x.name}</option>
@@ -129,7 +132,7 @@ const AddBerita = () => {
                         placeholder="Insert Title"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={handleTitle}
-                        {...register("title", { required: true })}
+                        // {...register("title", { required: true })}
                       />
                       {/* <p style={{ color: "red" }}>
                         {errors.Title?.message}
