@@ -15,7 +15,7 @@ const AddImages = () => {
   let history = useHistory();
 
   const [data, setData] = useState([]);
-  // const [data2, setData2] = useState([]);
+  const [data2, setData2] = useState([]);
   const [Gallery, setGallery] = useState("");
   const [Category, setCategory] = useState("");
   const [Title, setTitle] = useState("");
@@ -41,6 +41,17 @@ const AddImages = () => {
       });
   }, [data]);
 
+  useEffect(() => {
+    axios
+      .get(`https://unpad.sarafdesign.com/category`)
+      .then((res) => {
+        setData2(res.data);
+      })
+      .catch((error) => {
+        setData([]);
+      });
+  }, [data]);
+
   const saveImages = (e) => {
     e.preventDefault();
     let gallery = new FormData();
@@ -49,7 +60,9 @@ const AddImages = () => {
     gallery.set("name", Title);
     gallery.set("file", Image);
     // console.log("ini gallery " + gallery);
-
+    for (var pair of gallery.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
     const config = {
       headers: {
         accept: "application/json",
@@ -72,12 +85,12 @@ const AddImages = () => {
   };
 
   //validation form
-  const schema = yup.object().shape({
-    Title: yup.string().required(),
-  });
-  const { register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(schema),
-  });
+  // const schema = yup.object().shape({
+  //   Title: yup.string().required(),
+  // });
+  // const { register, handleSubmit, errors } = useForm({
+  //   resolver: yupResolver(schema),
+  // });
   //   console.log("ini: " + Gallery);
   let html = "";
   return (
@@ -128,16 +141,19 @@ const AddImages = () => {
                       >
                         Category Image
                       </label>
-                      <input
-                        type="text"
-                        name="category"
-                        placeholder="Insert Category"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      <select
+                        name="Category"
                         onChange={handleCategory}
-                      />
-                      {/* <p style={{ color: "red" }}>
-                        {errors.Title?.message}
-                      </p> */}
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                        id="Category"
+                      >
+                        <option value="" selected>
+                          Choose Category
+                        </option>
+                        {data2.map((x) => (
+                          <option value={x.name}>{x.name}</option>
+                        ))}
+                      </select>
                     </div>
                     <div className="relative w-full mb-3">
                       <label
@@ -147,11 +163,10 @@ const AddImages = () => {
                         Gallery
                       </label>
                       <select
-                        name="Category"
+                        name="Gallery"
                         onChange={handleGallery}
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        id="Category"
-                        {...register("Category", { required: true })}
+                        id="Gallery"
                       >
                         <option value="" selected>
                           Choose Gallery
