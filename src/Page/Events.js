@@ -6,6 +6,10 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import moment from "moment";
+import Bg from "../assets/images/bg-card.jpg";
+import { Link } from "react-router-dom";
+
 const Events = () => {
   const [upComing, setUpcoming] = useState([]);
   const [month, setMonth] = useState("");
@@ -17,6 +21,7 @@ const Events = () => {
     axios.get(`https://unpad.sarafdesign.com/event`).then((res) => {
       setUpcoming(
         res.data.map((x) => ({
+          id: x.id,
           title: x.title,
           date: x.date.substr(0, 10),
         }))
@@ -25,7 +30,7 @@ const Events = () => {
       setLoading(false);
     });
   }, []);
-  // console.log(upComing);
+  console.log(upComing);
 
   let checkComingMonth = upComing.filter((x) => x.date.substr(5, 2) == month);
   checkComingMonth.sort((a, b) => {
@@ -56,20 +61,42 @@ const Events = () => {
             </div>
           </div>
           {checkComingMonth === undefined || checkComingMonth.length == 0 ? (
-            <div className="text-center text-5xl ">
+            <div className="text-center text-3xl ">
               Tidak Ada Events Bulan Ini
             </div>
           ) : (
             <>
-              <div className="mt-20 text-center text-5xl ">
-                Bulan {namaMonth}
+              <div className="mt-20 text-center text-3xl ">
+                Kegiatan di Bulan {namaMonth}
               </div>
               {checkComingMonth.map((x) => (
-                <div className="mt-10">
-                  <div className="flex text-center items-center justify-center mt-5">
-                    <div className="flex items-center justify-between w-2/4 h-20 rounded-lg bg-yellow-600 text-white text-3xl p-2">
+                <div className="mt-10 flex flex-col justify-center items-center">
+                  {/* <div className="flex text-center items-center justify-center mt-5">
+                    <div className="flex items-center justify-between w-2/4 h-20 rounded-lg bg-yellow-600 text-white text-xl p-2">
                       <div>{x.title}</div>
                       <div>Tanggal {x.date.substr(8, 2)}</div>
+                    </div>
+                  </div> */}
+                  <div className="sm:grid grid-cols-5 bg-white shadow-sm p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 shadow-lg">
+                    <img src={Bg} alt="gambar " className="w-full rounded-lg" />
+                    <div className="pt-5 self-center sm:pt-0 sm:pl-10 col-span-3">
+                      <h2 className="text-gray-700 capitalize text-xl font-bold">
+                        {x.title}
+                      </h2>
+
+                      <p className="capitalize text-gray-500  pt-2">
+                        <i className=" fas fa-calendar fa-fw text-xl"></i>
+                        {moment(x.date).format("LL")}
+                      </p>
+                      <div className="mt-8">
+                        <Link
+                          to={`/detail-events/${x.id}`}
+                          key={x.id}
+                          className="bg-blue-600 text-gray-100 px-3 py-2 font-semibold rounded-lg"
+                        >
+                          Info Lanjut
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
