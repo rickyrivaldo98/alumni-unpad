@@ -54,25 +54,25 @@ const AddImages = () => {
 
   const saveImages = (e) => {
     e.preventDefault();
-    let gallery = new FormData();
-    gallery.set("gallery_id", Gallery);
-    gallery.set("category", Category);
-    gallery.set("name", Title);
-    gallery.set("file", Image);
-    // console.log("ini gallery " + gallery);
-    for (var pair of gallery.entries()) {
+    let images = new FormData();
+    images.set("gallery_id", Gallery);
+    images.set("category", Category);
+    images.set("name", Title);
+    images.set("file", Image);
+    // console.log("ini images " + images);
+    for (var pair of images.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
     const config = {
       headers: {
         accept: "application/json",
         "Accept-Language": "en-US,en;q=0.8",
-        "content-type": `multipart/form-data;boundary=${gallery._boundary}`,
+        "content-type": `multipart/form-data;boundary=${images._boundary}`,
       },
     };
 
     axios
-      .post("https://unpad.sarafdesign.com/images", gallery, config)
+      .post("https://unpad.sarafdesign.com/images", images, config)
       .then((res) => {
         alert.show("Images Succesfully Added!");
         setTimeout(() => {
