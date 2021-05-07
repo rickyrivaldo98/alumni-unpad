@@ -31,7 +31,7 @@ const AddBerita = () => {
   const handleImage = (e) => setImage(e.target.files[0]);
 
   const handleBerita = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const berita = {
       category_id: Category,
       title: Title,

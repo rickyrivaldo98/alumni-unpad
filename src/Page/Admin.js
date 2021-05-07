@@ -43,7 +43,7 @@ const Admin = () => {
   useEffect(() => {
     // setLoading(true);
     axios
-      .get("https://unpad.sarafdesign.com/checkUser", {
+      .get("https://unpad.sarafdesign.com/checkUsers", {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
