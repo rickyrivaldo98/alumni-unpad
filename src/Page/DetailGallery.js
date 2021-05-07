@@ -14,6 +14,7 @@ const GalleryPhoto = () => {
   const [loading, setLoading] = useState(false);
   const [ImageData, setImageData] = useState([]);
   const [Data, setData] = useState([]);
+  const [empty, setEmpty] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -23,8 +24,13 @@ const GalleryPhoto = () => {
         setImageData(res.data);
         setData(res.data[0]);
         setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
+
+  // console.log(ImageData);
 
   return (
     <>
@@ -38,18 +44,26 @@ const GalleryPhoto = () => {
       <SRLWrapper>
         <div className="container mx-auto">
           <div className="flex flex-wrap justify-center items-center ">
-            {loading && <Preloader />}
-            {!loading && (
+            {ImageData.length === 0 ? (
+              <div className="cursor-default bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white py-1 px-5 rounded-full text-center">
+                Maaf Gambar Belum Tersedia
+              </div>
+            ) : (
               <>
-                {ImageData.map((x) => (
-                  <div className="w-full image-container image ml-3 md:ml-5  mb-5 cursor-pointer shadow-lg">
-                    <img
-                      className="w-full image-container image"
-                      alt={x.name}
-                      src={`https://unpad.sarafdesign.com/uploads/${x.file}`}
-                    />
-                  </div>
-                ))}
+                {loading && <Preloader />}
+                {!loading && (
+                  <>
+                    {ImageData.map((x) => (
+                      <div className="w-full image-container image ml-3 md:ml-5  mb-5 cursor-pointer shadow-lg">
+                        <img
+                          className="w-full image-container image"
+                          alt={x.name}
+                          src={`https://unpad.sarafdesign.com/uploads/${x.file}`}
+                        />
+                      </div>
+                    ))}
+                  </>
+                )}
               </>
             )}
           </div>

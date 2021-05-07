@@ -9,12 +9,20 @@ import Moment from "react-moment";
 import moment from "moment";
 import Loader from "react-loader-spinner";
 import Preloader from "./components/Preloader";
+import Dropdown from "./layout/Dropdown";
 
 const DetailBerita = () => {
   let { slugberita } = useParams();
   const [loading, setLoading] = useState(false);
   const [DetailBeritaData, SetDetailBeritaData] = useState([]);
   const [Data, setData] = useState([]);
+
+  // fungsi navbar untuk dibuka di mobile
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  // akhir fungsi navbar
 
   useEffect(() => {
     setLoading(true);
@@ -28,7 +36,8 @@ const DetailBerita = () => {
   }, []);
   return (
     <>
-      <Navbar />
+      <Navbar toggle={toggle} />
+      <Dropdown isOpen={isOpen} toggle={toggle} />
       {loading && <Preloader />}
       {!loading && (
         <>

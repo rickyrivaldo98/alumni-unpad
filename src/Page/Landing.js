@@ -10,6 +10,7 @@ import moment from "moment";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
+import Dropdown from "./layout/Dropdown";
 
 const Landing = () => {
   useEffect(() => {
@@ -26,6 +27,13 @@ const Landing = () => {
   const [TotalAnggota, SetTotalAnggota] = useState([]);
   const [TotalEvent, SetTotalEvent] = useState([]);
 
+  // fungsi navbar untuk dibuka di mobile
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  // akhir fungsi navbar
+
   useEffect(() => {
     setLoading(true);
     axios.get("https://unpad.sarafdesign.com/berita").then((res) => {
@@ -41,7 +49,8 @@ const Landing = () => {
   }, []);
   return (
     <>
-      <Navbar />
+      <Navbar toggle={toggle} />
+      <Dropdown isOpen={isOpen} toggle={toggle} />
       <div className="overflow-hidden">
         <div
           className="jumbotron relative mb-48"

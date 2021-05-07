@@ -8,6 +8,7 @@ import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Dropdown from "./layout/Dropdown";
 const Berita = () => {
   const [loading, setLoading] = useState(false);
   // const [GalleryData, setGalleryData] = useState([]);
@@ -21,6 +22,13 @@ const Berita = () => {
     });
     setLoading(false);
   }, []);
+
+  // fungsi navbar untuk dibuka di mobile
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  // akhir fungsi navbar
 
   const responsive = {
     superLargeDesktop: {
@@ -44,7 +52,8 @@ const Berita = () => {
 
   return (
     <>
-      <Navbar />
+      <Navbar toggle={toggle} />
+      <Dropdown isOpen={isOpen} toggle={toggle} />
       <div className="flex justify-center items-center">
         <div className="mt-32 mb-20">
           <div class="cursor-default bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white font-bold py-1 px-5 rounded-full">

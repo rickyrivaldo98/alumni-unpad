@@ -7,6 +7,7 @@ import Footer from "./layout/Footer";
 import Modal from "./Modal";
 import Loader from "react-loader-spinner";
 import "../App.css";
+import Dropdown from "./layout/Dropdown";
 
 const Anggota = () => {
   const [show, setShow] = useState(false);
@@ -38,11 +39,19 @@ const Anggota = () => {
     );
   }, [search, data]);
 
+  // fungsi navbar untuk dibuka di mobile
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  // akhir fungsi navbar
+
   let i = 1;
 
   return (
     <>
-      <Navbar />
+      <Navbar toggle={toggle} />
+      <Dropdown isOpen={isOpen} toggle={toggle} />
       <div className="antialiased font-sans ">
         <div className="container mx-auto px-4 sm:px-8">
           <div className="py-8">
