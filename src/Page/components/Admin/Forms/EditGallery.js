@@ -4,6 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import FormData from "form-data";
 import { data } from "autoprefixer";
+import slugify from "react-slugify";
 import { useAlert } from "react-alert";
 
 const EditGallery = () => {
@@ -40,6 +41,11 @@ const EditGallery = () => {
       gallery.set("name", data.nama);
     } else {
       gallery.set("name", Title);
+    }
+    if (Title === "") {
+      gallery.set("slug_gallery", slugify(data.nama));
+    } else {
+      gallery.set("slug_gallery", slugify(Title));
     }
     if (Description === "") {
       gallery.set("description", data.description);
@@ -100,7 +106,7 @@ const EditGallery = () => {
                   Back
                 </button>
                 <h6 className="text-blueGray-700 text-xl font-bold">
-                  Edit Images
+                  Edit Gallery
                 </h6>
               </div>
             </div>

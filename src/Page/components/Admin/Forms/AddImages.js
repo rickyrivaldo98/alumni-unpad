@@ -15,7 +15,7 @@ const AddImages = () => {
   let history = useHistory();
 
   const [data, setData] = useState([]);
-  const [data2, setData2] = useState([]);
+  // const [data2, setData2] = useState([]);
   const [Gallery, setGallery] = useState("");
   const [Category, setCategory] = useState("");
   const [Title, setTitle] = useState("");
@@ -23,6 +23,7 @@ const AddImages = () => {
   // const [editorState, setEditorState] = useState(() =>
   //   EditorState.createEmpty()
   // );
+  // console.log(Gallery);
 
   const handleTitle = (e) => setTitle(e.target.value);
   const handleCategory = (e) => setCategory(e.target.value);
@@ -31,26 +32,23 @@ const AddImages = () => {
 
   useEffect(() => {
     axios
-      .get(`https://unpad.sarafdesign.com/category`)
+      .get(`https://unpad.sarafdesign.com/gallery`)
       .then((res) => {
         setData(res.data);
-        axios.get(`https://unpad.sarafdesign.com/gallery`).then((res2) => {
-          //   console.log(res2);
-          setData2(res2.data);
-        });
       })
       .catch((error) => {
         setData([]);
       });
-  });
+  }, [data]);
 
   const saveImages = (e) => {
     e.preventDefault();
     let gallery = new FormData();
-    gallery.set("name", Title);
-    gallery.set("gallery", Gallery);
+    gallery.set("gallery_id", Gallery);
     gallery.set("category", Category);
+    gallery.set("name", Title);
     gallery.set("file", Image);
+    // console.log("ini gallery " + gallery);
 
     const config = {
       headers: {
@@ -125,26 +123,21 @@ const AddImages = () => {
                     </div>
                     <div className="relative w-full mb-3">
                       <label
-                        className="block   text-blueGray-600 text-xs font-bold mb-2"
+                        className="block text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
                       >
-                        Category
+                        Category Image
                       </label>
-                      <select
-                        name="Category"
-                        onChange={handleCategory}
+                      <input
+                        type="text"
+                        name="category"
+                        placeholder="Insert Category"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        id="Category"
-                        {...register("Category", { required: true })}
-                      >
-                        <option value="" selected>
-                          Choose Category
-                        </option>
-
-                        {data.map((x) => (
-                          <option value={x.id}>{x.name}</option>
-                        ))}
-                      </select>
+                        onChange={handleCategory}
+                      />
+                      {/* <p style={{ color: "red" }}>
+                        {errors.Title?.message}
+                      </p> */}
                     </div>
                     <div className="relative w-full mb-3">
                       <label
@@ -163,7 +156,7 @@ const AddImages = () => {
                         <option value="" selected>
                           Choose Gallery
                         </option>
-                        {data2.map((x) => (
+                        {data.map((x) => (
                           <option value={x.id}>{x.name}</option>
                         ))}
                       </select>

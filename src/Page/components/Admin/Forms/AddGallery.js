@@ -7,6 +7,7 @@ import { data } from "autoprefixer";
 import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import slugify from "react-slugify";
 import * as yup from "yup";
 
 // import { FaWindows } from "react-icons/fa";
@@ -30,6 +31,7 @@ const AddGallery = () => {
     e.preventDefault();
     let gallery = new FormData();
     gallery.set("name", Title);
+    gallery.set("slug_gallery", slugify(Title));
     gallery.set("description", Description);
     gallery.set("file", Image);
 
