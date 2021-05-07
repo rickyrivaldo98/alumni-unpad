@@ -9,6 +9,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 import moment from "moment";
 import Bg from "../assets/images/bg-card.jpg";
 import { Link } from "react-router-dom";
+import Preloader from "./components/Preloader";
 
 const Events = () => {
   const [upComing, setUpcoming] = useState([]);
@@ -30,7 +31,6 @@ const Events = () => {
       setLoading(false);
     });
   }, []);
-  console.log(upComing);
 
   let checkComingMonth = upComing.filter((x) => x.date.substr(5, 2) == month);
   checkComingMonth.sort((a, b) => {
@@ -41,7 +41,7 @@ const Events = () => {
 
   return (
     <>
-      {loading && <p>loading...</p>}
+      {loading && <Preloader />}
       {!loading && (
         <>
           <Navbar />
