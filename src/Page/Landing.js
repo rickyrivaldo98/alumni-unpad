@@ -4,6 +4,9 @@ import Bg from "../assets/images/unpad.png";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import "../App.css";
+import axios from "axios";
+import Moment from "react-moment";
+import moment from "moment";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
@@ -14,6 +17,27 @@ const Landing = () => {
       duration: 2000,
       once: true,
     });
+  }, []);
+
+  const [loading, setLoading] = useState(false);
+  // const [GalleryData, setGalleryData] = useState([]);
+  // const [ImageData, setImageData] = useState([]);
+  const [BeritaData, SetBeritaData] = useState([]);
+  const [TotalAnggota, SetTotalAnggota] = useState([]);
+  const [TotalEvent, SetTotalEvent] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    axios.get("https://unpad.sarafdesign.com/berita").then((res) => {
+      SetBeritaData(res.data);
+      axios.get("https://unpad.sarafdesign.com/verified").then((res2) => {
+        SetTotalAnggota(res2.data);
+        axios.get("https://unpad.sarafdesign.com/event").then((res3) => {
+          SetTotalEvent(res3.data);
+        });
+      });
+    });
+    setLoading(false);
   }, []);
   return (
     <>
@@ -48,7 +72,9 @@ const Landing = () => {
                   style={{ color: "orange" }}
                   className="fas fa-users fa-fw text-4xl"
                 ></i>
-                <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
+                <h3 className="py-2 text-4xl font-bold font-mono">
+                  {TotalAnggota.length}
+                </h3>
                 <div className="text-center mt-2 leading-none flex justify-center w-full">
                   <span className=" inline-flex items-center leading-none text-sm">
                     Alumni Terdaftar
@@ -62,7 +88,10 @@ const Landing = () => {
                   style={{ color: "orange" }}
                   className="fas fa-calendar fa-fw text-4xl"
                 ></i>
-                <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
+                <h3 className="py-2 text-4xl font-bold font-mono">
+                  {" "}
+                  {TotalEvent.length}
+                </h3>
                 <div className="text-center mt-2 leading-none flex justify-center w-full">
                   <span className=" inline-flex items-center leading-none text-sm">
                     Events Terlaksana
@@ -76,7 +105,10 @@ const Landing = () => {
                   style={{ color: "orange" }}
                   className="fas fa-book fa-fw text-4xl"
                 ></i>
-                <h3 className="py-2 text-4xl font-bold font-mono">159</h3>
+                <h3 className="py-2 text-4xl font-bold font-mono">
+                  {" "}
+                  {BeritaData.length}
+                </h3>
                 <div className="text-center mt-2 leading-none flex justify-center w-full">
                   <span className=" inline-flex items-center leading-none text-sm">
                     Artikel Terunggah
@@ -92,133 +124,86 @@ const Landing = () => {
             <div className="text-4xl font-semibold tracking-wide">Berita</div>
           </div>
 
-          <div className="flex-none lg:flex items-center justify-center">
-            <Link className="link-berita">
-              <div className="flex text-justify justify-center mr-4">
-                <div className=" pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                  <div className="w-80">
-                    <img
-                      alt="mountain"
-                      className="w-full h-auto rounded-md "
-                      src="https://picsum.photos/seed/picsum/200"
-                    />
-                    <div className="text-sm p-2" id="body">
-                      <div id="name" className="font-semibold mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
+          <div className="bg-gray-50">
+            <div className="flex-none md:flex md:flex-wrap justify-center items-center mb-32">
+              {BeritaData.slice(0, 6).map((x) => (
+                <Link to={`/detail-berita/${x.slug_title}`}>
+                  <div
+                    className="bg-gray-100 m-auto w-96 h-64 mt-5 ml-3"
+                    style={{
+                      backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      backgroundSize: "cover",
+                    }}
+                  >
+                    <div className="flex flex-row items-end h-full w-full">
+                      <div className="flex flex-col w-full pb-3 pt-10 px-3 bg-gradient-to-t from-black text-gray-200">
+                        <h3 className="text-base font-bold leading-5 ">
+                          {x.title}
+                        </h3>
+                        <div className="inline-flex items-center">
+                          <span className="capitalize font-base text-xs my-1 mr-1">
+                            Di Posting Oleh Admin
+                          </span>
+                        </div>
+                        <div className="flex flex-row justify-between">
+                          <div className="flex flex-row">
+                            <div className="w-max inline-flex items-center">
+                              <svg
+                                className="w-4"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                />
+                              </svg>
+                              <span className="text-xs ml-1 antialiased">
+                                <span>Di Upload &nbsp;</span>
+                                <b>
+                                  <Moment fromNow>{x.created_at}</Moment>
+                                </b>
+                              </span>
+                            </div>
+                          </div>
+                          <div className="w-max">
+                            <svg
+                              className="w-4"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
                       </div>
-                      <div id="job" className="text-gray-800 text-xs">
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      </div>
-                      <div className="float-right pt-2">
-                        <p>5 April 2021</p>
-                      </div>
-                    </div>
-                    <div className="flex  items-center justify-center my-7 ">
-                      <button class="bg-blue-500 transition duration-500 hover:bg-blue-700 text-white  py-1 px-5 rounded-full ">
-                        Selengkapnya
-                      </button>
                     </div>
                   </div>
-                </div>
-              </div>
-            </Link>
-            <Link className="link-berita">
-              <div className="flex text-justify justify-center mr-4">
-                <div className=" pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                  <div className="w-80">
-                    <img
-                      alt="mountain"
-                      className="w-full h-auto rounded-md "
-                      src="https://picsum.photos/seed/picsum/200"
-                    />
-                    <div className="text-sm p-2" id="body">
-                      <div id="name" className="font-semibold mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                      </div>
-                      <div id="job" className="text-gray-800 text-xs">
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      </div>
-                      <div className="float-right pt-2">
-                        <p>5 April 2021</p>
-                      </div>
-                    </div>
-                    <div className="flex  items-center justify-center my-7 ">
-                      <button class="bg-blue-500 transition duration-500 hover:bg-blue-700 text-white  py-1 px-5 rounded-full ">
-                        Selengkapnya
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link className="link-berita">
-              <div className="flex text-justify justify-center mr-4">
-                <div className=" pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                  <div className="w-80">
-                    <img
-                      alt="mountain"
-                      className="w-full h-auto rounded-md "
-                      src="https://picsum.photos/seed/picsum/200"
-                    />
-                    <div className="text-sm p-2" id="body">
-                      <div id="name" className="font-semibold mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                      </div>
-                      <div id="job" className="text-gray-800 text-xs">
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      </div>
-                      <div className="float-right pt-2">
-                        <p>5 April 2021</p>
-                      </div>
-                    </div>
-                    <div className="flex  items-center justify-center my-7 ">
-                      <button class="bg-blue-500 transition duration-500 hover:bg-blue-700 text-white  py-1 px-5 rounded-full ">
-                        Selengkapnya
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            <Link className="link-berita">
-              <div className="flex text-justify justify-center mr-4">
-                <div className=" pb-2 rounded-lg tracking-wide shadow-lg my-3">
-                  <div className="w-80">
-                    <img
-                      alt="mountain"
-                      className="w-full h-auto rounded-md "
-                      src="https://picsum.photos/seed/picsum/200"
-                    />
-                    <div className="text-sm p-2" id="body">
-                      <div id="name" className="font-semibold mb-2">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                      </div>
-                      <div id="job" className="text-gray-800 text-xs">
-                        Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                      </div>
-                      <div className="float-right pt-2">
-                        <p>5 April 2021</p>
-                      </div>
-                    </div>
-                    <div className="flex  items-center justify-center my-7 ">
-                      <button class="bg-blue-500 transition duration-500 hover:bg-blue-700 text-white  py-1 px-5 rounded-full ">
-                        Selengkapnya
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
+                </Link>
+              ))}
+            </div>
           </div>
-          <div className="flex  items-center justify-center mt-10 ">
+          <Link
+            to="/berita"
+            className="flex  items-center justify-center mt-10 "
+          >
             <button class="bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white  py-1 px-5 rounded-full ">
               Lebih Banyak
             </button>
-          </div>
+          </Link>
         </div>
       </div>
       <Footer />

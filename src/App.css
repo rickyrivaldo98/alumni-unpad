@@ -3,6 +3,7 @@
 
 * {
   font-family: "Nunito", sans-serif;
+  transition: ease;
 }
 
 .jumbotron {

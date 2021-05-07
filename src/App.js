@@ -15,6 +15,7 @@ import "aos/dist/aos.css";
 import Events from "./Page/Events";
 import Gallery from "./Page/Gallery";
 import SimpleReactLightbox from "simple-react-lightbox";
+import DetailEvents from "./Page/DetailEvents";
 
 const App = () => {
   return (
@@ -35,7 +36,7 @@ const App = () => {
             <GalleryPhoto />
           </SimpleReactLightbox>
         </Route>
-        <Route path="/detail-berita">
+        <Route path="/detail-berita/:slugberita">
           <DetailBerita />
         </Route>
         <Route path="/berita">
@@ -43,6 +44,9 @@ const App = () => {
         </Route>
         <Route path="/events">
           <Events />
+        </Route>
+        <Route path="/detail-events/:id">
+          <DetailEvents />
         </Route>
         <Route path="/about">
           <About />

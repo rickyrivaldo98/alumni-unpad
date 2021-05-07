@@ -1,9 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Gambar from "../assets/images/image.jpg";
 import { Link, Switch, Route } from "react-router-dom";
+import axios from "axios";
+import Moment from "react-moment";
+import moment from "moment";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 const Berita = () => {
+  const [loading, setLoading] = useState(false);
+  // const [GalleryData, setGalleryData] = useState([]);
+  // const [ImageData, setImageData] = useState([]);
+  const [BeritaData, SetBeritaData] = useState([]);
+
+  useEffect(() => {
+    setLoading(true);
+    axios.get("https://unpad.sarafdesign.com/berita").then((res) => {
+      SetBeritaData(res.data);
+    });
+    setLoading(false);
+  }, []);
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
   return (
     <>
       <Navbar />
@@ -14,161 +52,134 @@ const Berita = () => {
           </div>
         </div>
       </div>
-      <div className=" lg:py-12 lg:flex lg:justify-center">
-        <div className="bg-white lg:mx-8 lg:flex lg:max-w-5xl lg:shadow-lg lg:rounded-lg">
-          <div className="lg:w-1/2">
-            <div
-              className="h-64 bg-cover lg:rounded-lg lg:h-full"
-              style={{
-                backgroundImage:
-                  'url("https://images.unsplash.com/photo-1497493292307-31c376b6e479?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80")',
-              }}
-            />
-          </div>
-          <div className="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-1/2">
-            <h2 className="text-xl md:text-3xl text-gray-800 font-bold">
-              IKA Unpad Gelar Sosialisasi dan Pelatihan Terkait UU Cipta Kerja
-            </h2>
-            <p className="mt-4 text-gray-600">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem
-              modi reprehenderit vitae exercitationem aliquid dolores ullam
-              temporibus enim expedita aperiam mollitia iure consectetur dicta
-              tenetur, porro consequuntur saepe accusantium consequatur.
-            </p>
-            <div className="mt-8">
-              <Link
-                href="#"
-                className="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded-md"
-              >
-                Selengkapnya
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="bg-gray-50">
-        <div className="flex-none md:flex justify-center items-center ">
-          <div className="m-auto px-4 py-8 max-w-2xl">
-            <div className="bg-white shadow-2xl">
-              <div>
-                <img src="https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" />
-              </div>
-              <div className="px-4 py-2 mt-2 bg-white">
-                <h2 className="font-bold text-2xl text-gray-800">
-                  IKA Unpad Adalah
-                </h2>
-                <p className="sm:text-sm text-xs text-gray-700 px-2 mr-1 my-3">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Tempora reiciendis ad architecto at aut placeat quia, minus
-                  dolor praesentium officia maxime deserunt porro amet ab
-                  debitis deleniti modi soluta similique...
-                </p>
-                <div className="user flex items-center -ml-3 mt-8 mb-4">
-                  <div className="user-logo">
-                    <img
-                      className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-full mx-4  shadow"
-                      src="https://images.unsplash.com/photo-1607789382281-1152591ec0da?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
-                      alt="avatar"
+      <div className="container mx-auto">
+        <Carousel
+          infinite={true}
+          swipeable={true}
+          autoPlaySpeed={1000}
+          containerClass="carousel-container"
+          draggable={false}
+          showDots={true}
+          responsive={responsive}
+          dotListClass="custom-dot-list-style"
+          removeArrowOnDeviceType={["tablet", "mobile"]}
+        >
+          {loading && <div>loading...</div>}
+          {!loading &&
+            BeritaData.slice(-3).map((x) => (
+              <>
+                <div className="bg-white lg:mx-8 lg:flex  lg:shadow-lg lg:rounded-lg ">
+                  <div className="lg:w-1/2">
+                    <div
+                      className="h-64 bg-cover lg:rounded-lg lg:h-96"
+                      style={{
+                        backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                      }}
                     />
                   </div>
-                  <a
-                    href="https://twitter.com/GressierCosme1"
-                    target="_blank"
-                    className="text-gray-500"
-                  >
-                    @GressierCosme1
-                  </a>
+                  <div className="py-12 px-6 max-w-xl lg:max-w-5xl lg:w-1/2">
+                    <h2 className="text-xl md:text-3xl text-gray-800 font-bold">
+                      {x.title}
+                    </h2>
+                    <p className="mt-4 text-gray-600">
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Quidem modi reprehenderit vitae exercitationem aliquid
+                      dolores ullam temporibus enim expedita aperiam mollitia
+                      iure consectetur dicta tenetur, porro consequuntur saepe
+                      accusantium consequatur.
+                    </p>
+                    <div className="mt-8">
+                      <Link
+                        to={`/detail-berita/${x.slug_title}`}
+                        className="bg-gray-900 text-gray-100 px-5 py-3 font-semibold rounded-md"
+                      >
+                        Selengkapnya
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              </>
+            ))}
+        </Carousel>
+      </div>
 
-          <div className="md:w-3/6 flex-none mt-10 p-2">
-            <div className="flex justify-center items-center">
-              <div className="max-w-2xl bg-white  p-5 rounded-lg shadow-lg mb-3">
-                <div id="header" className="flex-none md:flex">
-                  <img
-                    alt="mountain"
-                    className="w-45 rounded-md "
-                    src="https://picsum.photos/seed/picsum/200"
-                  />
-                  <div className="flex flex-col md:ml-5">
-                    <h4 className="text-xl  text-gray-800 font-bold mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </h4>
-                    <p id="job" className="text-gray-800 mt-2">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <div className="flex mt-5">
-                      <img
-                        alt="avatar"
-                        className="w-6 rounded-full "
-                        src="https://picsum.photos/seed/picsum/200"
-                      />
-                      <p className="ml-3">John Doe</p>
+      <hr className="container mx-auto mt-10" />
+
+      <div className="flex  justify-center items-center m-auto">
+        <h2 className="border-t-4  border-red-600  p-10 text-2xl font-bold mt-32">
+          Baca Berita
+        </h2>
+      </div>
+      <div className="bg-gray-50">
+        <div className="flex-none md:flex md:flex-wrap justify-center items-center mb-32">
+          {BeritaData.map((x) => (
+            <Link to={`/detail-berita/${x.slug_title}`}>
+              <div
+                className="bg-gray-100 m-auto w-96 h-64 mt-5 ml-3"
+                style={{
+                  backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                }}
+              >
+                <div className="flex flex-row items-end h-full w-full">
+                  <div className="flex flex-col w-full pb-3 pt-10 px-3 bg-gradient-to-t from-black text-gray-200">
+                    <h3 className="text-base font-bold leading-5 ">
+                      {x.title}
+                    </h3>
+                    <div className="inline-flex items-center">
+                      <span className="capitalize font-base text-xs my-1 mr-1">
+                        Di Posting Oleh Admin
+                      </span>
+                    </div>
+                    <div className="flex flex-row justify-between">
+                      <div className="flex flex-row">
+                        <div className="w-max inline-flex items-center">
+                          <svg
+                            className="w-4"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          <span className="text-xs ml-1 antialiased">
+                            <span>Di Upload &nbsp;</span>
+                            <b>
+                              <Moment fromNow>{x.created_at}</Moment>
+                            </b>
+                          </span>
+                        </div>
+                      </div>
+                      <div className="w-max">
+                        <svg
+                          className="w-4"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                          />
+                        </svg>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="  flex justify-center items-center">
-              <div className="max-w-2xl bg-white  p-5 rounded-lg tracking-wide shadow-lg mb-3">
-                <div id="header" className="flex-none md:flex">
-                  <img
-                    alt="mountain"
-                    className="w-45 rounded-md "
-                    src="https://picsum.photos/seed/picsum/200"
-                  />
-                  <div id="body" className="flex flex-col ml-5">
-                    <h4 id="name" className="text-xl font-semibold mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </h4>
-                    <p id="job" className="text-gray-800 mt-2">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <div className="flex mt-5">
-                      <img
-                        alt="avatar"
-                        className="w-6 rounded-full"
-                        src="https://picsum.photos/seed/picsum/200"
-                      />
-                      <p className="ml-3">John Doe</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className=" flex justify-center items-center">
-              <div className="max-w-2xl bg-white  p-5 rounded-lg tracking-wide shadow-lg mb-3">
-                <div id="header" className="flex-none md:flex">
-                  <img
-                    alt="mountain"
-                    className="w-45 rounded-md"
-                    src="https://picsum.photos/seed/picsum/200"
-                  />
-                  <div id="body" className="flex flex-col ml-5">
-                    <h4 id="name" className="text-xl font-semibold mb-2">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                    </h4>
-                    <p id="job" className="text-gray-800 mt-2">
-                      Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                      laboris nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                    <div className="flex mt-5">
-                      <img
-                        alt="avatar"
-                        className="w-6 rounded-full"
-                        src="https://picsum.photos/seed/picsum/200"
-                      />
-                      <p className="ml-3">John Doe</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+            </Link>
+          ))}
         </div>
       </div>
       <Footer />

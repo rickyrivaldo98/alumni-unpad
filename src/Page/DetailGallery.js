@@ -7,6 +7,7 @@ import { SRLWrapper } from "simple-react-lightbox";
 import { data } from "autoprefixer";
 import Moment from "react-moment";
 import moment from "moment";
+import Preloader from "./components/Preloader";
 
 const GalleryPhoto = () => {
   let { galleryname } = useParams();
@@ -21,8 +22,8 @@ const GalleryPhoto = () => {
       .then((res) => {
         setImageData(res.data);
         setData(res.data[0]);
+        setLoading(false);
       });
-    setLoading(false);
   }, []);
 
   return (
@@ -37,10 +38,10 @@ const GalleryPhoto = () => {
       <SRLWrapper>
         <div className="container mx-auto">
           <div className="flex flex-wrap justify-center items-center ">
-            {loading && <div>loading...</div>}
-            {!loading &&
-              ImageData.map((x) => (
-                <>
+            {loading && <Preloader />}
+            {!loading && (
+              <>
+                {ImageData.map((x) => (
                   <div className="w-full image-container image ml-3 md:ml-5  mb-5 cursor-pointer shadow-lg">
                     <img
                       className="w-full image-container image"
@@ -48,8 +49,9 @@ const GalleryPhoto = () => {
                       src={`https://unpad.sarafdesign.com/uploads/${x.file}`}
                     />
                   </div>
-                </>
-              ))}
+                ))}
+              </>
+            )}
           </div>
         </div>
       </SRLWrapper>
