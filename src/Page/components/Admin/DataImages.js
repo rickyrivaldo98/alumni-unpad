@@ -27,12 +27,14 @@ export default function DataImages({ color }) {
     setLoading(false);
   }, [data]);
 
-  let handleDelete = (e) => {
+  let handleDelete = (e, x) => {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
-      axios.delete(`https://unpad.sarafdesign.com/images/${e}`).then((res) => {
-        alert("Kehapus");
-      });
+      axios
+        .delete(`https://unpad.sarafdesign.com/images/${e}/${x}`)
+        .then((res) => {
+          alert("Kehapus");
+        });
       setLoading(false);
     } else {
     }
@@ -213,7 +215,7 @@ export default function DataImages({ color }) {
                             <button
                               className="bg-red-500 text-white active:bg-blue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                               type="button"
-                              onClick={() => handleDelete(x.id)}
+                              onClick={() => handleDelete(x.images_id, x.file)}
                             >
                               Delete
                             </button>
