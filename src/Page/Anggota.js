@@ -120,7 +120,7 @@ const Anggota = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {empty ? (
+                    {filterData.length === 0 ? (
                       <div className="w-full justify-center items-center flex flex-col p-6">
                         Data Kosong
                       </div>
