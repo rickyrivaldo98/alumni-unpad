@@ -23,6 +23,11 @@ import AdminUnverified from "./components/Admin/AdminUnverified";
 import AdminEvent from "./components/Admin/AdminEvent";
 import AddEvent from "./components/Admin/Forms/AddEvent";
 import EditEvent from "./components/Admin/Forms/EditEvent";
+import AdminGallery from "./components/Admin/AdminGallery";
+import AdminImages from "./components/Admin/AdminImages";
+import AddGallery from "./components/Admin/Forms/AddGallery";
+import EditGallery from "./components/Admin/Forms/EditGallery";
+import AddImages from "./components/Admin/Forms/AddImages";
 
 const StyledAdmin = styled.div`
   font-family: "Nunito";
@@ -71,8 +76,21 @@ const Admin = () => {
           <Dashboard />
           <div className="px-4 md:px-10 mx-auto w-full -m-24">
             <Switch>
-              <Route path="/admin/dashboard">
-                {/* <Dashboard /> */}
+              <Route path="/admin/dashboard">{/* <Dashboard /> */}</Route>
+              <Route path="/admin/gallery">
+                <AdminGallery />
+              </Route>
+              <Route path="/admin/addgallery">
+                <AddGallery />
+              </Route>
+              <Route path="/admin/editgallery/:id">
+                <EditGallery />
+              </Route>
+              <Route path="/admin/images">
+                <AdminImages />
+              </Route>
+              <Route path="/admin/addimages">
+                <AddImages />
               </Route>
               <Route path="/admin/berita">
                 <AdminBerita />
