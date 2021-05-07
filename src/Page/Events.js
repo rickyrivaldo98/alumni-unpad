@@ -10,6 +10,7 @@ import moment from "moment";
 import Bg from "../assets/images/bg-card.jpg";
 import { Link } from "react-router-dom";
 import Preloader from "./components/Preloader";
+import Dropdown from "./layout/Dropdown";
 
 const Events = () => {
   const [upComing, setUpcoming] = useState([]);
@@ -39,12 +40,20 @@ const Events = () => {
   });
   // console.log(checkComingMonth);
 
+  // fungsi navbar untuk dibuka di mobile
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  // akhir fungsi navbar
+
   return (
     <>
       {loading && <Preloader />}
       {!loading && (
         <>
-          <Navbar />
+          <Navbar toggle={toggle} />
+          <Dropdown isOpen={isOpen} toggle={toggle} />
           <div className="flex items-center justify-center mt-20">
             <div className="h-screen w-3/4">
               <FullCalendar

@@ -7,6 +7,7 @@ import Bg from "../assets/images/bg-card.jpg";
 
 import Moment from "react-moment";
 import moment from "moment";
+import Dropdown from "./layout/Dropdown";
 const DetailEvents = () => {
   let { id } = useParams();
   const [loading, setLoading] = useState(false);
@@ -20,9 +21,17 @@ const DetailEvents = () => {
     setLoading(false);
   }, []);
 
+  // fungsi navbar untuk dibuka di mobile
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  // akhir fungsi navbar
+
   return (
     <>
-      <Navbar />
+      <Navbar toggle={toggle} />
+      <Dropdown isOpen={isOpen} toggle={toggle} />
       {loading && <div>loading...</div>}
       {!loading &&
         Data.map((x) => (

@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Dropdown from "./layout/Dropdown";
 import Footer from "./layout/Footer";
 import Navbar from "./layout/Navbar";
 const About = () => {
+  // fungsi navbar untuk dibuka di mobile
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+  // akhir fungsi navbar
   return (
     <>
-      <Navbar />
+      <Navbar toggle={toggle} />
+      <Dropdown isOpen={isOpen} toggle={toggle} />
       <div className="flex justify-center items-center my-20">
         <h1 className="text-3xl font-bold">Tentang Kami</h1>{" "}
       </div>
