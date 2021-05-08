@@ -10,6 +10,7 @@ import moment from "moment";
 import Loader from "react-loader-spinner";
 import Preloader from "./components/Preloader";
 import Dropdown from "./layout/Dropdown";
+import parse from "html-react-parser";
 
 const DetailBerita = () => {
   let { slugberita } = useParams();
@@ -34,6 +35,7 @@ const DetailBerita = () => {
         setLoading(false);
       });
   }, []);
+
   return (
     <>
       <Navbar toggle={toggle} />
@@ -70,10 +72,9 @@ const DetailBerita = () => {
                   </p>
                 </div>
                 <div className="flex justify-center items-center">
-                  <p
-                    className="w-full p-10 md:w-4/6"
-                    dangerouslySetInnerHTML={{ __html: x.content }}
-                  ></p>
+                  <div className="w-full p-10 md:w-4/6">
+                    {parse(`${x.content}`)}
+                  </div>
                 </div>
               </div>
             </>
