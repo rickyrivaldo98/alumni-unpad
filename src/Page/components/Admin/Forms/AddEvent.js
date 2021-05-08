@@ -44,12 +44,7 @@ const AddEvent = () => {
   };
 
   //validation form
-  // const schema = yup.object().shape({
-  //   categoryName: yup.string().required(),
-  // });
-  // const { register, handleSubmit, errors } = useForm({
-  //   resolver: yupResolver(schema),
-  // });
+
   const schema = yup.object().shape({
     title: yup.string().required(),
     content_category: yup.string().required(),
@@ -142,7 +137,7 @@ const AddEvent = () => {
                           required: true,
                         })}
                         type="date"
-                        name="Category"
+                        name="date"
                         placeholder="Insert Angkatan"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={handleDate}

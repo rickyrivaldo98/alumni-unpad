@@ -39,7 +39,7 @@ const Gallery = () => {
         </div>
 
         <div className="flex flex-wrap justify-center items-center ">
-          {ImageData.length === 0 ? (
+          {GalleryData.length === 0 ? (
             <div className="cursor-default bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white py-1 px-5 rounded-full text-center">
               Maaf Gallery Belum Tersedia
             </div>

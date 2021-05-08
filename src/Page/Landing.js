@@ -60,7 +60,7 @@ const Landing = () => {
             <div className="flex justify-center items-center">
               <h1
                 data-aos="fade-up"
-                className="md:text-4xl font-bold text-lg text-white mt-48 tracking-wider"
+                className="md:text-4xl font-bold text-lg text-white mt-48 tracking-wider text-center"
               >
                 Selamat Datang di Website ILUNI KMB
               </h1>
@@ -129,8 +129,10 @@ const Landing = () => {
         </div>
 
         <div className="container m-auto text-gray-700">
-          <div className="flex  items-center justify-center md:mt-20 mt-96">
-            <div className="text-4xl font-semibold tracking-wide">Berita</div>
+          <div className="flex  items-center justify-center md:mt-20 mt-96 pt-72">
+            <div className="text-2xl md:text-4xl font-semibold tracking-wide">
+              Berita
+            </div>
           </div>
 
           <div className="bg-gray-50">
@@ -138,7 +140,7 @@ const Landing = () => {
               {BeritaData.slice(0, 6).map((x) => (
                 <Link to={`/detail-berita/${x.slug_title}`}>
                   <div
-                    className="bg-gray-100 m-auto w-96 h-64 mt-5 ml-3"
+                    className="bg-gray-100 m-auto w-96 h-64 mt-5 md:ml-3 "
                     style={{
                       backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
                       backgroundPosition: "center",

@@ -53,7 +53,7 @@ const AddImages = () => {
   }, [data]);
 
   const saveImages = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     let images = new FormData();
     images.set("gallery_id", Gallery);
     images.set("category", Category);
@@ -85,13 +85,34 @@ const AddImages = () => {
   };
 
   //validation form
-  // const schema = yup.object().shape({
-  //   Title: yup.string().required(),
-  // });
-  // const { register, handleSubmit, errors } = useForm({
-  //   resolver: yupResolver(schema),
-  // });
-  //   console.log("ini: " + Gallery);
+
+  const schema = yup.object().shape({
+    title: yup.string().required(),
+    category: yup.string().required(),
+    gallery: yup.string().required(),
+    picture: yup
+      .mixed()
+      .required("You need to provide a file image")
+      .test("fileSize", "The file is too large, max 2 mb", (value) => {
+        return value && value[0].size <= 4000000;
+      })
+      .test("type", "We only support jpeg, jpg, or png.", (value) => {
+        return (
+          value &&
+          (value[0].type === "image/jpeg" ||
+            value[0].type === "image/jpg" ||
+            value[0].type === "image/png")
+        );
+      }),
+  });
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   let html = "";
   return (
     <>
@@ -113,7 +134,7 @@ const AddImages = () => {
               </div>
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-              <form onSubmit={saveImages}>
+              <form onSubmit={handleSubmit(saveImages)}>
                 <div className="flex flex-col flex-wrap">
                   <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
@@ -124,15 +145,16 @@ const AddImages = () => {
                         Name Image
                       </label>
                       <input
+                        {...register("title", {
+                          required: true,
+                        })}
                         type="text"
                         name="title"
                         placeholder="Insert Title"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={handleTitle}
                       />
-                      {/* <p style={{ color: "red" }}>
-                        {errors.Title?.message}
-                      </p> */}
+                      <p style={{ color: "red" }}>{errors.title?.message}</p>
                     </div>
                     <div className="relative w-full mb-3">
                       <label
@@ -142,7 +164,10 @@ const AddImages = () => {
                         Category Image
                       </label>
                       <select
-                        name="Category"
+                        {...register("category", {
+                          required: true,
+                        })}
+                        name="category"
                         onChange={handleCategory}
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         id="Category"
@@ -154,6 +179,7 @@ const AddImages = () => {
                           <option value={x.name}>{x.name}</option>
                         ))}
                       </select>
+                      <p style={{ color: "red" }}>{errors.category?.message}</p>
                     </div>
                     <div className="relative w-full mb-3">
                       <label
@@ -163,7 +189,10 @@ const AddImages = () => {
                         Gallery
                       </label>
                       <select
-                        name="Gallery"
+                        {...register("gallery", {
+                          required: true,
+                        })}
+                        name="gallery"
                         onChange={handleGallery}
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         id="Gallery"
@@ -175,6 +204,7 @@ const AddImages = () => {
                           <option value={x.id}>{x.name}</option>
                         ))}
                       </select>
+                      <p style={{ color: "red" }}>{errors.gallery?.message}</p>
                     </div>
                     <div className="relative w-full mb-3">
                       <label
@@ -184,6 +214,7 @@ const AddImages = () => {
                         Images
                       </label>
                       <input
+                        {...register("picture")}
                         onChange={handleImage}
                         type="file"
                         name="picture"
@@ -191,9 +222,9 @@ const AddImages = () => {
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         // ref={register}
                       />
-                      {/* {errors.picture && (
+                      {errors.picture && (
                         <p style={{ color: "red" }}>{errors.picture.message}</p>
-                      )} */}
+                      )}
                     </div>
                     <button
                       className="bg-green-500 text-white active:bg-lightBlue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"

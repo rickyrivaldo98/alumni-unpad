@@ -28,7 +28,7 @@ const AddGallery = () => {
   const handleImage = (e) => setImage(e.target.files[0]);
 
   const handleGallery = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     let gallery = new FormData();
     gallery.set("name", Title);
     gallery.set("slug_gallery", slugify(Title));
@@ -57,10 +57,31 @@ const AddGallery = () => {
   };
 
   //validation form
+
   const schema = yup.object().shape({
-    Title: yup.string().required(),
+    title: yup.string().required(),
+    description: yup.string().required(),
+    picture: yup
+      .mixed()
+      .required("You need to provide a file image")
+      .test("fileSize", "The file is too large, max 2 mb", (value) => {
+        return value && value[0].size <= 2000000;
+      })
+      .test("type", "We only support jpeg, jpg, or png.", (value) => {
+        return (
+          value &&
+          (value[0].type === "image/jpeg" ||
+            value[0].type === "image/jpg" ||
+            value[0].type === "image/png")
+        );
+      }),
   });
-  const { register, handleSubmit, errors } = useForm({
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -85,7 +106,7 @@ const AddGallery = () => {
               </div>
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-              <form onSubmit={handleGallery}>
+              <form onSubmit={handleSubmit(handleGallery)}>
                 <div className="flex flex-col flex-wrap">
                   <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
@@ -96,15 +117,32 @@ const AddGallery = () => {
                         Name Gallery
                       </label>
                       <input
+                        aria-invalid={errors.title ? "true" : "false"}
+                        {...register("title", {
+                          required: true,
+                          minLength: {
+                            value: 5,
+                            message: "min length is 5 char",
+                          },
+                        })}
                         type="text"
                         name="title"
+                        id="title"
                         placeholder="Insert Title"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={handleTitle}
                       />
-                      {/* <p style={{ color: "red" }}>
-                        {errors.Title?.message}
-                      </p> */}
+                      {errors.title && (
+                        <span style={{ color: "red" }} role="alert">
+                          {errors.title?.message}
+                        </span>
+                      )}
+
+                      {errors.title && errors.title.type === "maxLength" && (
+                        <p style={{ color: "red" }} role="alert">
+                          Max length exceeded 10
+                        </p>
+                      )}
                     </div>
                     <div className="relative w-full mb-3">
                       <label
@@ -114,12 +152,18 @@ const AddGallery = () => {
                         Description
                       </label>
                       <textarea
+                        {...register("description", {
+                          required: true,
+                        })}
                         onChange={handleDescription}
                         name="description"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         cols="30"
                         rows="10"
                       ></textarea>
+                      <p style={{ color: "red" }}>
+                        {errors.description?.message}
+                      </p>
                     </div>
                     <div className="relative w-full mb-3">
                       <label
@@ -129,6 +173,7 @@ const AddGallery = () => {
                         Thumbnail
                       </label>
                       <input
+                        {...register("picture")}
                         onChange={handleImage}
                         type="file"
                         name="picture"
@@ -136,9 +181,9 @@ const AddGallery = () => {
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         // ref={register}
                       />
-                      {/* {errors.picture && (
+                      {errors.picture && (
                         <p style={{ color: "red" }}>{errors.picture.message}</p>
-                      )} */}
+                      )}
                     </div>
                     <button
                       className="bg-green-500 text-white active:bg-lightBlue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"

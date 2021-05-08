@@ -21,7 +21,7 @@ const AddCategory = () => {
   const handleChange1 = (e) => setCategoryName(e.target.value);
 
   const handleCategory = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const category = {
       name: CategoryName,
     };
@@ -39,13 +39,17 @@ const AddCategory = () => {
   };
 
   //validation form
+
   const schema = yup.object().shape({
-    categoryName: yup.string().required(),
+    category: yup.string().required(),
   });
-  const { register, handleSubmit, errors } = useForm({
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
     resolver: yupResolver(schema),
   });
-
   let html = "";
   return (
     <>
@@ -67,7 +71,7 @@ const AddCategory = () => {
               </div>
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-              <form onSubmit={handleCategory}>
+              <form onSubmit={handleSubmit(handleCategory)}>
                 <div className="flex flex-col flex-wrap">
                   <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
@@ -78,16 +82,16 @@ const AddCategory = () => {
                         Category Name
                       </label>
                       <input
+                        {...register("category", {
+                          required: true,
+                        })}
                         type="text"
-                        name="Category"
+                        name="category"
                         placeholder="Insert Category"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={handleChange1}
-                        // ref={register}
                       />
-                      {/* <p style={{ color: "red" }}>
-                        {errors.categoryName?.message}
-                      </p> */}
+                      <p style={{ color: "red" }}>{errors.category?.message}</p>
                     </div>
                     <button
                       className="bg-green-500 text-white active:bg-lightBlue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
