@@ -3,7 +3,6 @@ import Gambar from "../assets/images/image.jpg";
 import { Link, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import Moment from "react-moment";
-import moment from "moment";
 import Navbar from "./layout/Navbar";
 import Footer from "./layout/Footer";
 import Carousel from "react-multi-carousel";
@@ -191,6 +190,7 @@ const Berita = () => {
           ))}
         </div>
       </div>
+
       <Footer />
     </>
   );
