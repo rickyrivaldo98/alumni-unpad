@@ -15,11 +15,15 @@ import slugify from "react-slugify";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 // import { FaWindows } from "react-icons/fa";
-const AddBerita = () => {
+const EditBerita = () => {
   const alert = useAlert();
+  let { id } = useParams();
+
   let history = useHistory();
 
   const [data, setData] = useState([]);
+  const [data2, setData2] = useState([]);
+
   const [Title, setTitle] = useState("");
   const [Image, setImage] = useState("");
   const [Category, setCategory] = useState("");
@@ -79,6 +83,17 @@ const AddBerita = () => {
         setData([]);
       });
   });
+  useEffect(() => {
+    axios
+      .get(`https://unpad.sarafdesign.com/berita/id/${id}`)
+      .then((res) => {
+        setData2(res.data);
+        setTitle(res.data.name);
+      })
+      .catch((error) => {
+        setData([]);
+      });
+  });
 
   //validation form
   // const schema = yup.object().shape({
@@ -105,7 +120,7 @@ const AddBerita = () => {
                   Back
                 </button>
                 <h6 className="m-2 text-blueGray-700 text-xl font-bold">
-                  Add Berita
+                  Edit Berita
                 </h6>
               </div>
             </div>
@@ -149,6 +164,7 @@ const AddBerita = () => {
                         placeholder="Insert Title"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={handleTitle}
+                        value={Title}
                         // {...register("title", { required: true })}
                       />
                       {/* <p style={{ color: "red" }}>
@@ -209,4 +225,4 @@ const AddBerita = () => {
   );
 };
 
-export default AddBerita;
+export default EditBerita;

@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-// import { css } from "@emotion/core"; 
+import DOMPurify from "dompurify";
+// import { css } from "@emotion/core";
 import Loader from "react-loader-spinner";
 // components
 
@@ -27,19 +28,27 @@ export default function DataBerita({ color }) {
     setLoading(false);
   }, [data]);
 
-  let handleDelete = (e) => {
+  let handleDelete = (e, x) => {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
-      axios.delete(`https://unpad.sarafdesign.com/berita/${e}`).then((res) => {
-        alert("Kehapus");
-      });
+      axios
+        .delete(`https://unpad.sarafdesign.com/berita/${e}/${x}`)
+        .then((res) => {
+          alert("Kehapus");
+        });
       setLoading(false);
     } else {
     }
   };
 
   let i = 1;
-  
+
+  const createMarkup = (html) => {
+    return {
+      __html: DOMPurify.sanitize(html),
+    };
+  };
+
   return (
     <>
       <div
@@ -154,11 +163,16 @@ export default function DataBerita({ color }) {
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
                           {x.title}
                         </td>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                          {x.content}
-                        </td>
+                        <td
+                          className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
+                          dangerouslySetInnerHTML={createMarkup(x.content)}
+                        ></td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4">
-                          <img className="h-24 w-24" src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`} alt=""/>
+                          <img
+                            className="h-24 w-24"
+                            src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`}
+                            alt=""
+                          />
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4">
                           <div className="flex">
@@ -172,7 +186,7 @@ export default function DataBerita({ color }) {
                                 Details
                               </button>
                             </Link> */}
-                            <Link to={`/admin/editgallery/${x.id}`}>
+                            <Link to={`/admin/editberita/${x.id}`}>
                               <button
                                 className="bg-yellow-500 text-white active:bg-blue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                                 type="button"
@@ -183,7 +197,7 @@ export default function DataBerita({ color }) {
                             <button
                               className="bg-red-500 text-white active:bg-blue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                               type="button"
-                              onClick={() => handleDelete(x.id)}
+                              onClick={() => handleDelete(x.id, x.thumbnail)}
                             >
                               Delete
                             </button>
