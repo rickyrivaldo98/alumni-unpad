@@ -45,14 +45,39 @@ const EditBerita = () => {
   };
   const handleImage = (e) => setImage(e.target.files[0]);
 
-  const handleBerita = (e) => {
+  let editBerita = (e) => {
     e.preventDefault();
     let berita = new FormData();
-    berita.set("category_id", Category);
-    berita.set("title", Title);
-    berita.set("slug_title", slugify(Title));
-    berita.set("content", convertedContent);
-    berita.set("file", Image);
+    // berita.set("category_id", Category);
+    // berita.set("title", Title);
+    // berita.set("slug_title", slugify(Title));
+    // berita.set("content", convertedContent);
+    // berita.set("file", Image);
+    if (Category === "") {
+      berita.set("category_id", data.category_id);
+    } else {
+      berita.set("category_id", Category);
+    }
+    if (Title === "") {
+      berita.set("title", data.title);
+    } else {
+      berita.set("title", Title);
+    }
+    if (Title === "") {
+      berita.set("slug_title", slugify(data.title));
+    } else {
+      berita.set("slug_title", slugify(Title));
+    }
+    if (Content === "") {
+      berita.set("content", data.content);
+    } else {
+      berita.set("content", convertedContent);
+    }
+    if (Image === "") {
+      berita.set("file", data.thumbnail);
+    } else {
+      berita.set("file", Image);
+    }
     const config = {
       headers: {
         accept: "application/json",
@@ -61,7 +86,7 @@ const EditBerita = () => {
       },
     };
     axios
-      .post("https://unpad.sarafdesign.com/berita", berita, config)
+      .put(`https://unpad.sarafdesign.com/berita/${data.id}/${data.thumbnail}`, berita, config)
       .then((res) => {
         alert.show("Berita Succesfully Added!");
         setTimeout(() => {
@@ -83,12 +108,16 @@ const EditBerita = () => {
         setData([]);
       });
   });
+
   useEffect(() => {
     axios
       .get(`https://unpad.sarafdesign.com/berita/id/${id}`)
       .then((res) => {
         setData2(res.data);
         setTitle(res.data.name);
+        setContent(res.data.content);
+        setCategory(res.data.category_id);
+        setImage(res.data.thumbnail);
       })
       .catch((error) => {
         setData([]);
@@ -125,7 +154,7 @@ const EditBerita = () => {
               </div>
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-              <form onSubmit={handleBerita}>
+              <form onSubmit={(e) => editBerita(e)}>
                 <div className="flex flex-col flex-wrap">
                   <div className="w-full lg:w-6/12 px-4">
                     <div className="relative w-full mb-3">
@@ -137,13 +166,16 @@ const EditBerita = () => {
                       </label>
                       <select
                         name="Category"
-                        onChange={handleCategory}
+                        value={Category}
+                        onChange={(e) => {
+                          handleCategory(e);
+                        }}
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         id="Category"
                         // {...register("Category", { required: true })}
                       >
-                        <option value="" selected>
-                          Choose Category
+                        <option value={Category} selected>
+                          {Category}
                         </option>
 
                         {data.map((x) => (
@@ -163,8 +195,10 @@ const EditBerita = () => {
                         name="title"
                         placeholder="Insert Title"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        onChange={handleTitle}
                         value={Title}
+                        onChange={(e) => {
+                          handleTitle(e);
+                        }}
                         // {...register("title", { required: true })}
                       />
                       {/* <p style={{ color: "red" }}>
@@ -194,19 +228,18 @@ const EditBerita = () => {
                         className="block  text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
                       >
-                        Thumbnail
+                        Image
                       </label>
+                      <img
+                        src={`https://unpad.sarafdesign.com/uploads/${data2.thumbnail}`}
+                        alt=""
+                      />
                       <input
                         onChange={handleImage}
                         type="file"
-                        name="picture"
                         placeholder="input file image"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        // ref={register}
                       />
-                      {/* {errors.picture && (
-                        <p style={{ color: "red" }}>{errors.picture.message}</p>
-                      )} */}
                     </div>
                     <button
                       className="bg-green-500 text-white active:bg-lightBlue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"

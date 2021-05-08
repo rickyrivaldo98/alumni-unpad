@@ -12,63 +12,83 @@ const EditImages = () => {
   let history = useHistory();
   const alert = useAlert();
 
+  const [Gallery, setGallery] = useState("");
+  const [Category, setCategory] = useState("");
   const [Title, setTitle] = useState("");
   const [Image, setImage] = useState("");
-  const [Category, setCategory] = useState("");
 
   const [data, setData] = useState([]);
+  const [data2, setData2] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  //   console.log(Description);
-  //   console.log(Image);
-  //   console.log("ini: " + data.thumbnail);
+  const handleTitle = (e) => setTitle(e.target.value);
+  const handleCategory = (e) => setCategory(e.target.value);
+  const handleGallery = (e) => setGallery(e.target.value);
+  const handleImage = (e) => setImage(e.target.files[0]);
+
   useEffect(() => {
     setLoading(true);
     axios.get(`https://unpad.sarafdesign.com/images/${id}`).then((res) => {
       setData(res.data[0]);
       setTitle(res.data[0].name);
       setCategory(res.data[0].category);
+      setGallery(res.data[0].gallery_id);
+      setImage(res.data[0].file);
     });
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`https://unpad.sarafdesign.com/gallery`)
+      .then((res) => {
+        setData2(res.data);
+      })
+      .catch((error) => {
+        setData2([]);
+      });
+  }, [data2]);
+
   let edit = (e) => {
     e.preventDefault();
-    let gallery = new FormData();
-    gallery.set("gallery_id", data.gallery_id);
+    let images = new FormData();
 
     if (Title === "") {
-      gallery.set("name", data.nama);
+      images.set("name", data.nama);
     } else {
-      gallery.set("name", Title);
+      images.set("name", Title);
     }
     if (Category === "") {
-      gallery.set("category", data.category);
+      images.set("category", data.category);
     } else {
-      gallery.set("category", Category);
+      images.set("category", Category);
+    }
+    if (Gallery === "") {
+      images.set("gallery_id", data.gallery);
+    } else {
+      images.set("gallery_id", Gallery);
     }
     if (Image === "") {
-      gallery.set("file", data.thumbnail);
+      images.set("file", data.thumbnail);
     } else {
-      gallery.set("file", Image);
+      images.set("file", Image);
     }
 
-    gallery.set("created_at", data.created_at);
-    for (var pair of gallery.entries()) {
+    for (var pair of images.entries()) {
       console.log(pair[0] + ", " + pair[1]);
     }
     const config = {
       headers: {
         accept: "application/json",
         "Accept-Language": "en-US,en;q=0.8",
-        "content-type": `multipart/form-data;boundary=${gallery._boundary}`,
+        "content-type": `multipart/form-data;boundary=${images._boundary}`,
       },
     };
 
     axios
       .put(
         `https://unpad.sarafdesign.com/images/${data.id}/${data.thumbnail}`,
-        gallery,
+        images,
         config
       )
       .then((res) => {
@@ -87,9 +107,6 @@ const EditImages = () => {
       });
   };
 
-  const handleTitle = (e) => setTitle(e.target.value);
-  const handleCategory = (e) => setCategory(e.target.value);
-  const handleImage = (e) => setImage(e.target.files[0]);
   return (
     <>
       <div className="flex flex-wrap mt-4">
@@ -105,31 +122,13 @@ const EditImages = () => {
                   Back
                 </button>
                 <h6 className="text-blueGray-700 text-xl font-bold">
-                  Edit Gallery
+                  Edit Images
                 </h6>
               </div>
             </div>
             <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
               <form onSubmit={(e) => edit(e)}>
-                {/* <form> */}
                 <div className="flex flex-col flex-wrap">
-                  {/* <div className="w-full lg:w-6/12 px-4">
-                    <div className="relative w-full mb-3">
-                      <label
-                        className="block   text-blueGray-600 text-xs font-bold mb-2"
-                        htmlFor="grid-password"
-                      >
-                        Id Gallery
-                      </label>
-                      <input
-                        type="text"
-                        name="id_gallery"
-                        value={id}
-                        placeholder="insert image name...."
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                      />
-                    </div>
-                  </div> */}
                   {loading && <div>loading...</div>}
                   {!loading && (
                     <>
@@ -151,28 +150,47 @@ const EditImages = () => {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
-                      </div>
-                      <div className="w-full lg:w-6/12 px-4">
                         <div className="relative w-full mb-3">
                           <label
-                            className="block  text-blueGray-600 text-xs font-bold mb-2"
+                            className="block text-blueGray-600 text-xs font-bold mb-2"
                             htmlFor="grid-password"
                           >
-                            Description
+                            Category Image
                           </label>
                           <input
-                            value={Category}
+                            type="text"
+                            name="title"
+                            placeholder="Insert Category"
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                             onChange={(e) => {
                               handleCategory(e);
                             }}
-                            type="text"
-                            // placeholder={data.description}
-                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            value={Category}
                           />
                         </div>
-                      </div>
-
-                      <div className="w-full lg:w-6/12 px-4">
+                        <div className="relative w-full mb-3">
+                          <label
+                            className="block text-blueGray-600 text-xs font-bold mb-2"
+                            htmlFor="grid-password"
+                          >
+                            Gallery
+                          </label>
+                          <select
+                            name="Gallery"
+                            onChange={(e) => {
+                              handleGallery(e);
+                            }}
+                            className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                            id="Gallery"
+                          >
+                            <option value={Gallery} selected>
+                              {Gallery}
+                            </option>
+                            {data2.map((x) => (
+                              <option value={x.id}>{x.name}</option>
+                            ))}
+                          </select>
+                        </div>
                         <div className="relative w-full mb-3">
                           <label
                             className="block  text-blueGray-600 text-xs font-bold mb-2"

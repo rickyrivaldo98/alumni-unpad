@@ -104,7 +104,7 @@ export default function DataBerita({ color }) {
                 >
                   Title
                 </th>
-                <th
+                {/* <th
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
@@ -113,7 +113,7 @@ export default function DataBerita({ color }) {
                   }
                 >
                   Content
-                </th>
+                </th> */}
                 <th
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
@@ -163,10 +163,10 @@ export default function DataBerita({ color }) {
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
                           {x.title}
                         </td>
-                        <td
+                        {/* <td
                           className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
                           dangerouslySetInnerHTML={createMarkup(x.content)}
-                        ></td>
+                        ></td> */}
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4">
                           <img
                             className="h-24 w-24"

@@ -71,7 +71,7 @@ const EditGallery = () => {
     };
 
     axios
-      .put(`https://unpad.sarafdesign.com/gallery/${data.id}`, gallery, config)
+      .put(`https://unpad.sarafdesign.com/gallery/${data.id}/${data.thumbnail}`, gallery, config)
       .then((res) => {
         console.log(res.data + "this is data after api call");
         alert.show("Images Successfully Edited ! ");
@@ -161,7 +161,7 @@ const EditGallery = () => {
                           >
                             Description
                           </label>
-                          <input
+                          <textarea
                             value={Description}
                             onChange={(e) => {
                               handleDescription(e);

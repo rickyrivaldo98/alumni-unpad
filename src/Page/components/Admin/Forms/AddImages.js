@@ -15,7 +15,6 @@ const AddImages = () => {
   let history = useHistory();
 
   const [data, setData] = useState([]);
-  const [data2, setData2] = useState([]);
   const [Gallery, setGallery] = useState("");
   const [Category, setCategory] = useState("");
   const [Title, setTitle] = useState("");
@@ -35,17 +34,6 @@ const AddImages = () => {
       .get(`https://unpad.sarafdesign.com/gallery`)
       .then((res) => {
         setData(res.data);
-      })
-      .catch((error) => {
-        setData([]);
-      });
-  }, [data]);
-
-  useEffect(() => {
-    axios
-      .get(`https://unpad.sarafdesign.com/category`)
-      .then((res) => {
-        setData2(res.data);
       })
       .catch((error) => {
         setData([]);
@@ -121,7 +109,7 @@ const AddImages = () => {
                         className="block text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
                       >
-                        Name Image
+                        Images Name
                       </label>
                       <input
                         type="text"
@@ -141,19 +129,13 @@ const AddImages = () => {
                       >
                         Category Image
                       </label>
-                      <select
-                        name="Category"
-                        onChange={handleCategory}
+                      <input
+                        type="text"
+                        name="title"
+                        placeholder="Insert Category"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        id="Category"
-                      >
-                        <option value="" selected>
-                          Choose Category
-                        </option>
-                        {data2.map((x) => (
-                          <option value={x.name}>{x.name}</option>
-                        ))}
-                      </select>
+                        onChange={handleCategory}
+                      />
                     </div>
                     <div className="relative w-full mb-3">
                       <label
