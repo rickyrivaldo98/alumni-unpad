@@ -5,7 +5,8 @@ import { useParams } from "react-router-dom";
 import FormData from "form-data";
 import { data } from "autoprefixer";
 import { useAlert } from "react-alert";
-import { useForm } from "react-hook-form";
+import { EditorState, convertFromRaw } from "draft-js";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Editor } from "react-draft-wysiwyg";
@@ -21,26 +22,33 @@ const AddBerita = () => {
   const [Title, setTitle] = useState("");
   const [Image, setImage] = useState("");
   const [Category, setCategory] = useState("");
-  const [Content, setContent] = useState("");
+  const [Content, setContent] = useState(EditorState.createEmpty());
   // const [editorState, setEditorState] = useState(() =>
   //   EditorState.createEmpty()
   // );
 
   const handleTitle = (e) => setTitle(e.target.value);
   const handleCategory = (e) => setCategory(e.target.value);
+  const handleContent = (e) => setContent(e.target.value);
   const handleImage = (e) => setImage(e.target.files[0]);
 
   const handleBerita = (e) => {
     e.preventDefault();
-    const berita = {
-      category_id: Category,
-      title: Title,
-      slug_title: slugify(Title),
-      content: Content,
-      file: Image,
+    let berita = new FormData();
+    berita.set("category_id", Category);
+    berita.set("title", Title);
+    berita.set("slug_title", slugify(Title));
+    berita.set("content", convertFromRaw(Content));
+    berita.set("file", Image);
+    const config = {
+      headers: {
+        accept: "application/json",
+        "Accept-Language": "en-US,en;q=0.8",
+        "content-type": `multipart/form-data;boundary=${berita._boundary}`,
+      },
     };
     axios
-      .post("https://unpad.sarafdesign.com/berita", berita)
+      .post("https://unpad.sarafdesign.com/berita", berita, config)
       .then((res) => {
         alert.show("Berita Succesfully Added!");
         setTimeout(() => {
@@ -146,11 +154,14 @@ const AddBerita = () => {
                         Content
                       </label>
                       <Editor
-                        // editorState={editorState}
+                        editorState={Content}
+                        // onChange={handleContent}
+                        // initialContentState={Content}
                         toolbarClassName="toolbarClassName"
                         wrapperClassName="wrapperClassName"
                         editorClassName="editorClassName"
-                        // onEditorStateChange={setEditorState}
+                        // onContentStateChange={setContent}
+                        onEditorStateChange={setContent}
                       />
                     </div>
                     <div className="relative w-full mb-3">

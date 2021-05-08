@@ -75,11 +75,11 @@ const EditGallery = () => {
       .then((res) => {
         console.log(res.data + "this is data after api call");
         alert.show("Images Successfully Edited ! ");
-        // setTimeout(() => {
-        // window.location.reload();
-        // }, 2000);
-        // history.push(`/admin/gallery`);
-        console.log(res);
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        history.push(`/admin/gallery`);
+        // console.log(res);
       })
 
       .catch((error) => {
