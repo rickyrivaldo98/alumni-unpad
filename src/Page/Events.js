@@ -38,7 +38,7 @@ const Events = () => {
     if (a.date < b.date) return -1;
     return a.date > b.date ? 1 : 0;
   });
-  // console.log(checkComingMonth);
+  console.log(checkComingMonth);
 
   // fungsi navbar untuk dibuka di mobile
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +46,6 @@ const Events = () => {
     setIsOpen(!isOpen);
   };
   // akhir fungsi navbar
-  console.log(upComing);
   return (
     <>
       {upComing.length === 0 ? (

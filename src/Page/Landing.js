@@ -11,7 +11,11 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
 import Dropdown from "./layout/Dropdown";
-
+import bgCard from "../assets/images/bg-card.jpg";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 const Landing = () => {
   useEffect(() => {
     Aos.init({
@@ -21,11 +25,13 @@ const Landing = () => {
   }, []);
 
   const [loading, setLoading] = useState(false);
-  // const [GalleryData, setGalleryData] = useState([]);
-  // const [ImageData, setImageData] = useState([]);
+
   const [BeritaData, SetBeritaData] = useState([]);
   const [TotalAnggota, SetTotalAnggota] = useState([]);
   const [TotalEvent, SetTotalEvent] = useState([]);
+  const [upComing, setUpcoming] = useState([]);
+  const [month, setMonth] = useState("");
+  const [namaMonth, setnamaMonth] = useState("");
 
   // fungsi navbar untuk dibuka di mobile
   const [isOpen, setIsOpen] = useState(false);
@@ -42,13 +48,44 @@ const Landing = () => {
         SetTotalAnggota(res2.data);
         axios.get("https://unpad.sarafdesign.com/event").then((res3) => {
           SetTotalEvent(res3.data);
+          axios.get(`https://unpad.sarafdesign.com/event`).then((res4) => {
+            setUpcoming(
+              res4.data.map((x) => ({
+                id: x.id,
+                title: x.title,
+                date: x.date.substr(0, 10),
+              }))
+            );
+
+            setLoading(false);
+          });
         });
       });
     });
     setLoading(false);
   }, []);
+
+  let checkComingMonth = upComing.filter((x) => x.date.substr(5, 2) == month);
+  checkComingMonth.sort((a, b) => {
+    if (a.date < b.date) return -1;
+    return a.date > b.date ? 1 : 0;
+  });
+
+  var date = new Date();
+  var currentYear = date.getFullYear();
   return (
     <>
+      <div className="hidden">
+        <FullCalendar
+          datesSet={(arg) => {
+            setnamaMonth(arg.view.title.substr(0, 3));
+            console.log(arg.view.title.substr(0, 3));
+            setMonth(arg.view.currentEnd.toISOString().substr(5, 2));
+          }}
+          events={upComing}
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        />
+      </div>
       <Navbar toggle={toggle} />
       <Dropdown isOpen={isOpen} toggle={toggle} />
       <div className="overflow-hidden">
@@ -129,15 +166,15 @@ const Landing = () => {
         </div>
 
         <div className="container m-auto text-gray-700">
-          <div className="flex  items-center justify-center md:mt-20 mt-96 pt-72">
+          <div className="flex  items-center justify-center md:mt-20 mt-96 pt-72 md:pt-2">
             <div className="text-2xl md:text-4xl font-semibold tracking-wide">
-              Berita
+              Berita Terkini
             </div>
           </div>
 
           <div className="bg-gray-50">
             <div className="flex-none md:flex md:flex-wrap justify-center items-center mb-32">
-              {BeritaData.slice(0, 6).map((x) => (
+              {BeritaData.slice(-6).map((x) => (
                 <Link to={`/detail-berita/${x.slug_title}`}>
                   <div
                     className="bg-gray-100 m-auto w-96 h-64 mt-5 md:ml-3 "
@@ -151,7 +188,11 @@ const Landing = () => {
                     <div className="flex flex-row items-end h-full w-full">
                       <div className="flex flex-col w-full pb-3 pt-10 px-3 bg-gradient-to-t from-black text-gray-200">
                         <h3 className="text-base font-bold leading-5 ">
-                          {x.title}
+                          {x.title.length < 51 ? (
+                            <>{x.title}</>
+                          ) : (
+                            <>{x.title.substring(0, 51)} ...</>
+                          )}
                         </h3>
                         <div className="inline-flex items-center">
                           <span className="capitalize font-base text-xs my-1 mr-1">
@@ -212,10 +253,61 @@ const Landing = () => {
             className="flex  items-center justify-center mt-10 "
           >
             <button class="bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white  py-1 px-5 rounded-full ">
-              Lebih Banyak
+              Lebih Banyak Berita
             </button>
           </Link>
         </div>
+      </div>
+      <div className="flex  items-center justify-center md:mt-20 mt-96 pt-72 md:pt-2">
+        <div className="text-2xl md:text-4xl  tracking-wide">
+          Events Terkini
+        </div>
+      </div>
+      <div className="container mx-auto">
+        {checkComingMonth === undefined || checkComingMonth.length == 0 ? (
+          <div className="text-center text-xl ">Tidak Ada Events Bulan Ini</div>
+        ) : (
+          <>
+            <div className="mt-20 text-center text-xl ">
+              Kegiatan di Bulan {namaMonth} Tahun {currentYear}
+            </div>
+            {checkComingMonth.slice(-3).map((x) => (
+              <div className="mt-10 flex flex-col justify-center items-center">
+                <div className="sm:grid grid-cols-5 bg-white shadow-sm p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 shadow-lg">
+                  <img
+                    src={bgCard}
+                    alt="gambar "
+                    className="w-full rounded-lg"
+                  />
+                  <div className="pt-5 self-center sm:pt-0 sm:pl-10 col-span-3">
+                    <h2 className="text-gray-700 capitalize text-xl font-bold">
+                      {x.title}
+                    </h2>
+
+                    <p className="capitalize text-gray-500  pt-2">
+                      <i className=" fas fa-calendar fa-fw text-xl"></i>
+                      {moment(x.date).format("LL")}
+                    </p>
+                    <div className="mt-8">
+                      <Link
+                        to={`/detail-events/${x.id}`}
+                        key={x.id}
+                        className="bg-green-500 transition duration-500  hover:bg-green-700 text-gray-100 px-3 py-2  rounded-lg"
+                      >
+                        Info Lanjut
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
+        <Link to="/events" className="flex  items-center justify-center mt-10 ">
+          <button class="bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white  py-1 px-5 rounded-full ">
+            Lebih Banyak Event
+          </button>
+        </Link>
       </div>
       <Footer />
     </>

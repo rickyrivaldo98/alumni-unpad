@@ -134,7 +134,11 @@ const Berita = () => {
                 <div className="flex flex-row items-end h-full w-full">
                   <div className="flex flex-col w-full pb-3 pt-10 px-3 bg-gradient-to-t from-black text-gray-200">
                     <h3 className="text-base font-bold leading-5 ">
-                      {x.title}
+                      {x.title.length < 51 ? (
+                        <>{x.title}</>
+                      ) : (
+                        <>{x.title.substring(0, 51)} ...</>
+                      )}
                     </h3>
                     <div className="inline-flex items-center">
                       <span className="capitalize font-base text-xs my-1 mr-1">
