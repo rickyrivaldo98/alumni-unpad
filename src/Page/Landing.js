@@ -165,14 +165,13 @@ const Landing = () => {
           </div>
         </div>
 
-        <div className="container m-auto text-gray-700">
-          <div className="flex  items-center justify-center md:mt-20 mt-96 pt-72 md:pt-2">
-            <div className="text-2xl md:text-4xl font-semibold tracking-wide">
-              Berita Terkini
-            </div>
+        <div className="flex  items-center justify-center md:mt-20 mt-96 pt-72 md:pt-2">
+          <div className="text-2xl md:text-4xl font-semibold tracking-wide">
+            Berita Terkini
           </div>
-
-          <div className="bg-gray-50">
+        </div>
+        <div className="bg-gray-50">
+          <div className="container m-auto text-gray-700">
             <div className="flex-none md:flex md:flex-wrap justify-center items-center mb-32">
               {BeritaData.slice(-6).map((x) => (
                 <Link to={`/detail-berita/${x.slug_title}`}>
@@ -248,14 +247,20 @@ const Landing = () => {
               ))}
             </div>
           </div>
-          <Link
-            to="/berita"
-            className="flex  items-center justify-center mt-10 "
-          >
-            <button class="bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white  py-1 px-5 rounded-full ">
-              Lebih Banyak Berita
-            </button>
-          </Link>
+          {BeritaData[0] ? (
+            <>
+              <Link
+                to="/berita"
+                className="flex  items-center justify-center mt-10 mb-10"
+              >
+                <button class="bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white  py-1 px-5 rounded-full ">
+                  Lebih Banyak Berita
+                </button>
+              </Link>
+            </>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div className="flex  items-center justify-center md:mt-20 mt-96 pt-72 md:pt-2">
@@ -303,11 +308,21 @@ const Landing = () => {
             ))}
           </>
         )}
-        <Link to="/events" className="flex  items-center justify-center mt-10 ">
-          <button class="bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white  py-1 px-5 rounded-full ">
-            Lebih Banyak Event
-          </button>
-        </Link>
+
+        {checkComingMonth.length > 0 ? (
+          <>
+            <Link
+              to="/events"
+              className="flex  items-center justify-center mt-10 "
+            >
+              <button class="bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white  py-1 px-5 rounded-full ">
+                Lebih Banyak Event
+              </button>
+            </Link>
+          </>
+        ) : (
+          <></>
+        )}
       </div>
       <Footer />
     </>

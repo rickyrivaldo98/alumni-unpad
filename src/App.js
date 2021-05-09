@@ -16,18 +16,17 @@ import Events from "./Page/Events";
 import Gallery from "./Page/Gallery";
 import SimpleReactLightbox from "simple-react-lightbox";
 import DetailEvents from "./Page/DetailEvents";
+import PublicRoute from "./Page/utils/PublicRoute";
+import PrivateRoute from "./Page/utils/PrivateRoute";
 
 const App = () => {
   return (
     <>
       {/* <Navbar /> */}
       <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/admin">
-          <Admin />
-        </Route>
+        <PublicRoute path="/login" component={Login} />
+        <PrivateRoute path="/admin" component={Admin} />
+
         <Route path="/gallery">
           <Gallery />
         </Route>

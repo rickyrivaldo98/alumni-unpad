@@ -4,8 +4,7 @@ import { useAlert } from "react-alert";
 import { Link, useHistory } from "react-router-dom";
 import { setUserSession } from "../utils/common";
 
-
-const Login = () => {
+const Login = (props) => {
   let history = useHistory();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -34,32 +33,19 @@ const Login = () => {
         // console.log(user);
         alert.show("Login Berhasil");
         setTimeout(() => {
-          history.push("/admin");
+          props.history.push("/admin");
         }, 3000);
-        // console.log(res);
-        // history.push("/sidemenu/dashboard");
       })
-
       .catch((err) => {
-        // if (res.data.status === "false") {
-        //   setTimeout(() => {
-        //     setLoading(false);
-        //   }, 1000);
-        //   alert.show("Akun tidak ditemukan");
-        //   console.log(err.response);
-        // }
         setTimeout(() => {
           setLoading(false);
         }, 1000);
         alert.show("Akun Tidak Ditemukan");
-        // console.log(err);
       });
   };
 
   return (
     <>
-      {/* {console.log("user:" + username)} */}
-      {/* {console.log("pass:" + password)} */}
       <div className="container mx-auto px-4 ">
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">
