@@ -26,7 +26,7 @@ const Dashboard = () => {
             <div className="flex flex-wrap">
               <div className="w-full lg:w-6/12 xl:w-5/12 px-4">
                 <CardStats
-                  statSubtitle="Total Terverifikasi"
+                  statSubtitle="Total Alumni Terverifikasi"
                   statTitle={data.length}
                   // statArrow="up"
                   // statPercent="3.48"
@@ -39,7 +39,7 @@ const Dashboard = () => {
 
               <div className="w-full lg:w-6/12 xl:w-5/12 px-4">
                 <CardStats
-                  statSubtitle="Total Belum Terverifikasi"
+                  statSubtitle="Total Alumni Belum Terverifikasi"
                   statTitle={data2.length}
                   // statArrow="down"
                   // statPercent="1.10"
