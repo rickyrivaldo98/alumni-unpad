@@ -51,13 +51,18 @@ export default function DataUnverified({ color }) {
     } else {
     }
   };
+  const PrimaryKey = ["id"];
 
   useEffect(() => {
-    setFilterData(
-      data.filter((category) =>
-        category.name.toLowerCase().includes(search.toLowerCase())
-      )
-    );
+    const lowercasedValue = search.toLowerCase();
+    const filteredData = data.filter((item) => {
+      return Object.keys(item).some((key) =>
+        PrimaryKey.includes(key)
+          ? false
+          : item[key].toString().toLowerCase().includes(lowercasedValue)
+      );
+    });
+    setFilterData(filteredData);
   }, [search, data]);
 
   let i = 1;
@@ -71,7 +76,7 @@ export default function DataUnverified({ color }) {
         <input
           onChange={(e) => setSearch(e.target.value)}
           type="text"
-          placeholder="Search By Nama Anggota"
+          placeholder="Search Anggota"
           className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pl-10"
         />
       </div>
