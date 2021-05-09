@@ -50,7 +50,7 @@ const Login = (props) => {
         <div className="flex justify-center items-center text-center mt-32 mb-16 text-gray-500 ">
           <Link to="/">
             <h4 className="underline">
-              <i className="fas fa-chevron-left mr-3" /> Back to homepage
+              <i className="fas fa-chevron-left mr-2" /> Back to homepage
             </h4>
           </Link>
         </div>
