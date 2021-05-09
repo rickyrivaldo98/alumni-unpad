@@ -47,6 +47,13 @@ const Login = (props) => {
   return (
     <>
       <div className="container mx-auto px-4 ">
+        <div className="flex justify-center items-center text-center mt-32 mb-16 text-gray-500 ">
+          <Link to="/">
+            <h4 className="underline">
+              <i className="fas fa-chevron-left mr-3" /> Back to homepage
+            </h4>
+          </Link>
+        </div>
         <div className="flex content-center items-center justify-center h-full">
           <div className="w-full lg:w-4/12 px-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200 border-0">
