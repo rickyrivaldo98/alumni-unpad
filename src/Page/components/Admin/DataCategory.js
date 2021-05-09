@@ -10,6 +10,8 @@ export default function DataCategory({ color }) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   const [empty, setEmpty] = useState(false);
+  const [filterData, setFilterData] = useState([]);
+  const [search, setSearch] = useState("");
 
   let [colorLoading, setColorLoading] = useState("#ffffff");
 
@@ -30,18 +32,40 @@ export default function DataCategory({ color }) {
   let handleDelete = (e) => {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
-      axios.delete(`https://unpad.sarafdesign.com/category/${e}`).then((res) => {
-        alert("Kehapus");
-      });
+      axios
+        .delete(`https://unpad.sarafdesign.com/category/${e}`)
+        .then((res) => {
+          alert("Kehapus");
+        });
       setLoading(false);
     } else {
     }
   };
 
+  useEffect(() => {
+    setFilterData(
+      data.filter((category) =>
+        category.name.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search, data]);
+
   let i = 1;
 
   return (
     <>
+      <div className="relative flex w-1/2 flex-wrap items-stretch mb-3 text-gray-500">
+        <span className="z-10 h-full leading-snug font-normal absolute text-center text-blueGray-300 absolute bg-transparent rounded text-base items-center justify-center w-8 pl-3 py-3">
+          <i className="fas fa-search" />
+        </span>
+        <input
+          onChange={(e) => setSearch(e.target.value)}
+          type="text"
+          placeholder="Search By Nama Category"
+          className="px-3 py-3 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm shadow outline-none focus:outline-none focus:shadow-outline w-full pl-10"
+        />
+      </div>
+
       <div
         className={
           "relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded " +
@@ -126,7 +150,7 @@ export default function DataCategory({ color }) {
                     </div>
                   )}
                   {!loading &&
-                    data.map((x) => (
+                    filterData.map((x) => (
                       <tr>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
                           {i++}
@@ -165,6 +189,13 @@ export default function DataCategory({ color }) {
                         </td>
                       </tr>
                     ))}
+                  {filterData.length === 0 && (
+                    <>
+                      <div className="flex justify-center items-center text-center my-8">
+                        <span>Nama Category tidak ditemukan</span>
+                      </div>
+                    </>
+                  )}
                 </>
               )}
             </tbody>
