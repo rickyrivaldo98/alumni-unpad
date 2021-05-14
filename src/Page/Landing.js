@@ -46,24 +46,30 @@ const Landing = () => {
       SetBeritaData(res.data);
       axios.get("https://unpad.sarafdesign.com/verified").then((res2) => {
         SetTotalAnggota(res2.data);
-        axios.get("https://unpad.sarafdesign.com/event").then((res3) => {
-          SetTotalEvent(res3.data);
-          axios.get(`https://unpad.sarafdesign.com/event`).then((res4) => {
-            setUpcoming(
-              res4.data.map((x) => ({
-                id: x.id,
-                title: x.title,
-                date: x.date.substr(0, 10),
-              }))
-            );
-
-            setLoading(false);
-          });
-        });
       });
     });
     setLoading(false);
   }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    axios.get("https://unpad.sarafdesign.com/event").then((res) => {
+      SetTotalEvent(res.data);
+      axios.get(`https://unpad.sarafdesign.com/event`).then((res2) => {
+        setUpcoming(
+          res2.data.map((x) => ({
+            id: x.id,
+            title: x.title,
+            date: x.date.substr(0, 10),
+          }))
+        );
+      });
+    });
+    setLoading(false);
+  }, []);
+
+  console.log(TotalEvent);
+  console.log("heheh" + BeritaData);
 
   let checkComingMonth = upComing.filter((x) => x.date.substr(5, 2) == month);
   checkComingMonth.sort((a, b) => {
@@ -152,7 +158,6 @@ const Landing = () => {
                   className="fas fa-book fa-fw text-4xl"
                 ></i>
                 <h3 className="py-2 text-4xl font-bold font-mono">
-                  {" "}
                   {BeritaData.length}
                 </h3>
                 <div className="text-center mt-2 leading-none flex justify-center w-full">
