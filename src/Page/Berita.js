@@ -8,10 +8,12 @@ import Footer from "./layout/Footer";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Dropdown from "./layout/Dropdown";
+import Slider from "react-slick";
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import "../berita.css";
 
 const Berita = () => {
   const [loading, setLoading] = useState(false);
-  // const [GalleryData, setGalleryData] = useState([]);
   const [categoryData, setCategoryData] = useState([]);
   const [BeritaData, SetBeritaData] = useState([]);
   const [data3, setData3] = useState("");
@@ -64,6 +66,59 @@ const Berita = () => {
     setActiveAll(false);
   };
 
+  const NextArrow = ({ onClick }) => {
+    return (
+      <div className="arrow next" onClick={onClick}>
+        <FaArrowRight />
+      </div>
+    );
+  };
+  const PrevArrow = ({ onClick }) => {
+    return (
+      <div className="arrow prev" onClick={onClick}>
+        <FaArrowLeft />
+      </div>
+    );
+  };
+
+  // fungsi untuk tampilan detail gambar saat mobile
+  const [imageIndex, setImageIndex] = useState(0);
+  const settings = {
+    infinite: true,
+    lazyLoad: true,
+    speed: 700,
+    slidesToShow: 5,
+    slidesToScroll: 3,
+    centerPadding: 0,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+    beforeChange: (current, next) => setImageIndex(next),
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
   return (
     <>
       <Navbar toggle={toggle} />
@@ -125,28 +180,35 @@ const Berita = () => {
             ))}
         </Carousel>
       </div>
-
       <hr className="container mx-auto mt-10" />
       <div className="container mx-auto mt-10">
-        <h2 className="text-center ">Category Berita</h2>
-        <div className="flex flex-wrap">
-          {categoryData.map((x) => (
-            <>
-              <div className="mb-2 mr-2">
-                <button
-                  key={x.id}
-                  onClick={() => isActivecat(x.id)}
-                  class={
-                    activeCat === x.id
-                      ? "btn-filter bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-full"
-                      : "btn-filter bg-blue-300 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-full border border-white-500 hover:border-transparent rounded"
-                  }
-                >
-                  {x.name}
-                </button>
-              </div>
-            </>
-          ))}
+        <h2 className="text-center text-xl ">Category Berita {data3}</h2>
+        <div className="mt-10 category-berita text-center  w-1/2 overflow-hidden">
+          <Slider {...settings}>
+            {loading && <div>loading...</div>}
+            {!loading &&
+              categoryData.map((img, idx) => (
+                <>
+                  <div
+                    className={
+                      idx === imageIndex ? "slide activeSlide" : "slide"
+                    }
+                  >
+                    <button
+                      key={img.id}
+                      onClick={() => isActivecat(img.id)}
+                      className={
+                        activeCat === img.id
+                          ? " focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-opacity-50 text-sm transition duration-500 btn-filter bg-gray-800 hover:bg-yellow-700 text-white  py-2 px-3 rounded-lg "
+                          : " focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:ring-opacity-50 text-sm transition duration-500 btn-filter bg-gray-400 hover:bg-yellow-700 text-white  py-2 px-3 rounded-lg hover:border-transparent rounded"
+                      }
+                    >
+                      {img.name}
+                    </button>
+                  </div>
+                </>
+              ))}
+          </Slider>
         </div>
       </div>
       <div className="flex  justify-center items-center m-auto">

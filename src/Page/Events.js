@@ -96,12 +96,6 @@ const Events = () => {
                   </div>
                   {checkComingMonth.map((x) => (
                     <div className="mt-10 flex flex-col justify-center items-center">
-                      {/* <div className="flex text-center items-center justify-center mt-5">
-                    <div className="flex items-center justify-between w-2/4 h-20 rounded-lg bg-yellow-600 text-white text-xl p-2">
-                      <div>{x.title}</div>
-                      <div>Tanggal {x.date.substr(8, 2)}</div>
-                    </div>
-                  </div> */}
                       <div className="sm:grid grid-cols-5 bg-white shadow-sm p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 shadow-lg">
                         <img
                           src={Bg}
