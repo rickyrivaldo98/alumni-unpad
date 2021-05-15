@@ -13,7 +13,7 @@ const EditImages = () => {
   const alert = useAlert();
 
   const [Gallery, setGallery] = useState("");
-  const [Category, setCategory] = useState("");
+  // const [Category, setCategory] = useState("");
   const [Title, setTitle] = useState("");
   const [Image, setImage] = useState("");
 
@@ -22,7 +22,7 @@ const EditImages = () => {
   const [loading, setLoading] = useState(false);
 
   const handleTitle = (e) => setTitle(e.target.value);
-  const handleCategory = (e) => setCategory(e.target.value);
+  // const handleCategory = (e) => setCategory(e.target.value);
   const handleGallery = (e) => setGallery(e.target.value);
   const handleImage = (e) => setImage(e.target.files[0]);
 
@@ -31,7 +31,7 @@ const EditImages = () => {
     axios.get(`https://unpad.sarafdesign.com/images/${id}`).then((res) => {
       setData(res.data[0]);
       setTitle(res.data[0].name);
-      setCategory(res.data[0].category);
+      // setCategory(res.data[0].category);
       setGallery(res.data[0].gallery_id);
       setImage(res.data[0].file);
     });
@@ -58,11 +58,11 @@ const EditImages = () => {
     } else {
       images.set("name", Title);
     }
-    if (Category === "") {
-      images.set("category", data.category);
-    } else {
-      images.set("category", Category);
-    }
+    // if (Category === "") {
+    //   images.set("category", data.category);
+    // } else {
+    //   images.set("category", Category);
+    // }
     if (Gallery === "") {
       images.set("gallery_id", data.gallery);
     } else {
@@ -150,7 +150,7 @@ const EditImages = () => {
                             className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                           />
                         </div>
-                        <div className="relative w-full mb-3">
+                        {/* <div className="relative w-full mb-3">
                           <label
                             className="block text-blueGray-600 text-xs font-bold mb-2"
                             htmlFor="grid-password"
@@ -167,7 +167,7 @@ const EditImages = () => {
                             }}
                             value={Category}
                           />
-                        </div>
+                        </div> */}
                         <div className="relative w-full mb-3">
                           <label
                             className="block text-blueGray-600 text-xs font-bold mb-2"
