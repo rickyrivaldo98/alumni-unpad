@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import AddGallery from "./AddGallery";
 
 // import { FaWindows } from "react-icons/fa";
 const EditEvent = () => {
@@ -36,36 +37,59 @@ const EditEvent = () => {
       setContent(res.data[0].content);
       setDate(res.data[0].date.substr(0, 10));
       setImage(res.data[0].file);
-      console.log(res.data);
+      // console.log(res.data);
     });
     setLoading(false);
   }, []);
 
   let edit = (e) => {
     e.preventDefault();
-    if (window.confirm("Apakah anda yakin ingin mengedit?")) {
-      const event = {
-        title: Title,
-        content: Content,
-        date: Date,
-        file: Image,
-      };
-      axios
-        .put(
-          `https://unpad.sarafdesign.com/event/${data.id}/${data.thumbnail}`,
-          event
-        )
-        .then((res) => {
-          alert("Teredit");
-          setTimeout(() => {
-            history.push(`/admin/events`);
-          }, 2000);
-        })
+    let event = new FormData();
 
-        .catch((error) => {
-          console.log(error);
-        });
+    if (Title === "") {
+      event.set("title", data.title);
+    } else {
+      event.set("title", Title);
     }
+    if (Content === "") {
+      event.set("content", data.content);
+    } else {
+      event.set("content", Content);
+    }
+    if (Date === "") {
+      event.set("date", data.date);
+    } else {
+      event.set("date", Date);
+    }
+    if (Image === "") {
+      event.set("image", data.image);
+    } else {
+      event.set("image", Image);
+    }
+
+    const config = {
+      headers: {
+        accept: "application/json",
+        "Accept-Language": "en-US,en;q=0.8",
+        "content-type": `multipart/form-data;boundary=${event._boundary}`,
+      },
+    };
+
+    axios
+      .put(
+        `https://unpad.sarafdesign.com/event/${data.id}/${data.thumbnail}`,
+        event, config
+      )
+      .then((res) => {
+        alert("Teredit");
+        setTimeout(() => {
+          history.push(`/admin/events`);
+        }, 2000);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

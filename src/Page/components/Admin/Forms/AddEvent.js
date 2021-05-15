@@ -27,15 +27,22 @@ const AddEvent = () => {
 
   const handleEvent = (e) => {
     // e.preventDefault();
-    const event = {
-      title: Title,
-      content: Content,
-      date: Date,
-      file: Image,
+    let event = new FormData();
+    event.set("title", Title)
+    event.set("content", Content)
+    event.set("date", Date)
+    event.set("file", Image)
+
+    const config = {
+      headers: {
+        accept: "application/json",
+        "Accept-Language": "en-US,en;q=0.8",
+        "content-type": `multipart/form-data;boundary=${event._boundary}`,
+      },
     };
-    console.log(event)
+
     axios
-      .post("https://unpad.sarafdesign.com/event", event)
+      .post("https://unpad.sarafdesign.com/event", event, config)
       .then((res) => {
         alert.show("Event Succesfully Added!");
         setTimeout(() => {
