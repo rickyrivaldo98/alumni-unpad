@@ -16,7 +16,7 @@ const AddImages = () => {
 
   const [data, setData] = useState([]);
   const [Gallery, setGallery] = useState("");
-  const [Category, setCategory] = useState("");
+  // const [Category, setCategory] = useState("");
   const [Title, setTitle] = useState("");
   const [Image, setImage] = useState("");
   // const [editorState, setEditorState] = useState(() =>
@@ -25,7 +25,7 @@ const AddImages = () => {
   // console.log(Gallery);
 
   const handleTitle = (e) => setTitle(e.target.value);
-  const handleCategory = (e) => setCategory(e.target.value);
+  // const handleCategory = (e) => setCategory(e.target.value);
   const handleGallery = (e) => setGallery(e.target.value);
   const handleImage = (e) => setImage(e.target.files[0]);
 
@@ -44,7 +44,7 @@ const AddImages = () => {
     // e.preventDefault();
     let images = new FormData();
     images.set("gallery_id", Gallery);
-    images.set("category", Category);
+    // images.set("category", Category);
     images.set("name", Title);
     images.set("file", Image);
     // console.log("ini images " + images);
@@ -76,7 +76,7 @@ const AddImages = () => {
 
   const schema = yup.object().shape({
     title: yup.string().required(),
-    category: yup.string().required(),
+    // category: yup.string().required(),
     gallery: yup.string().required(),
     picture: yup
       .mixed()
@@ -144,7 +144,7 @@ const AddImages = () => {
                       />
                       <p style={{ color: "red" }}>{errors.title?.message}</p>
                     </div>
-                    <div className="relative w-full mb-3">
+                    {/* <div className="relative w-full mb-3">
                       <label
                         className="block text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="grid-password"
@@ -158,7 +158,7 @@ const AddImages = () => {
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         onChange={handleCategory}
                       />
-                    </div>
+                    </div> */}
                     <div className="relative w-full mb-3">
                       <label
                         className="block   text-blueGray-600 text-xs font-bold mb-2"

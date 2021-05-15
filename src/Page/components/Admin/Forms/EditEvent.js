@@ -20,11 +20,13 @@ const EditEvent = () => {
   const [Content, setContent] = useState("");
   const [Date, setDate] = useState("");
   const [data, setData] = useState([]);
+  const [Image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleTitle = (e) => setTitle(e.target.value);
   const handleContent = (e) => setContent(e.target.value);
   const handleDate = (e) => setDate(e.target.value);
+  const handleImage = (e) => setImage(e.target.files[0]);
 
   useEffect(() => {
     setLoading(true);
@@ -33,6 +35,7 @@ const EditEvent = () => {
       setTitle(res.data[0].title);
       setContent(res.data[0].content);
       setDate(res.data[0].date.substr(0, 10));
+      setImage(res.data[0].file);
       console.log(res.data);
     });
     setLoading(false);
@@ -45,9 +48,13 @@ const EditEvent = () => {
         title: Title,
         content: Content,
         date: Date,
+        file: Image,
       };
       axios
-        .put(`https://unpad.sarafdesign.com/event/${id}`, event)
+        .put(
+          `https://unpad.sarafdesign.com/event/${data.id}/${data.thumbnail}`,
+          event
+        )
         .then((res) => {
           alert("Teredit");
           setTimeout(() => {
@@ -149,6 +156,24 @@ const EditEvent = () => {
                       {/* <p style={{ color: "red" }}>
                         {errors.categoryName?.message}
                       </p> */}
+                    </div>
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block  text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Thumbnail
+                      </label>
+                      <img
+                        src={`https://unpad.sarafdesign.com/uploads/${data.thumbnail}`}
+                        alt=""
+                      />
+                      <input
+                        onChange={handleImage}
+                        type="file"
+                        placeholder="input file image"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      />
                     </div>
                     <button
                       className="bg-green-500 text-white active:bg-lightBlue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
