@@ -5,13 +5,15 @@ import { useParams } from "react-router-dom";
 import FormData from "form-data";
 import { data } from "autoprefixer";
 import { useAlert } from "react-alert";
-import { EditorState, convertFromRaw } from "draft-js";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { convertToHTML } from "draft-convert";
+import { convertToHTML, convertFromHTML } from "draft-convert";
 import { Editor } from "react-draft-wysiwyg";
+// import DOMPurify from "dompurify";
 import slugify from "react-slugify";
+import htmlToDraft from "html-to-draftjs";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 // import { FaWindows } from "react-icons/fa";
@@ -21,13 +23,62 @@ const EditBerita = () => {
 
   let history = useHistory();
 
+  // const createMarkup = (html) => {
+  //   return {
+  //     __html: DOMPurify.sanitize(html),
+  //   };
+  // };
+
+  useEffect(() => {
+    axios
+      .get(`https://unpad.sarafdesign.com/category`)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((error) => {
+        setData([]);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`https://unpad.sarafdesign.com/berita/id/${id}`)
+      .then((res) => {
+        setData2(res.data[0]);
+        setTitle(res.data[0].title);
+        setOldContent(res.data[0].content);
+
+        setCategory(res.data[0].category_id);
+        setImage(res.data[0].thumbnail);
+        console.log(res.data[0]);
+      })
+      .catch((error) => {
+        setData([]);
+      });
+  }, []);
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
 
   const [Title, setTitle] = useState("");
   const [Image, setImage] = useState("");
   const [Category, setCategory] = useState("");
-  const [Content, setContent] = useState(() => EditorState.createEmpty());
+  const [oldContent, setOldContent] = useState("");
+  // const converthtml = EditorState.createWithContent(
+  //   convertFromHTML(oldContent)
+  // );
+  const testhtml = "<p>Hey this <strong>editor</strong> rocks 😀</p>";
+  const testhtml2 = `${oldContent}`;
+  const converthtml = htmlToDraft(testhtml);
+  const contentState = ContentState.createFromBlockArray(
+    converthtml.contentBlocks
+  );
+  // const isikonten = EditorState.createWithContent(contentState);
+  const [Content, setContent] = useState(
+    EditorState.createWithContent(contentState)
+  );
+  // const [convertedHtml, setConvertedHtml] = useState(() =>
+  //   EditorState.createWithContent(oldContent)
+  // );
   const [convertedContent, setConvertedContent] = useState(null);
   // const [editorState, setEditorState] = useState(() =>
   //   EditorState.createEmpty()
@@ -44,6 +95,8 @@ const EditBerita = () => {
     setConvertedContent(currentContentAsHTML);
   };
   const handleImage = (e) => setImage(e.target.files[0]);
+  console.log("ini testhtml " + testhtml);
+  console.log("ini testhtml2" + testhtml2);
 
   let editBerita = (e) => {
     e.preventDefault();
@@ -86,7 +139,11 @@ const EditBerita = () => {
       },
     };
     axios
-      .put(`https://unpad.sarafdesign.com/berita/${data.id}/${data.thumbnail}`, berita, config)
+      .put(
+        `https://unpad.sarafdesign.com/berita/${data.id}/${data.thumbnail}`,
+        berita,
+        config
+      )
       .then((res) => {
         alert.show("Berita Succesfully Added!");
         setTimeout(() => {
@@ -98,32 +155,7 @@ const EditBerita = () => {
       });
   };
 
-  useEffect(() => {
-    axios
-      .get(`https://unpad.sarafdesign.com/category`)
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((error) => {
-        setData([]);
-      });
-  });
-
-  useEffect(() => {
-    axios
-      .get(`https://unpad.sarafdesign.com/berita/id/${id}`)
-      .then((res) => {
-        setData2(res.data);
-        setTitle(res.data.name);
-        setContent(res.data.content);
-        setCategory(res.data.category_id);
-        setImage(res.data.thumbnail);
-      })
-      .catch((error) => {
-        setData([]);
-      });
-  });
-
+  // console.log(Category);
   //validation form
   // const schema = yup.object().shape({
   //   Title: yup.string().required(),
@@ -212,6 +244,12 @@ const EditBerita = () => {
                       >
                         Content
                       </label>
+                      {/* <textarea
+                        disabled
+                        value={draftToHtml(
+                          convertToRaw(editorState.getCurrentContent())
+                        )}
+                      /> */}
                       <Editor
                         editorState={Content}
                         // onChange={setContent}
@@ -231,7 +269,7 @@ const EditBerita = () => {
                         Image
                       </label>
                       <img
-                        src={`https://unpad.sarafdesign.com/uploads/${data2.thumbnail}`}
+                        src={`https://unpad.sarafdesign.com/uploads/${Image}`}
                         alt=""
                       />
                       <input
