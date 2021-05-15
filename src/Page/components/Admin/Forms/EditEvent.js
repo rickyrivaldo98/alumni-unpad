@@ -62,9 +62,9 @@ const EditEvent = () => {
       event.set("date", Date);
     }
     if (Image === "") {
-      event.set("image", data.image);
+      event.set("file", data.thumbnail);
     } else {
-      event.set("image", Image);
+      event.set("file", Image);
     }
 
     const config = {
@@ -81,7 +81,7 @@ const EditEvent = () => {
         event, config
       )
       .then((res) => {
-        alert("Teredit");
+        alert.show("Teredit");
         setTimeout(() => {
           history.push(`/admin/events`);
         }, 2000);
