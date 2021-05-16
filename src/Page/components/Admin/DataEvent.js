@@ -49,7 +49,7 @@ export default function DataEvent({ color }) {
   }, [search, data]);
 
   let i = 1;
-
+  console.log(data);
   return (
     <>
       <div className="relative flex w-1/2 flex-wrap items-stretch mb-3 text-gray-500">

@@ -8,6 +8,9 @@ import { useAlert } from "react-alert";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { EditorState } from "draft-js";
+import { convertToHTML } from "draft-convert";
+import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 // import { FaWindows } from "react-icons/fa";
@@ -16,22 +19,30 @@ const AddEvent = () => {
   let history = useHistory();
 
   const [Title, setTitle] = useState("");
-  const [Content, setContent] = useState("");
+  const [Content, setContent] = useState(() => EditorState.createEmpty());
   const [Date, setDate] = useState("");
   const [Image, setImage] = useState("");
+  const [convertedContent, setConvertedContent] = useState(null);
 
   const handleTitle = (e) => setTitle(e.target.value);
-  const handleContent = (e) => setContent(e.target.value);
+  const handleContent = (e) => {
+    setContent(e);
+    convertContentToHTML();
+  };
+  const convertContentToHTML = () => {
+    let currentContentAsHTML = convertToHTML(Content.getCurrentContent());
+    setConvertedContent(currentContentAsHTML);
+  };
   const handleDate = (e) => setDate(e.target.value);
   const handleImage = (e) => setImage(e.target.files[0]);
 
   const handleEvent = (e) => {
     // e.preventDefault();
     let event = new FormData();
-    event.set("title", Title)
-    event.set("content", Content)
-    event.set("date", Date)
-    event.set("file", Image)
+    event.set("title", Title);
+    event.set("content", convertedContent);
+    event.set("date", Date);
+    event.set("file", Image);
 
     const config = {
       headers: {
@@ -58,7 +69,7 @@ const AddEvent = () => {
 
   const schema = yup.object().shape({
     title: yup.string().required(),
-    content_category: yup.string().required(),
+    // content_category: yup.string().required(),
     date: yup.string().required(),
     picture: yup
       .mixed()
@@ -135,20 +146,22 @@ const AddEvent = () => {
                       >
                         Content
                       </label>
-                      <textarea
-                        {...register("content_category", {
-                          required: true,
-                        })}
-                        type="text"
-                        name="content_category"
-                        placeholder="Insert Content"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        onChange={handleContent}
-                        // ref={register}
+                      <Editor
+                        // {...register("content_category", {
+                        //   required: true,
+                        // })}
+                        editorState={Content}
+                        // onChange={setContent}
+                        // initialContentState={Content}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        // onContentStateChange={setContent}
+                        onEditorStateChange={handleContent}
                       />
-                      <p style={{ color: "red" }}>
+                      {/* <p style={{ color: "red" }}>
                         {errors.content_category?.message}
-                      </p>
+                      </p> */}
                     </div>
                     <div className="relative w-full mb-3">
                       <label

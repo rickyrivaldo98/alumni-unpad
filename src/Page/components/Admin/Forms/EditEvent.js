@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import FormData from "form-data";
 import { data } from "autoprefixer";
 import { useAlert } from "react-alert";
+import { EditorState, ContentState, convertFromHTML } from "draft-js";
+import { convertToHTML } from "draft-convert";
+import { Editor } from "react-draft-wysiwyg";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -18,14 +21,22 @@ const EditEvent = () => {
   let history = useHistory();
 
   const [Title, setTitle] = useState("");
-  const [Content, setContent] = useState("");
+  const [Content, setContent] = useState(EditorState.createEmpty());
+  const [convertedContent, setConvertedContent] = useState(null);
   const [Date, setDate] = useState("");
   const [data, setData] = useState([]);
   const [Image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleTitle = (e) => setTitle(e.target.value);
-  const handleContent = (e) => setContent(e.target.value);
+  const handleContent = (e) => {
+    setContent(e);
+    convertContentToHTML();
+  };
+  const convertContentToHTML = () => {
+    let currentContentAsHTML = convertToHTML(Content.getCurrentContent());
+    setConvertedContent(currentContentAsHTML);
+  };
   const handleDate = (e) => setDate(e.target.value);
   const handleImage = (e) => setImage(e.target.files[0]);
 
@@ -34,14 +45,20 @@ const EditEvent = () => {
     axios.get(`https://unpad.sarafdesign.com/event/${id}`).then((res) => {
       setData(res.data[0]);
       setTitle(res.data[0].title);
-      setContent(res.data[0].content);
+      setContent(
+        EditorState.createWithContent(
+          ContentState.createFromBlockArray(
+            convertFromHTML(res.data[0].content)
+          )
+        )
+      );
       setDate(res.data[0].date.substr(0, 10));
       setImage(res.data[0].file);
       // console.log(res.data);
     });
     setLoading(false);
   }, []);
-
+  console.log(data.thumbnail);
   let edit = (e) => {
     e.preventDefault();
     let event = new FormData();
@@ -54,7 +71,7 @@ const EditEvent = () => {
     if (Content === "") {
       event.set("content", data.content);
     } else {
-      event.set("content", Content);
+      event.set("content", convertedContent);
     }
     if (Date === "") {
       event.set("date", data.date);
@@ -78,7 +95,8 @@ const EditEvent = () => {
     axios
       .put(
         `https://unpad.sarafdesign.com/event/${data.id}/${data.thumbnail}`,
-        event, config
+        event,
+        config
       )
       .then((res) => {
         alert.show("Teredit");
@@ -144,16 +162,15 @@ const EditEvent = () => {
                       >
                         Content
                       </label>
-                      <textarea
-                        type="text"
-                        name="Category"
-                        placeholder="Insert Content"
-                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                        value={Content}
-                        onChange={(e) => {
-                          handleContent(e);
-                        }}
-                        // ref={register}
+                      <Editor
+                        editorState={Content}
+                        // onChange={setContent}
+                        // initialContentState={Content}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        // onContentStateChange={setContent}
+                        onEditorStateChange={handleContent}
                       />
                       {/* <p style={{ color: "red" }}>
                         {errors.categoryName?.message}
