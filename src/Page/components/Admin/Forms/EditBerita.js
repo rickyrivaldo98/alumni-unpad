@@ -82,7 +82,7 @@ const EditBerita = () => {
       });
   }, []);
 
-  console.log(data2);
+  // console.log(data2);
 
   // const converthtml = EditorState.createWithContent(
   //   convertFromHTML(oldContent)
@@ -178,6 +178,8 @@ const EditBerita = () => {
     }
     if (Content === "") {
       berita.set("content", data2.content);
+    } else if (convertedContent == null) {
+      berita.set("content", convertToHTML(Content.getCurrentContent()));
     } else {
       berita.set("content", convertedContent);
     }

@@ -7,7 +7,7 @@ const Navbar = ({ toggle }) => {
       <nav className="flex justify-between items-center h-16 bg-white-500 text-gray-600 relative pt-10 pb-10 shadow-lg ">
         <Link to="/" className="2xl:pl-72 xl:pl-64 lg:pl-28 md:pl-20 pl-10">
           {/* <img src={Logo} alt="" /> */}
-          <div className="text-2xl  tracking-wider">ILUNI KMB</div>
+          <div className="text-2xl  tracking-wider">IKA DHARMAVIRA</div>
         </Link>
         <div className="px-10 cursor-pointer md:hidden" onClick={toggle}>
           <svg

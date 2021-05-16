@@ -105,15 +105,15 @@ const Landing = () => {
                 data-aos="fade-up"
                 className="md:text-4xl font-bold text-lg text-white mt-48 tracking-wider text-center"
               >
-                Selamat Datang di Website ILUNI KMB
+                Selamat Datang di Website IKA Dharmavira Unpad
               </h1>
             </div>
             <div className="flex justify-center items-center mt-2">
               <p
                 data-aos="fade-up"
-                className="text-white text-lg tracking-wide"
+                className="text-white text-lg tracking-wide text-center"
               >
-                Ikatan Alumni Dharmavira
+                Ikatan Alumni Dharmavira Universitas Padjajaran
               </p>
             </div>
           </div>
