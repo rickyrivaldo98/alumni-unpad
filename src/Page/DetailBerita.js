@@ -8,15 +8,17 @@ import axios from "axios";
 import Moment from "react-moment";
 import moment from "moment";
 import Loader from "react-loader-spinner";
-import Preloader from "./components/Preloader";
 import Dropdown from "./layout/Dropdown";
 import parse from "html-react-parser";
+import UsePreloader from "./components/UsePreloader";
 
 const DetailBerita = () => {
-  let { slugberita } = useParams();
+  let { slugberita, idCat } = useParams();
   const [loading, setLoading] = useState(false);
   const [DetailBeritaData, SetDetailBeritaData] = useState([]);
-  const [Data, setData] = useState([]);
+  const [data, setData] = useState([]);
+  const [dataTerkait, setDataTerkait] = useState([]);
+  const [loader, showLoader, hideLoader] = UsePreloader();
 
   // fungsi navbar untuk dibuka di mobile
   const [isOpen, setIsOpen] = useState(false);
@@ -26,13 +28,21 @@ const DetailBerita = () => {
   // akhir fungsi navbar
 
   useEffect(() => {
-    setLoading(true);
+    showLoader();
     axios
       .get(`https://unpad.sarafdesign.com/berita/${slugberita}`)
       .then((res) => {
         SetDetailBeritaData(res.data);
         setData(res.data[0]);
-        setLoading(false);
+        axios
+          .get(
+            `https://unpad.sarafdesign.com/berita/category/${res.data[0].category_id}`
+          )
+          .then((res2) => {
+            setDataTerkait(res2.data);
+            setLoading(false);
+          });
+        hideLoader();
       });
   }, []);
 
@@ -40,54 +50,49 @@ const DetailBerita = () => {
     <>
       <Navbar toggle={toggle} />
       <Dropdown isOpen={isOpen} toggle={toggle} />
-      {loading && <Preloader />}
-      {!loading && (
+      {DetailBeritaData.map((x) => (
         <>
-          {DetailBeritaData.map((x) => (
-            <>
-              <div
-                className="bg-detailBerita relative z-10"
-                // menampilkan gambar ketika di klik
-                style={{
-                  backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
-                }}
-              >
-                <div className="bg-detailBeritaOverlay"></div>
-                <div className="container p-3 mx-auto">
-                  <div className=" xl:mt-96 mt-48 lg:mt-24 md:ml-32">
-                    <div className="z-10 md:w-1/3 text-highlight text-xl md:text-3xl text-white font-semibold tracking-wide">
-                      {x.title}
-                    </div>
-                  </div>
+          <div
+            className="bg-detailBerita relative z-10"
+            // menampilkan gambar ketika di klik
+            style={{
+              backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+            }}
+          >
+            <div className="bg-detailBeritaOverlay"></div>
+            <div className="container p-3 mx-auto">
+              <div className=" xl:mt-96 mt-48 lg:mt-24 md:ml-32">
+                <div className="z-10 md:w-1/3 text-highlight text-xl md:text-3xl text-white font-semibold tracking-wide">
+                  {x.title}
                 </div>
               </div>
-              <div className="content-detail">
-                <div className="flex justify-center items-center text-gray-600 mb-20 mt-5">
-                  <p className="">
-                    Diposting Oleh <b>Admin</b>
-                  </p>
-                  <p className="capitalize text-gray-500 ml-5">
-                    <i className=" fas fa-calendar fa-fw text-xl"></i>
-                    {moment(x.date).format("LL")}
-                  </p>
-                </div>
-                <div className="flex justify-center items-center">
-                  <div className="w-full p-10 md:w-4/6">
-                    {parse(`${x.content}`)}
-                  </div>
-                </div>
+            </div>
+          </div>
+          <div className="content-detail">
+            <div className="flex justify-center items-center text-gray-600 mb-20 mt-5">
+              <p className="">
+                Diposting Oleh <b>Admin</b>
+              </p>
+              <p className="capitalize text-gray-500 ml-5">
+                <i className=" fas fa-calendar fa-fw text-xl"></i>
+                {moment(x.date).format("LL")}
+              </p>
+            </div>
+            <div className="flex justify-center items-center">
+              <div className="w-full p-10 md:w-4/6">
+                {parse(`${x.content}`)}
               </div>
-            </>
-          ))}
+            </div>
+          </div>
         </>
-      )}
+      ))}
       <div className="flex  justify-center items-center m-auto">
         <h2 className="border-t-4  border-red-600  p-10 text-2xl font-bold mt-32">
           Berita Terkait
         </h2>
       </div>
       <div className="flex-none md:flex md:flex-wrap justify-center items-center">
-        {DetailBeritaData.map((x) => (
+        {dataTerkait.map((x) => (
           <Link to={`/detail-berita/${x.slug_title}`}>
             <div
               className="bg-gray-100 m-auto w-96 h-64 mt-5 ml-3"
@@ -156,6 +161,7 @@ const DetailBerita = () => {
       </div>
 
       <Footer />
+      {loader}
     </>
   );
 };

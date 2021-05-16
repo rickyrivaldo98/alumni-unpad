@@ -124,7 +124,7 @@ export default function DataEvent({ color }) {
                       : "bg-lightBlue-800 text-lightBlue-300 border-lightBlue-700")
                   }
                 >
-                  Content
+                  Thumbnail
                 </th>
                 <th
                   className={
@@ -176,7 +176,11 @@ export default function DataEvent({ color }) {
                           {x.title}
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
-                          {x.content}
+                          <img
+                            className="h-24 w-24"
+                            src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`}
+                            alt=""
+                          />
                         </td>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
                           {x.date.substr(0, 10)}

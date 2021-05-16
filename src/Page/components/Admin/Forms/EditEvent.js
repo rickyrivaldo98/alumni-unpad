@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import AddGallery from "./AddGallery";
 
 // import { FaWindows } from "react-icons/fa";
 const EditEvent = () => {
@@ -20,11 +21,13 @@ const EditEvent = () => {
   const [Content, setContent] = useState("");
   const [Date, setDate] = useState("");
   const [data, setData] = useState([]);
+  const [Image, setImage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleTitle = (e) => setTitle(e.target.value);
   const handleContent = (e) => setContent(e.target.value);
   const handleDate = (e) => setDate(e.target.value);
+  const handleImage = (e) => setImage(e.target.files[0]);
 
   useEffect(() => {
     setLoading(true);
@@ -33,32 +36,60 @@ const EditEvent = () => {
       setTitle(res.data[0].title);
       setContent(res.data[0].content);
       setDate(res.data[0].date.substr(0, 10));
-      console.log(res.data);
+      setImage(res.data[0].file);
+      // console.log(res.data);
     });
     setLoading(false);
   }, []);
 
   let edit = (e) => {
     e.preventDefault();
-    if (window.confirm("Apakah anda yakin ingin mengedit?")) {
-      const event = {
-        title: Title,
-        content: Content,
-        date: Date,
-      };
-      axios
-        .put(`https://unpad.sarafdesign.com/event/${id}`, event)
-        .then((res) => {
-          alert("Teredit");
-          setTimeout(() => {
-            history.push(`/admin/events`);
-          }, 2000);
-        })
+    let event = new FormData();
 
-        .catch((error) => {
-          console.log(error);
-        });
+    if (Title === "") {
+      event.set("title", data.title);
+    } else {
+      event.set("title", Title);
     }
+    if (Content === "") {
+      event.set("content", data.content);
+    } else {
+      event.set("content", Content);
+    }
+    if (Date === "") {
+      event.set("date", data.date);
+    } else {
+      event.set("date", Date);
+    }
+    if (Image === "") {
+      event.set("file", data.thumbnail);
+    } else {
+      event.set("file", Image);
+    }
+
+    const config = {
+      headers: {
+        accept: "application/json",
+        "Accept-Language": "en-US,en;q=0.8",
+        "content-type": `multipart/form-data;boundary=${event._boundary}`,
+      },
+    };
+
+    axios
+      .put(
+        `https://unpad.sarafdesign.com/event/${data.id}/${data.thumbnail}`,
+        event, config
+      )
+      .then((res) => {
+        alert.show("Teredit");
+        setTimeout(() => {
+          history.push(`/admin/events`);
+        }, 2000);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -149,6 +180,24 @@ const EditEvent = () => {
                       {/* <p style={{ color: "red" }}>
                         {errors.categoryName?.message}
                       </p> */}
+                    </div>
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block  text-blueGray-600 text-xs font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        Thumbnail
+                      </label>
+                      <img
+                        src={`https://unpad.sarafdesign.com/uploads/${data.thumbnail}`}
+                        alt=""
+                      />
+                      <input
+                        onChange={handleImage}
+                        type="file"
+                        placeholder="input file image"
+                        className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      />
                     </div>
                     <button
                       className="bg-green-500 text-white active:bg-lightBlue-600 font-bold  text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"

@@ -128,7 +128,7 @@ export default function DataImages({ color }) {
                 >
                   Gallery
                 </th>
-                <th
+                {/* <th
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
                     (color === "light"
@@ -137,7 +137,7 @@ export default function DataImages({ color }) {
                   }
                 >
                   Category
-                </th>
+                </th> */}
                 <th
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs  border-l-0 border-r-0 whitespace-nowrap font-semibold text-left " +
@@ -200,9 +200,9 @@ export default function DataImages({ color }) {
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
                           {x.description}
                         </td>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
+                        {/* <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
                           {x.category}
-                        </td>
+                        </td> */}
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
                           <img
                             className="h-24 w-24"

@@ -1,3 +1,6 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
 .bg-detailBerita {
   height: 100vh;
   width: 100%;
@@ -60,4 +63,32 @@
   top: 0;
   z-index: 10;
   transition: opacity 0.5s ease-in-out;
+}
+
+.category-berita {
+  transform: translateX(50%);
+  left: 50%;
+}
+.arrow {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.arrow svg {
+  transition: color 300ms;
+}
+
+.arrow svg:hover {
+  color: #68edff;
+}
+
+.next {
+  right: 0%;
+  top: 50%;
+}
+
+.prev {
+  left: 0%;
+  top: 50%;
 }
