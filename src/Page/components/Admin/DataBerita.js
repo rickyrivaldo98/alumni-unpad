@@ -29,7 +29,7 @@ export default function DataBerita({ color }) {
       });
     setLoading(false);
   }, [data]);
-
+  console.log(data);
   let handleDelete = (e, x) => {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
