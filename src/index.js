@@ -19,11 +19,11 @@ const options = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <AlertProvider template={AlertTemplate} {...options}>
         <App />
       </AlertProvider>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

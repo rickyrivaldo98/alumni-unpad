@@ -40,19 +40,19 @@ export default function DataAnggota({ color }) {
     }
   };
 
-  const PrimaryKey = ["id"];
+  // const PrimaryKey = ["id"];
 
-  useEffect(() => {
-    const lowercasedValue = search.toLowerCase();
-    const filteredData = data.filter((item) => {
-      return Object.keys(item).some((key) =>
-        PrimaryKey.includes(key)
-          ? false
-          : item[key].toString().toLowerCase().includes(lowercasedValue)
-      );
-    });
-    setFilterData(filteredData);
-  }, [search, data]);
+  // useEffect(() => {
+  //   const lowercasedValue = search.toLowerCase();
+  //   const filteredData = data.filter((item) => {
+  //     return Object.keys(item).some((key) =>
+  //       PrimaryKey.includes(key)
+  //         ? false
+  //         : item[key].toString().toLowerCase().includes(lowercasedValue)
+  //     );
+  //   });
+  //   setFilterData(filteredData);
+  // }, [search, data]);
 
   let i = 1;
 
@@ -85,14 +85,14 @@ export default function DataAnggota({ color }) {
                 }
               >
                 Alumni
-                {/* <Link to={`/admin/addanggota`}>
+                <Link to={`/admin/addanggota`}>
                   <button
                     className="bg-green-500 text-white  font-bold float-right text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     type="button"
                   >
                     Add Alumni
                   </button>
-                </Link> */}
+                </Link>
               </h3>
             </div>
           </div>
@@ -193,7 +193,7 @@ export default function DataAnggota({ color }) {
                     </div>
                   )}
                   {!loading &&
-                    filterData.map((x) => (
+                    data.map((x) => (
                       <tr>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
                           {i++}
@@ -248,7 +248,7 @@ export default function DataAnggota({ color }) {
               )}
             </tbody>
 
-            {filterData.length === 0 && (
+            {/* {data.length === 0 && (
               <>
                 <tbody>
                   <div className="w-full justify-center items-center flex flex-col p-6">
@@ -256,7 +256,7 @@ export default function DataAnggota({ color }) {
                   </div>
                 </tbody>
               </>
-            )}
+            )} */}
           </table>
         </div>
       </div>

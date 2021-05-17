@@ -38,9 +38,8 @@ const Berita = () => {
       })
       .catch((err) => {
         console.log(err);
-        alert(
-          "data tidak dapat ditampilkan silahkan cek koneksi anda, dan refresh halaman ini "
-        );
+
+        hideLoader();
       });
   }, []);
 
