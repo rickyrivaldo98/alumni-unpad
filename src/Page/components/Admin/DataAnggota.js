@@ -85,14 +85,14 @@ export default function DataAnggota({ color }) {
                 }
               >
                 Alumni
-                <Link to={`/admin/addanggota`}>
+                {/* <Link to={`/admin/addanggota`}>
                   <button
                     className="bg-green-500 text-white  font-bold float-right text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                     type="button"
                   >
                     Add Alumni
                   </button>
-                </Link>
+                </Link> */}
               </h3>
             </div>
           </div>
@@ -244,16 +244,19 @@ export default function DataAnggota({ color }) {
                         </td>
                       </tr>
                     ))}
-                  {filterData.length === 0 && (
-                    <>
-                      <div className="flex justify-center items-center text-center my-8">
-                        <span>Nama Anggota tidak ditemukan</span>
-                      </div>
-                    </>
-                  )}
                 </>
               )}
             </tbody>
+
+            {filterData.length === 0 && (
+              <>
+                <tbody>
+                  <div className="w-full justify-center items-center flex flex-col p-6">
+                    Nama Anggota tidak ditemukan
+                  </div>
+                </tbody>
+              </>
+            )}
           </table>
         </div>
       </div>

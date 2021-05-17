@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { HashRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 
@@ -19,11 +19,11 @@ const options = {
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
-    <AlertProvider template={AlertTemplate} {...options}>
+    <BrowserRouter>
+      <AlertProvider template={AlertTemplate} {...options}>
         <App />
       </AlertProvider>
-    </HashRouter>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );

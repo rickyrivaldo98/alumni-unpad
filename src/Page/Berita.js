@@ -27,13 +27,21 @@ const Berita = () => {
 
   useEffect(() => {
     showLoader();
-    axios.get("https://unpad.sarafdesign.com/berita").then((res) => {
-      SetBeritaData(res.data);
-      axios.get("https://unpad.sarafdesign.com/category").then((res2) => {
-        setCategoryData(res2.data);
-        hideLoader();
+    axios
+      .get("https://unpad.sarafdesign.com/berita")
+      .then((res) => {
+        SetBeritaData(res.data);
+        axios.get("https://unpad.sarafdesign.com/category").then((res2) => {
+          setCategoryData(res2.data);
+          hideLoader();
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        alert(
+          "data tidak dapat ditampilkan silahkan cek koneksi anda, dan refresh halaman ini "
+        );
       });
-    });
   }, []);
 
   // fungsi navbar untuk dibuka di mobile
@@ -92,8 +100,8 @@ const Berita = () => {
     infinite: true,
     lazyLoad: true,
     speed: 700,
-    slidesToShow: 5,
-    slidesToScroll: 3,
+    slidesToShow: 3,
+    slidesToScroll: 2,
     centerPadding: 0,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
@@ -103,7 +111,7 @@ const Berita = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 2,
           infinite: true,
         },
       },
@@ -229,7 +237,7 @@ const Berita = () => {
               ? BeritaData.map((x) => (
                   <Link to={`/detail-berita/${x.slug_title}`}>
                     <div
-                      className="bg-gray-100 m-auto w-96 h-64 mt-5"
+                      className="bg-gray-100 m-auto w-96 h-64 mt-5 md:ml-3"
                       style={{
                         backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
                         backgroundPosition: "center",

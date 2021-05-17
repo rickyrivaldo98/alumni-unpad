@@ -35,15 +35,22 @@ const DetailBerita = () => {
       .then((res) => {
         SetDetailBeritaData(res.data);
         setData(res.data[0]);
+        showLoader();
         axios
           .get(
             `https://unpad.sarafdesign.com/berita/category/${res.data[0].category_id}`
           )
           .then((res2) => {
             setDataTerkait(res2.data);
-            setLoading(false);
           });
         hideLoader();
+      })
+      .catch((err) => {
+        console.log(err);
+        hideLoader();
+        alert(
+          "data tidak dapat ditampilkan silahkan cek koneksi anda, dan refresh halaman ini "
+        );
       });
   }, []);
 
@@ -101,9 +108,9 @@ const DetailBerita = () => {
       </div>
       <div className="flex-none md:flex md:flex-wrap justify-center items-center  overflow-hidden">
         {dataTerkait.map((x) => (
-          <Link data-aos="fade-up" to={`/detail-berita/${x.slug_title}`}>
+          <a data-aos="fade-up" href={`/detail-berita/${x.slug_title}`}>
             <div
-              className="bg-gray-100 m-auto w-96 h-64 mt-5 "
+              className="bg-gray-100 m-auto w-96 h-64 mt-5 md:ml-3"
               style={{
                 backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
                 backgroundPosition: "center",
@@ -164,7 +171,7 @@ const DetailBerita = () => {
                 </div>
               </div>
             </div>
-          </Link>
+          </a>
         ))}
       </div>
 

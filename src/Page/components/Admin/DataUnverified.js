@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 // import { css } from "@emotion/core";
 import Loader from "react-loader-spinner";
 // components
+import { useAlert } from "react-alert";
 
 export default function DataUnverified({ color }) {
   const [loading, setLoading] = useState(false);
@@ -14,7 +15,7 @@ export default function DataUnverified({ color }) {
   const [search, setSearch] = useState("");
 
   let [colorLoading, setColorLoading] = useState("#ffffff");
-
+  const alert = useAlert();
   useEffect(() => {
     setLoading(true);
     axios
@@ -35,7 +36,7 @@ export default function DataUnverified({ color }) {
       axios
         .put(`https://unpad.sarafdesign.com/anggota/confirm/${e}`)
         .then((res) => {
-          alert("Terverifikasi");
+          alert.show("Terverifikasi");
         });
       setLoading(false);
     } else {
@@ -45,7 +46,7 @@ export default function DataUnverified({ color }) {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
       axios.put(`https://unpad.sarafdesign.com/anggota/${e}`).then((res) => {
-        alert("Kehapus");
+        alert.show("data berhasil dihapus");
       });
       setLoading(false);
     } else {
@@ -244,16 +245,18 @@ export default function DataUnverified({ color }) {
                         </td>
                       </tr>
                     ))}
-                  {filterData.length === 0 && (
-                    <>
-                      <div className="flex justify-center items-center text-center my-8">
-                        <span>Nama Anggota tidak ditemukan</span>
-                      </div>
-                    </>
-                  )}
                 </>
               )}
             </tbody>
+            {filterData.length === 0 && (
+              <>
+                <tbody>
+                  <div className="w-full justify-center items-center flex flex-col p-6">
+                    Nama Anggota tidak ditemukan
+                  </div>
+                </tbody>
+              </>
+            )}
           </table>
         </div>
       </div>

@@ -42,7 +42,7 @@ const EditCategory = () => {
       axios
         .put(`https://unpad.sarafdesign.com/category/${id}`, category)
         .then((res) => {
-          alert("Teredit");
+          alert.show("Category name has been edited");
           setTimeout(() => {
             history.push(`/admin/category`);
           }, 2000);
