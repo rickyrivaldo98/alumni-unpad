@@ -41,7 +41,7 @@ const DetailEvents = () => {
                 <img
                   src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`}
                   alt="gambar "
-                  className="w-full rounded-lg"
+                  className="w-full object-contain h-48 lg:h-64"
                 />
                 <div className="pt-5 self-center">
                   <h2 className="text-gray-700 capitalize text-xl font-bold">

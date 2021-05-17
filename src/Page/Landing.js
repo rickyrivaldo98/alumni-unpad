@@ -61,6 +61,7 @@ const Landing = () => {
             id: x.id,
             title: x.title,
             date: x.date.substr(0, 10),
+            thumbnail: x.thumbnail,
           }))
         );
       });
@@ -117,61 +118,69 @@ const Landing = () => {
               </p>
             </div>
           </div>
-          <div className="flex-none md:flex absolute text-center justify-center -bottom-84   md:-bottom-20 pt-20 mx-auto left-0 right-0 text-gray-700">
-            <div data-aos="fade-up" className="inline-block mr-3">
-              <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <i
-                  style={{ color: "orange" }}
-                  className="fas fa-users fa-fw text-4xl"
-                ></i>
-                <h3 className="py-2 text-4xl font-bold font-mono">
-                  {TotalAnggota.length}
-                </h3>
-                <div className="text-center mt-2 leading-none flex justify-center w-full">
-                  <span className=" inline-flex items-center leading-none text-sm">
-                    Alumni Terdaftar
-                  </span>
-                </div>
-              </div>
+        </div>
+
+        <div className="container my-12 mx-auto px-4 md:px-12 ">
+          <div data-aos="fade-down" className="flex flex-wrap -mx-1 lg:-mx-4">
+            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+              <article className="overflow-hidden rounded-lg shadow-lg">
+                <header className="flex flex-col items-center justify-center leading-tight p-2 md:p-4">
+                  <i
+                    style={{ color: "orange" }}
+                    className="fas fa-book fa-fw text-4xl mb-4"
+                  ></i>
+                  <p className="ml-2 text-4xl font-mono font-bold">
+                    {" "}
+                    {TotalEvent.length}
+                  </p>
+                </header>
+                <footer className="flex items-center justify-center leading-none p-2 md:p-4">
+                  <h1 className="text-sm">Event Terunggah</h1>
+                </footer>
+              </article>
             </div>
-            <div data-aos="fade-up" className="inline-block mr-3">
-              <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <i
-                  style={{ color: "orange" }}
-                  className="fas fa-calendar fa-fw text-4xl"
-                ></i>
-                <h3 className="py-2 text-4xl font-bold font-mono">
-                  {" "}
-                  {TotalEvent.length}
-                </h3>
-                <div className="text-center mt-2 leading-none flex justify-center w-full">
-                  <span className=" inline-flex items-center leading-none text-sm">
-                    Events Terlaksana
-                  </span>
-                </div>
-              </div>
+            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+              <article className="overflow-hidden rounded-lg shadow-lg">
+                <header className="flex flex-col items-center justify-center leading-tight p-2 md:p-4">
+                  <i
+                    style={{ color: "orange" }}
+                    className="fas fa-book fa-fw text-4xl mb-4"
+                  ></i>
+                  <p className="ml-2 text-4xl font-mono font-bold">
+                    {" "}
+                    {TotalAnggota.length}
+                  </p>
+                </header>
+                <footer className="flex items-center justify-center leading-none p-2 md:p-4">
+                  <h1 className="text-sm">Total ALumni</h1>
+                </footer>
+              </article>
             </div>
-            <div data-aos="fade-up" className="inline-block mr-3">
-              <div className=" px-8 py-8 bg-white w-96 h-48 max-w-xs overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <i
-                  style={{ color: "orange" }}
-                  className="fas fa-book fa-fw text-4xl"
-                ></i>
-                <h3 className="py-2 text-4xl font-bold font-mono">
-                  {BeritaData.length}
-                </h3>
-                <div className="text-center mt-2 leading-none flex justify-center w-full">
-                  <span className=" inline-flex items-center leading-none text-sm">
-                    Artikel Terunggah
-                  </span>
-                </div>
-              </div>
+            <div className="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+              <article className="overflow-hidden rounded-lg shadow-lg">
+                <header className="flex flex-col items-center justify-center leading-tight p-2 md:p-4">
+                  <i
+                    style={{ color: "orange" }}
+                    className="fas fa-book fa-fw text-4xl mb-4"
+                  ></i>
+                  <p className="ml-2 text-4xl font-mono font-bold">
+                    {" "}
+                    {BeritaData.length}
+                  </p>
+                </header>
+                <footer className="flex items-center justify-center leading-none p-2 md:p-4">
+                  <h1 className="text-sm">Artikel Terunggah</h1>
+                </footer>
+              </article>
             </div>
           </div>
         </div>
 
-        <div className="flex  items-center justify-center md:mt-20 mt-96 pt-72 md:pt-2">
-          <div className="text-2xl md:text-4xl font-semibold tracking-wide">
+        <div className="flex  items-center justify-center md:mt-20 md:pt-2">
+          <div
+            data-aos="fade-up"
+            className="text-2xl md:text-4xl font-semibold tracking-wide"
+          >
             Berita Terkini
           </div>
         </div>
@@ -179,7 +188,10 @@ const Landing = () => {
           <div className="container m-auto text-gray-700">
             <div className="flex-none md:flex md:flex-wrap justify-center items-center mb-32">
               {BeritaData.slice(-6).map((x) => (
-                <Link to={`/detail-berita/${x.slug_title}`}>
+                <Link
+                  data-aos="fade-left"
+                  to={`/detail-berita/${x.slug_title}`}
+                >
                   <div
                     className="bg-gray-100 m-auto w-96 h-64 mt-5 md:ml-3 "
                     style={{
@@ -255,6 +267,7 @@ const Landing = () => {
           {BeritaData[0] ? (
             <>
               <Link
+                data-aos="fade-up"
                 to="/berita"
                 className="flex  items-center justify-center mt-10 mb-10"
               >
@@ -268,8 +281,8 @@ const Landing = () => {
           )}
         </div>
       </div>
-      <div className="flex  items-center justify-center md:mt-20 mt-96 pt-72 md:pt-2">
-        <div className="text-2xl md:text-4xl  tracking-wide">
+      <div className="flex  items-center justify-center md:mt-20  md:pt-2">
+        <div data-aos="fade-up" className="text-2xl md:text-4xl  tracking-wide">
           Events Terkini
         </div>
       </div>
@@ -283,9 +296,12 @@ const Landing = () => {
             </div>
             {checkComingMonth.slice(-3).map((x) => (
               <div className="mt-10 flex flex-col justify-center items-center">
-                <div className="sm:grid grid-cols-5 bg-white shadow-sm p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 shadow-lg">
+                <div
+                  data-aos="fade-right"
+                  className="sm:grid grid-cols-5 bg-white shadow-sm p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 shadow-lg"
+                >
                   <img
-                    src={bgCard}
+                    src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`}
                     alt="gambar "
                     className="w-full rounded-lg"
                   />
@@ -317,6 +333,7 @@ const Landing = () => {
         {checkComingMonth.length > 0 ? (
           <>
             <Link
+              data-aos="fade-up"
               to="/events"
               className="flex  items-center justify-center mt-10 "
             >

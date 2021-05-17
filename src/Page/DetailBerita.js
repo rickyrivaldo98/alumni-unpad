@@ -11,6 +11,7 @@ import Loader from "react-loader-spinner";
 import Dropdown from "./layout/Dropdown";
 import parse from "html-react-parser";
 import UsePreloader from "./components/UsePreloader";
+import Aos from "aos";
 
 const DetailBerita = () => {
   let { slugberita, idCat } = useParams();
@@ -44,6 +45,13 @@ const DetailBerita = () => {
           });
         hideLoader();
       });
+  }, []);
+
+  useEffect(() => {
+    Aos.init({
+      duration: 2000,
+      once: true,
+    });
   }, []);
 
   return (
@@ -91,11 +99,11 @@ const DetailBerita = () => {
           Berita Terkait
         </h2>
       </div>
-      <div className="flex-none md:flex md:flex-wrap justify-center items-center">
+      <div className="flex-none md:flex md:flex-wrap justify-center items-center  overflow-hidden">
         {dataTerkait.map((x) => (
-          <Link to={`/detail-berita/${x.slug_title}`}>
+          <Link data-aos="fade-up" to={`/detail-berita/${x.slug_title}`}>
             <div
-              className="bg-gray-100 m-auto w-96 h-64 mt-5 ml-3"
+              className="bg-gray-100 m-auto w-96 h-64 mt-5 "
               style={{
                 backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
                 backgroundPosition: "center",
