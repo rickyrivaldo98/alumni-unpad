@@ -191,6 +191,7 @@ const AddEvent = () => {
                         Thumbnail
                       </label>
                       <input
+                        required
                         {...register("picture")}
                         onChange={handleImage}
                         type="file"
