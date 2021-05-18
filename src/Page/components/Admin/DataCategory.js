@@ -18,7 +18,7 @@ export default function DataCategory({ color }) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://unpad.sarafdesign.com/category")
+      .get("https://ika.sarafdesign.com/category")
       .then((res) => {
         setData(res.data);
       })
@@ -27,15 +27,16 @@ export default function DataCategory({ color }) {
         setEmpty(true);
       });
     setLoading(false);
-  }, [data]);
+  }, []);
 
   let handleDelete = (e) => {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
       axios
-        .delete(`https://unpad.sarafdesign.com/category/${e}`)
+        .delete(`https://ika.sarafdesign.com/category/${e}`)
         .then((res) => {
           alert("Kehapus");
+          window.location.reload();
         });
       setLoading(false);
     } else {

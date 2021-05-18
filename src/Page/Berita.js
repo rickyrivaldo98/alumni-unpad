@@ -27,9 +27,9 @@ const Berita = () => {
 
   useEffect(() => {
     showLoader();
-    axios.get("https://unpad.sarafdesign.com/berita").then((res) => {
+    axios.get("https://ika.sarafdesign.com/berita").then((res) => {
       SetBeritaData(res.data);
-      axios.get("https://unpad.sarafdesign.com/category").then((res2) => {
+      axios.get("https://ika.sarafdesign.com/category").then((res2) => {
         setCategoryData(res2.data);
         hideLoader();
       });
@@ -157,7 +157,7 @@ const Berita = () => {
                     <div
                       className="h-64 bg-cover lg:rounded-lg lg:h-96"
                       style={{
-                        backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                        backgroundImage: `url(https://ika.sarafdesign.com/uploads/${x.thumbnail})`,
                       }}
                     />
                   </div>
@@ -227,7 +227,7 @@ const Berita = () => {
                   <div
                     className="bg-gray-100 m-auto w-96 h-64 mt-5 ml-3"
                     style={{
-                      backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                      backgroundImage: `url(https://ika.sarafdesign.com/uploads/${x.thumbnail})`,
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
                       backgroundSize: "cover",
@@ -309,7 +309,7 @@ const Berita = () => {
                         <div
                           className="bg-gray-100 m-auto w-96 h-64 mt-5 ml-3"
                           style={{
-                            backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                            backgroundImage: `url(https://ika.sarafdesign.com/uploads/${x.thumbnail})`,
                             backgroundPosition: "center",
                             backgroundRepeat: "no-repeat",
                             backgroundSize: "cover",

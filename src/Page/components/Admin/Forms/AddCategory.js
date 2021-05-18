@@ -26,7 +26,7 @@ const AddCategory = () => {
       name: CategoryName,
     };
     axios
-      .post("https://unpad.sarafdesign.com/category", category)
+      .post("https://ika.sarafdesign.com/category", category)
       .then((res) => {
         alert.show("Category Succesfully Added!");
         setTimeout(() => {

@@ -15,7 +15,7 @@ const DetailEvents = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://unpad.sarafdesign.com/event/${id}`).then((res) => {
+    axios.get(`https://ika.sarafdesign.com/event/${id}`).then((res) => {
       setData(res.data);
     });
     setLoading(false);

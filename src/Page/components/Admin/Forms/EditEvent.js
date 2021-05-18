@@ -42,7 +42,7 @@ const EditEvent = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://unpad.sarafdesign.com/event/${id}`).then((res) => {
+    axios.get(`https://ika.sarafdesign.com/event/${id}`).then((res) => {
       setData(res.data[0]);
       setTitle(res.data[0].title);
       setContent(
@@ -94,7 +94,7 @@ const EditEvent = () => {
 
     axios
       .put(
-        `https://unpad.sarafdesign.com/event/${data.id}/${data.thumbnail}`,
+        `https://ika.sarafdesign.com/event/${data.id}/${data.thumbnail}`,
         event,
         config
       )
@@ -206,7 +206,7 @@ const EditEvent = () => {
                         Thumbnail
                       </label>
                       <img
-                        src={`https://unpad.sarafdesign.com/uploads/${data.thumbnail}`}
+                        src={`https://ika.sarafdesign.com/uploads/${data.thumbnail}`}
                         alt=""
                       />
                       <input

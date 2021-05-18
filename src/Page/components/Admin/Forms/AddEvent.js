@@ -53,7 +53,7 @@ const AddEvent = () => {
     };
 
     axios
-      .post("https://unpad.sarafdesign.com/event", event, config)
+      .post("https://ika.sarafdesign.com/event", event, config)
       .then((res) => {
         alert.show("Event Succesfully Added!");
         setTimeout(() => {

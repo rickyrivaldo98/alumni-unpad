@@ -18,7 +18,7 @@ export default function DataAnggota({ color }) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://unpad.sarafdesign.com/verified")
+      .get("https://ika.sarafdesign.com/verified")
       .then((res) => {
         setData(res.data);
       })
@@ -27,13 +27,14 @@ export default function DataAnggota({ color }) {
         setEmpty(true);
       });
     setLoading(false);
-  }, [data]);
+  }, []);
 
   let handleDelete = (e) => {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
-      axios.delete(`https://unpad.sarafdesign.com/anggota/${e}`).then((res) => {
+      axios.delete(`https://ika.sarafdesign.com/anggota/${e}`).then((res) => {
         alert("Kehapus");
+        window.location.reload();
       });
       setLoading(false);
     } else {

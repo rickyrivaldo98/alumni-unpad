@@ -42,9 +42,9 @@ const Landing = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("https://unpad.sarafdesign.com/berita").then((res) => {
+    axios.get("https://ika.sarafdesign.com/berita").then((res) => {
       SetBeritaData(res.data);
-      axios.get("https://unpad.sarafdesign.com/verified").then((res2) => {
+      axios.get("https://ika.sarafdesign.com/verified").then((res2) => {
         SetTotalAnggota(res2.data);
       });
     });
@@ -53,9 +53,9 @@ const Landing = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("https://unpad.sarafdesign.com/event").then((res) => {
+    axios.get("https://ika.sarafdesign.com/event").then((res) => {
       SetTotalEvent(res.data);
-      axios.get(`https://unpad.sarafdesign.com/event`).then((res2) => {
+      axios.get(`https://ika.sarafdesign.com/event`).then((res2) => {
         setUpcoming(
           res2.data.map((x) => ({
             id: x.id,
@@ -183,7 +183,7 @@ const Landing = () => {
                   <div
                     className="bg-gray-100 m-auto w-96 h-64 mt-5 md:ml-3 "
                     style={{
-                      backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                      backgroundImage: `url(https://ika.sarafdesign.com/uploads/${x.thumbnail})`,
                       backgroundPosition: "center",
                       backgroundRepeat: "no-repeat",
                       backgroundSize: "cover",

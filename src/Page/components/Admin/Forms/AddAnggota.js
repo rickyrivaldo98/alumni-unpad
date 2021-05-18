@@ -38,7 +38,7 @@ const AddAnggota = () => {
       provinsi: Provinsi,
     };
     axios
-      .post("https://unpad.sarafdesign.com/anggota", anggota)
+      .post("https://ika.sarafdesign.com/anggota", anggota)
       .then((res) => {
         alert.show("Anggota Succesfully Added!");
         setTimeout(() => {

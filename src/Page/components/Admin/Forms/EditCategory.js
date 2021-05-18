@@ -25,7 +25,7 @@ const EditCategory = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://unpad.sarafdesign.com/category/${id}`).then((res) => {
+    axios.get(`https://ika.sarafdesign.com/category/${id}`).then((res) => {
       setData(res.data[0]);
       setCategoryName(res.data[0].name);
       console.log(res.data);
@@ -40,7 +40,7 @@ const EditCategory = () => {
         name: CategoryName,
       };
       axios
-        .put(`https://unpad.sarafdesign.com/category/${id}`, category)
+        .put(`https://ika.sarafdesign.com/category/${id}`, category)
         .then((res) => {
           alert("Teredit");
           setTimeout(() => {

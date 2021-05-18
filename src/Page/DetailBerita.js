@@ -30,13 +30,13 @@ const DetailBerita = () => {
   useEffect(() => {
     showLoader();
     axios
-      .get(`https://unpad.sarafdesign.com/berita/${slugberita}`)
+      .get(`https://ika.sarafdesign.com/berita/${slugberita}`)
       .then((res) => {
         SetDetailBeritaData(res.data);
         setData(res.data[0]);
         axios
           .get(
-            `https://unpad.sarafdesign.com/berita/category/${res.data[0].category_id}`
+            `https://ika.sarafdesign.com/berita/category/${res.data[0].category_id}`
           )
           .then((res2) => {
             setDataTerkait(res2.data);
@@ -56,7 +56,7 @@ const DetailBerita = () => {
             className="bg-detailBerita relative z-10"
             // menampilkan gambar ketika di klik
             style={{
-              backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+              backgroundImage: `url(https://ika.sarafdesign.com/uploads/${x.thumbnail})`,
             }}
           >
             <div className="bg-detailBeritaOverlay"></div>
@@ -97,7 +97,7 @@ const DetailBerita = () => {
             <div
               className="bg-gray-100 m-auto w-96 h-64 mt-5 ml-3"
               style={{
-                backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                backgroundImage: `url(https://ika.sarafdesign.com/uploads/${x.thumbnail})`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "cover",

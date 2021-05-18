@@ -7,9 +7,9 @@ const Dashboard = () => {
   const [data2, setData2] = useState([]);
 
   useEffect(() => {
-    axios.get("https://unpad.sarafdesign.com/verified").then((res) => {
+    axios.get("https://ika.sarafdesign.com/verified").then((res) => {
       setData(res.data);
-      axios.get("https://unpad.sarafdesign.com/unverified").then((res2) => {
+      axios.get("https://ika.sarafdesign.com/unverified").then((res2) => {
         setData2(res2.data);
       });
     });

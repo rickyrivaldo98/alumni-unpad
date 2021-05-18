@@ -44,7 +44,7 @@ const AddGallery = () => {
     };
 
     axios
-      .post("https://unpad.sarafdesign.com/gallery", gallery, config)
+      .post("https://ika.sarafdesign.com/gallery", gallery, config)
       .then((res) => {
         alert.show("gallery Succesfully Added!");
         setTimeout(() => {

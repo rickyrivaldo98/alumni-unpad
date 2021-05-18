@@ -19,7 +19,7 @@ const GalleryPhoto = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://unpad.sarafdesign.com/images/gallery/${galleryname}`)
+      .get(`https://ika.sarafdesign.com/images/gallery/${galleryname}`)
       .then((res) => {
         setImageData(res.data);
         setData(res.data[0]);
@@ -58,7 +58,7 @@ const GalleryPhoto = () => {
                         <img
                           className="w-full image-container image"
                           alt={x.name}
-                          src={`https://unpad.sarafdesign.com/uploads/${x.file}`}
+                          src={`https://ika.sarafdesign.com/uploads/${x.file}`}
                         />
                       </div>
                     ))}

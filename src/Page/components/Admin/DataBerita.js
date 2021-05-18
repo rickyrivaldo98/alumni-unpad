@@ -19,7 +19,7 @@ export default function DataBerita({ color }) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://unpad.sarafdesign.com/berita")
+      .get("https://ika.sarafdesign.com/berita")
       .then((res) => {
         setData(res.data);
       })
@@ -28,15 +28,16 @@ export default function DataBerita({ color }) {
         setEmpty(true);
       });
     setLoading(false);
-  }, [data]);
+  }, []);
 
   let handleDelete = (e, x) => {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
       axios
-        .delete(`https://unpad.sarafdesign.com/berita/${e}/${x}`)
+        .delete(`https://ika.sarafdesign.com/berita/${e}/${x}`)
         .then((res) => {
           alert("Kehapus");
+          window.location.reload();
         });
       setLoading(false);
     } else {
@@ -182,7 +183,7 @@ export default function DataBerita({ color }) {
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4">
                           <img
                             className="h-24 w-24"
-                            src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`}
+                            src={`https://ika.sarafdesign.com/uploads/${x.thumbnail}`}
                             alt=""
                           />
                         </td>

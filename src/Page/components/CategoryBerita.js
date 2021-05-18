@@ -9,7 +9,7 @@ const CategoryBerita = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("https://unpad.sarafdesign.com/category").then((res) => {
+    axios.get("https://ika.sarafdesign.com/category").then((res) => {
       setCategoryData(res.data);
     });
     setLoading(false);

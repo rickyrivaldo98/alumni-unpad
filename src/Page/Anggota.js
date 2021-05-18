@@ -20,7 +20,7 @@ const Anggota = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://unpad.sarafdesign.com/verified")
+      .get("https://ika.sarafdesign.com/verified")
       .then((res) => {
         setData(res.data);
       })
@@ -29,7 +29,7 @@ const Anggota = () => {
         setEmpty(true);
       });
     setLoading(false);
-  }, [data]);
+  }, []);
 
   const PrimaryKey = ["id"];
 

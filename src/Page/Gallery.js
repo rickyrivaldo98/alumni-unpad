@@ -21,7 +21,7 @@ const Gallery = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get("https://unpad.sarafdesign.com/gallery").then((res) => {
+    axios.get("https://ika.sarafdesign.com/gallery").then((res) => {
       setGalleryData(res.data);
     });
     setLoading(false);
@@ -53,7 +53,7 @@ const Gallery = () => {
                   >
                     <div
                       style={{
-                        backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                        backgroundImage: `url(https://ika.sarafdesign.com/uploads/${x.thumbnail})`,
                       }}
                       className="container-gallery gambar-gallery  shadow-lg ml-2 mb-4"
                     >

@@ -24,7 +24,7 @@ const EditGallery = () => {
   //   console.log("ini: " + data.thumbnail);
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://unpad.sarafdesign.com/gallery/${id}`).then((res) => {
+    axios.get(`https://ika.sarafdesign.com/gallery/${id}`).then((res) => {
       setData(res.data[0]);
       setTitle(res.data[0].name);
       setDescription(res.data[0].description);
@@ -72,7 +72,7 @@ const EditGallery = () => {
 
     axios
       .put(
-        `https://unpad.sarafdesign.com/gallery/${data.id}/${data.thumbnail}`,
+        `https://ika.sarafdesign.com/gallery/${data.id}/${data.thumbnail}`,
         gallery,
         config
       )
@@ -186,7 +186,7 @@ const EditGallery = () => {
                             Image
                           </label>
                           <img
-                            src={`https://unpad.sarafdesign.com/uploads/${data.thumbnail}`}
+                            src={`https://ika.sarafdesign.com/uploads/${data.thumbnail}`}
                             alt=""
                           />
                           <input

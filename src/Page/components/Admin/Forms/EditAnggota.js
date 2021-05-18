@@ -33,7 +33,7 @@ const EditAnggota = () => {
   
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://unpad.sarafdesign.com/anggota/${id}`).then((res) => {
+    axios.get(`https://ika.sarafdesign.com/anggota/${id}`).then((res) => {
       setData(res.data[0]);
       setName(res.data[0].name);
       setAlamat(res.data[0].alamat);
@@ -56,7 +56,7 @@ const EditAnggota = () => {
         provinsi: Provinsi,
       };
       axios
-        .put(`https://unpad.sarafdesign.com/anggota/${id}`, anggota)
+        .put(`https://ika.sarafdesign.com/anggota/${id}`, anggota)
         .then((res) => {
           alert("Teredit");
           setTimeout(() => {

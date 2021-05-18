@@ -18,7 +18,7 @@ export default function DataEvent({ color }) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://unpad.sarafdesign.com/event")
+      .get("https://ika.sarafdesign.com/event")
       .then((res) => {
         setData(res.data);
       })
@@ -27,13 +27,14 @@ export default function DataEvent({ color }) {
         setEmpty(true);
       });
     setLoading(false);
-  }, [data]);
+  }, []);
 
   let handleDelete = (e) => {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
-      axios.delete(`https://unpad.sarafdesign.com/event/${e}`).then((res) => {
+      axios.delete(`https://ika.sarafdesign.com/event/${e}`).then((res) => {
         alert("Kehapus");
+        window.location.reload();
       });
       setLoading(false);
     } else {
@@ -178,7 +179,7 @@ export default function DataEvent({ color }) {
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
                           <img
                             className="h-24 w-24"
-                            src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`}
+                            src={`https://ika.sarafdesign.com/uploads/${x.thumbnail}`}
                             alt=""
                           />
                         </td>

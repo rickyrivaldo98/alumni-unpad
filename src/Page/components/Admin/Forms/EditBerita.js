@@ -48,7 +48,7 @@ const EditBerita = () => {
   const [Category, setCategory] = useState("");
   useEffect(() => {
     axios
-      .get(`https://unpad.sarafdesign.com/berita/id/${id}`)
+      .get(`https://ika.sarafdesign.com/berita/id/${id}`)
       .then((res) => {
         setLoading(true);
         setContent(
@@ -73,7 +73,7 @@ const EditBerita = () => {
   }, []);
   useEffect(() => {
     axios
-      .get(`https://unpad.sarafdesign.com/category`)
+      .get(`https://ika.sarafdesign.com/category`)
       .then((res) => {
         setData(res.data);
       })
@@ -199,7 +199,7 @@ const EditBerita = () => {
     };
     axios
       .put(
-        `https://unpad.sarafdesign.com/berita/${data2.id}/${data2.thumbnail}`,
+        `https://ika.sarafdesign.com/berita/${data2.id}/${data2.thumbnail}`,
         berita,
         config
       )
@@ -333,7 +333,7 @@ const EditBerita = () => {
                             Image
                           </label>
                           <img
-                            src={`https://unpad.sarafdesign.com/uploads/${Image}`}
+                            src={`https://ika.sarafdesign.com/uploads/${Image}`}
                             alt=""
                           />
                           <input

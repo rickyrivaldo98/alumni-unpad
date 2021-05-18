@@ -31,14 +31,14 @@ const AddImages = () => {
 
   useEffect(() => {
     axios
-      .get(`https://unpad.sarafdesign.com/gallery`)
+      .get(`https://ika.sarafdesign.com/gallery`)
       .then((res) => {
         setData(res.data);
       })
       .catch((error) => {
         setData([]);
       });
-  }, [data]);
+  }, []);
 
   const saveImages = (e) => {
     // e.preventDefault();
@@ -60,7 +60,7 @@ const AddImages = () => {
     };
 
     axios
-      .post("https://unpad.sarafdesign.com/images", images, config)
+      .post("https://ika.sarafdesign.com/images", images, config)
       .then((res) => {
         alert.show("Images Succesfully Added!");
         setTimeout(() => {

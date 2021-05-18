@@ -20,7 +20,7 @@ const Events = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://unpad.sarafdesign.com/event`).then((res) => {
+    axios.get(`https://ika.sarafdesign.com/event`).then((res) => {
       setUpcoming(
         res.data.map((x) => ({
           id: x.id,

@@ -57,7 +57,7 @@ const AddBerita = () => {
       },
     };
     axios
-      .post("https://unpad.sarafdesign.com/berita", berita, config)
+      .post("https://ika.sarafdesign.com/berita", berita, config)
       .then((res) => {
         alert.show("Berita Succesfully Added!");
         setTimeout(() => {
@@ -71,7 +71,7 @@ const AddBerita = () => {
 
   useEffect(() => {
     axios
-      .get(`https://unpad.sarafdesign.com/category`)
+      .get(`https://ika.sarafdesign.com/category`)
       .then((res) => {
         setData(res.data);
       })
