@@ -96,7 +96,7 @@ const Berita = () => {
   // fungsi untuk tampilan detail gambar saat mobile
   const [imageIndex, setImageIndex] = useState(0);
   const settings = {
-    infinite: true,
+    infinite: categoryData.length > 3,
     lazyLoad: true,
     speed: 700,
     slidesToShow: 3,
@@ -131,7 +131,7 @@ const Berita = () => {
       },
     ],
   };
-
+  console.log("category data: " + categoryData.length);
   return (
     <>
       <Navbar toggle={toggle} />
@@ -238,7 +238,7 @@ const Berita = () => {
                     <div
                       className="bg-gray-100 m-auto w-96 h-64 mt-5 md:ml-3"
                       style={{
-                        backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                        backgroundImage: `url(https://ika.sarafdesign.com/uploads/${x.thumbnail})`,
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
                         backgroundSize: "cover",
@@ -319,7 +319,7 @@ const Berita = () => {
                           <div
                             className="bg-gray-100 m-auto w-96 h-64 mt-5 ml-3"
                             style={{
-                              backgroundImage: `url(https://unpad.sarafdesign.com/uploads/${x.thumbnail})`,
+                              backgroundImage: `url(https://ika.sarafdesign.com/uploads/${x.thumbnail})`,
                               backgroundPosition: "center",
                               backgroundRepeat: "no-repeat",
                               backgroundSize: "cover",

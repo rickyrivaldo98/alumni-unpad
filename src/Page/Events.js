@@ -21,18 +21,22 @@ const Events = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios.get(`https://ika.sarafdesign.com/event`).then((res) => {
-      setUpcoming(
-        res.data.map((x) => ({
-          id: x.id,
-          title: x.title,
-          date: x.date.substr(0, 10),
-          thumbnail: x.thumbnail,
-        }))
-      );
-
-      setLoading(false);
-    });
+    axios
+      .get(`https://ika.sarafdesign.com/event`)
+      .then((res) => {
+        setUpcoming(
+          res.data.map((x) => ({
+            id: x.id,
+            title: x.title,
+            date: x.date.substr(0, 10),
+            thumbnail: x.thumbnail,
+          }))
+        );
+        setLoading(false);
+      })
+      .catch((error) => {
+        // setUpcoming([]);
+      });
   }, []);
 
   let checkComingMonth = upComing.filter((x) => x.date.substr(5, 2) == month);
@@ -40,7 +44,8 @@ const Events = () => {
     if (a.date < b.date) return -1;
     return a.date > b.date ? 1 : 0;
   });
-  console.log(checkComingMonth);
+  console.log(upComing.length);
+  // console.log(checkComingMonth);
 
   // fungsi navbar untuk dibuka di mobile
   const [isOpen, setIsOpen] = useState(false);
@@ -70,6 +75,9 @@ const Events = () => {
               />
             </div>
           </div>
+          <div data-aos="fade-down" className="text-center text-3xl my-40">
+            Tidak Ada Events Bulan Ini {console.log("ini keluar")}
+          </div>
         </>
       ) : (
         <>
@@ -95,12 +103,14 @@ const Events = () => {
               </div>
               {checkComingMonth === undefined ||
               checkComingMonth.length == 0 ? (
-                <div
-                  data-aos="fade-down"
-                  className="text-center text-3xl mt-10"
-                >
-                  Tidak Ada Events Bulan Ini
-                </div>
+                <>
+                  <div
+                    data-aos="fade-down"
+                    className="text-center text-3xl mt-20"
+                  >
+                    Tidak Ada Events Bulan Ini {console.log("ini keluar")}
+                  </div>
+                </>
               ) : (
                 <>
                   <div className="mt-20 text-center text-3xl ">
@@ -113,7 +123,7 @@ const Events = () => {
                         className="sm:grid grid-cols-5 bg-white shadow-sm p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 shadow-lg"
                       >
                         <img
-                          src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`}
+                          src={`https://ika.sarafdesign.com/uploads/${x.thumbnail}`}
                           alt="gambar "
                           className="w-full rounded-lg"
                         />

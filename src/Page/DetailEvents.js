@@ -39,7 +39,7 @@ const DetailEvents = () => {
             <div className="mt-10 flex flex-col justify-center items-center">
               <div className=" bg-white shadow-sm p-7  lg:max-w-2xl sm:p-4 rounded-lg  lg:ml-20 shadow-lg">
                 <img
-                  src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`}
+                  src={`https://ika.sarafdesign.com/uploads/${x.thumbnail}`}
                   alt="gambar "
                   className="w-full object-contain h-48 lg:h-64"
                 />
