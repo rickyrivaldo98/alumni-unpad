@@ -53,12 +53,12 @@ const EditEvent = () => {
         )
       );
       setDate(res.data[0].date.substr(0, 10));
-      setImage(res.data[0].file);
+      setImage(res.data[0].thumbnail);
       // console.log(res.data);
     });
     setLoading(false);
   }, []);
-  console.log(data.thumbnail);
+  // console.log(data.thumbnail);
   let edit = (e) => {
     e.preventDefault();
     let event = new FormData();
@@ -70,6 +70,8 @@ const EditEvent = () => {
     }
     if (Content === "") {
       event.set("content", data.content);
+    } else if (convertedContent == null) {
+      event.set("content", convertToHTML(Content.getCurrentContent()));
     } else {
       event.set("content", convertedContent);
     }

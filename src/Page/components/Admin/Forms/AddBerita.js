@@ -87,7 +87,8 @@ const AddBerita = () => {
     category: yup.string().required(),
     picture: yup
       .mixed()
-      .required("You need to provide a file image")
+      .notRequired()
+      // .required("You need to provide a file image")
       .test("fileSize", "The file is too large, max 2 mb", (value) => {
         return value && value[0].size <= 4000000;
       })
@@ -107,6 +108,7 @@ const AddBerita = () => {
     handleSubmit,
   } = useForm({
     resolver: yupResolver(schema),
+    validationSchema: schema,
   });
 
   let html = "";
@@ -205,6 +207,7 @@ const AddBerita = () => {
                         Thumbnail
                       </label>
                       <input
+                        required
                         {...register("picture")}
                         onChange={handleImage}
                         type="file"

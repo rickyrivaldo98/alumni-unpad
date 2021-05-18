@@ -6,6 +6,7 @@ import Moment from "react-moment";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import Dropdown from "./layout/Dropdown";
+import Aos from "aos";
 
 const Gallery = () => {
   const [loading, setLoading] = useState(false);
@@ -26,12 +27,20 @@ const Gallery = () => {
     });
     setLoading(false);
   }, []);
+
+  useEffect(() => {
+    Aos.init({
+      duration: 1500,
+      once: true,
+    });
+  }, []);
   return (
     <>
       <Navbar toggle={toggle} />
       <Dropdown isOpen={isOpen} toggle={toggle} />
       <div className="container mx-auto mt-20">
         <div
+          data-aos="fade-down"
           style={{ color: "#4b5563" }}
           className="text-center my-32 text-2xl font-bold"
         >
@@ -40,7 +49,10 @@ const Gallery = () => {
 
         <div className="flex flex-wrap justify-center items-center ">
           {GalleryData.length === 0 ? (
-            <div className="cursor-default bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white py-1 px-5 rounded-full text-center">
+            <div
+              data-aos="fade-up"
+              className="cursor-default bg-yellow-500 transition duration-500 hover:bg-yellow-700 text-white py-1 px-5 rounded-full text-center"
+            >
               Maaf Gallery Belum Tersedia
             </div>
           ) : (
@@ -48,6 +60,7 @@ const Gallery = () => {
               {GalleryData.map((x) => (
                 <>
                   <Link
+                    data-aos="fade-left"
                     to={`/detail-gallery/${x.slug_gallery}`}
                     key={x.slug_gallery}
                   >

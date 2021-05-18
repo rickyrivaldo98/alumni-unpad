@@ -11,6 +11,7 @@ import Loader from "react-loader-spinner";
 import Dropdown from "./layout/Dropdown";
 import parse from "html-react-parser";
 import UsePreloader from "./components/UsePreloader";
+import Aos from "aos";
 
 const DetailBerita = () => {
   let { slugberita, idCat } = useParams();
@@ -34,16 +35,30 @@ const DetailBerita = () => {
       .then((res) => {
         SetDetailBeritaData(res.data);
         setData(res.data[0]);
+        showLoader();
         axios
           .get(
             `https://ika.sarafdesign.com/berita/category/${res.data[0].category_id}`
           )
           .then((res2) => {
             setDataTerkait(res2.data);
-            setLoading(false);
           });
         hideLoader();
+      })
+      .catch((err) => {
+        console.log(err);
+        hideLoader();
+        alert(
+          "data tidak dapat ditampilkan silahkan cek koneksi anda, dan refresh halaman ini "
+        );
       });
+  }, []);
+
+  useEffect(() => {
+    Aos.init({
+      duration: 2000,
+      once: true,
+    });
   }, []);
 
   return (
@@ -91,11 +106,11 @@ const DetailBerita = () => {
           Berita Terkait
         </h2>
       </div>
-      <div className="flex-none md:flex md:flex-wrap justify-center items-center">
+      <div className="flex-none md:flex md:flex-wrap justify-center items-center  overflow-hidden">
         {dataTerkait.map((x) => (
-          <Link to={`/detail-berita/${x.slug_title}`}>
+          <a data-aos="fade-up" href={`/detail-berita/${x.slug_title}`}>
             <div
-              className="bg-gray-100 m-auto w-96 h-64 mt-5 ml-3"
+              className="bg-gray-100 m-auto w-96 h-64 mt-5 md:ml-3"
               style={{
                 backgroundImage: `url(https://ika.sarafdesign.com/uploads/${x.thumbnail})`,
                 backgroundPosition: "center",
@@ -156,7 +171,7 @@ const DetailBerita = () => {
                 </div>
               </div>
             </div>
-          </Link>
+          </a>
         ))}
       </div>
 

@@ -11,6 +11,7 @@ import Bg from "../assets/images/bg-card.jpg";
 import { Link } from "react-router-dom";
 import Preloader from "./components/Preloader";
 import Dropdown from "./layout/Dropdown";
+import Aos from "aos";
 
 const Events = () => {
   const [upComing, setUpcoming] = useState([]);
@@ -26,6 +27,7 @@ const Events = () => {
           id: x.id,
           title: x.title,
           date: x.date.substr(0, 10),
+          thumbnail: x.thumbnail,
         }))
       );
 
@@ -46,6 +48,13 @@ const Events = () => {
     setIsOpen(!isOpen);
   };
   // akhir fungsi navbar
+
+  useEffect(() => {
+    Aos.init({
+      duration: 2000,
+      once: true,
+    });
+  }, []);
   return (
     <>
       {upComing.length === 0 ? (
@@ -86,7 +95,10 @@ const Events = () => {
               </div>
               {checkComingMonth === undefined ||
               checkComingMonth.length == 0 ? (
-                <div className="text-center text-3xl ">
+                <div
+                  data-aos="fade-down"
+                  className="text-center text-3xl mt-10"
+                >
                   Tidak Ada Events Bulan Ini
                 </div>
               ) : (
@@ -96,9 +108,12 @@ const Events = () => {
                   </div>
                   {checkComingMonth.map((x) => (
                     <div className="mt-10 flex flex-col justify-center items-center">
-                      <div className="sm:grid grid-cols-5 bg-white shadow-sm p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 shadow-lg">
+                      <div
+                        data-aos="fade-right"
+                        className="sm:grid grid-cols-5 bg-white shadow-sm p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 shadow-lg"
+                      >
                         <img
-                          src={Bg}
+                          src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`}
                           alt="gambar "
                           className="w-full rounded-lg"
                         />

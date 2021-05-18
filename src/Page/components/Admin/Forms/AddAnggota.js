@@ -74,7 +74,7 @@ const AddAnggota = () => {
                   Back
                 </button>
                 <h6 className="m-2 text-blueGray-700 text-xl font-bold">
-                  Add Category
+                  Add Alumni
                 </h6>
               </div>
             </div>

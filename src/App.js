@@ -27,30 +27,30 @@ const App = () => {
         <PublicRoute path="/login" component={Login} />
         <PrivateRoute path="/admin" component={Admin} />
 
-        <Route path="/gallery">
+        <Route exact path="/gallery">
           <Gallery />
         </Route>
-        <Route path="/detail-gallery/:galleryname">
+        <Route exact path="/detail-gallery/:galleryname">
           <SimpleReactLightbox>
             <GalleryPhoto />
           </SimpleReactLightbox>
         </Route>
-        <Route path="/detail-berita/:slugberita">
+        <Route exact path="/detail-berita/:slugberita">
           <DetailBerita />
         </Route>
-        <Route path="/berita">
+        <Route exact path="/berita">
           <Berita />
         </Route>
-        <Route path="/events">
+        <Route exact path="/events">
           <Events />
         </Route>
-        <Route path="/detail-events/:id">
+        <Route exact path="/detail-events/:id">
           <DetailEvents />
         </Route>
-        <Route path="/about">
+        <Route exact path="/about">
           <About />
         </Route>
-        <Route path="/anggota">
+        <Route exact path="/anggota">
           <Anggota />
         </Route>
         <Route path="/">

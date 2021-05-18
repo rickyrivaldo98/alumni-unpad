@@ -41,19 +41,19 @@ export default function DataAnggota({ color }) {
     }
   };
 
-  const PrimaryKey = ["id"];
+  // const PrimaryKey = ["id"];
 
-  useEffect(() => {
-    const lowercasedValue = search.toLowerCase();
-    const filteredData = data.filter((item) => {
-      return Object.keys(item).some((key) =>
-        PrimaryKey.includes(key)
-          ? false
-          : item[key].toString().toLowerCase().includes(lowercasedValue)
-      );
-    });
-    setFilterData(filteredData);
-  }, [search, data]);
+  // useEffect(() => {
+  //   const lowercasedValue = search.toLowerCase();
+  //   const filteredData = data.filter((item) => {
+  //     return Object.keys(item).some((key) =>
+  //       PrimaryKey.includes(key)
+  //         ? false
+  //         : item[key].toString().toLowerCase().includes(lowercasedValue)
+  //     );
+  //   });
+  //   setFilterData(filteredData);
+  // }, [search, data]);
 
   let i = 1;
 
@@ -194,7 +194,7 @@ export default function DataAnggota({ color }) {
                     </div>
                   )}
                   {!loading &&
-                    filterData.map((x) => (
+                    data.map((x) => (
                       <tr>
                         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left font-bold">
                           {i++}
@@ -245,16 +245,19 @@ export default function DataAnggota({ color }) {
                         </td>
                       </tr>
                     ))}
-                  {filterData.length === 0 && (
-                    <>
-                      <div className="flex justify-center items-center text-center my-8">
-                        <span>Nama Anggota tidak ditemukan</span>
-                      </div>
-                    </>
-                  )}
                 </>
               )}
             </tbody>
+
+            {/* {data.length === 0 && (
+              <>
+                <tbody>
+                  <div className="w-full justify-center items-center flex flex-col p-6">
+                    Nama Anggota tidak ditemukan
+                  </div>
+                </tbody>
+              </>
+            )} */}
           </table>
         </div>
       </div>
