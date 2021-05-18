@@ -41,19 +41,19 @@ export default function DataAnggota({ color }) {
     }
   };
 
-  // const PrimaryKey = ["id"];
+  const PrimaryKey = ["id"];
 
-  // useEffect(() => {
-  //   const lowercasedValue = search.toLowerCase();
-  //   const filteredData = data.filter((item) => {
-  //     return Object.keys(item).some((key) =>
-  //       PrimaryKey.includes(key)
-  //         ? false
-  //         : item[key].toString().toLowerCase().includes(lowercasedValue)
-  //     );
-  //   });
-  //   setFilterData(filteredData);
-  // }, [search, data]);
+  useEffect(() => {
+    const lowercasedValue = search.toLowerCase();
+    const filteredData = data.filter((item) => {
+      return Object.keys(item).some((key) =>
+        PrimaryKey.includes(key)
+          ? false
+          : item[key].toString().toLowerCase().includes(lowercasedValue)
+      );
+    });
+    setFilterData(filteredData);
+  }, [search, data]);
 
   let i = 1;
 
@@ -245,6 +245,13 @@ export default function DataAnggota({ color }) {
                         </td>
                       </tr>
                     ))}
+                  {filterData.length === 0 && (
+                    <>
+                      <div className="flex justify-center items-center text-center my-8">
+                        <span>Judul tidak ditemukan</span>
+                      </div>
+                    </>
+                  )}
                 </>
               )}
             </tbody>

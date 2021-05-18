@@ -37,6 +37,7 @@ export default function DataUnverified({ color }) {
         .put(`https://ika.sarafdesign.com/anggota/confirm/${e}`)
         .then((res) => {
           alert.show("Terverifikasi");
+          window.location.reload();
         });
       setLoading(false);
     } else {
@@ -45,8 +46,8 @@ export default function DataUnverified({ color }) {
   let handleDelete = (e) => {
     if (window.confirm("Apakah anda yakin ingin menghapus?")) {
       setLoading(true);
-      axios.put(`https://ika.sarafdesign.com/anggota/${e}`).then((res) => {
-        alert("Kehapus");
+      axios.delete(`https://ika.sarafdesign.com/anggota/${e}`).then((res) => {
+        alert.show("Kehapus");
         window.location.reload();
       });
       setLoading(false);
@@ -246,18 +247,16 @@ export default function DataUnverified({ color }) {
                         </td>
                       </tr>
                     ))}
+                  {filterData.length === 0 && (
+                    <>
+                      <div className="flex justify-center items-center text-center my-8">
+                        <span>Judul tidak ditemukan</span>
+                      </div>
+                    </>
+                  )}
                 </>
               )}
             </tbody>
-            {filterData.length === 0 && (
-              <>
-                <tbody>
-                  <div className="w-full justify-center items-center flex flex-col p-6">
-                    Nama Anggota tidak ditemukan
-                  </div>
-                </tbody>
-              </>
-            )}
           </table>
         </div>
       </div>

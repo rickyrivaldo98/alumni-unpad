@@ -58,7 +58,7 @@ const EditAnggota = () => {
       axios
         .put(`https://ika.sarafdesign.com/anggota/${id}`, anggota)
         .then((res) => {
-          alert("Teredit");
+          alert.show("Teredit");
           setTimeout(() => {
             history.push(`/admin/anggota`);
           }, 2000);
