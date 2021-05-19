@@ -301,7 +301,7 @@ const Landing = () => {
                   className="sm:grid grid-cols-5 bg-white shadow-sm p-7 relative lg:max-w-2xl sm:p-4 rounded-lg lg:col-span-2 lg:ml-20 shadow-lg"
                 >
                   <img
-                    src={`https://unpad.sarafdesign.com/uploads/${x.thumbnail}`}
+                    src={`https://ika.sarafdesign.com/uploads/${x.thumbnail}`}
                     alt="gambar "
                     className="w-full rounded-lg"
                   />
