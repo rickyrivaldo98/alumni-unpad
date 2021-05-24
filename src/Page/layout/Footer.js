@@ -10,10 +10,25 @@ const Footer = () => {
               <div className="text-normal md:text-4xl font-bold mb-5 tracking-wider text-center md:text-left">
                 ILUNI KMB
               </div>
-              <div className="w-full md:w-3/4 text-xs md:text-lg">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Arcu
-                quis facilisi tellus sed nisl suspendisse ornare pulvinar
-                feugiat.
+              <div className="w-full text-xs md:text-lg">
+                <a
+                  href="https://www.instagram.com/ikadharmavira/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mb-2"
+                >
+                  {" "}
+                  <i className="fab fa-instagram fa-lg"></i>&nbsp;IKA Dharmavira
+                </a>
+                <br />
+                <a
+                  href="https://www.facebook.com/groups/248281155182674/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {" "}
+                  <i className="fab fa-facebook fa-lg"></i>&nbsp;IKATAN ALUMNI DHARMAVIRA
+                </a>
               </div>
             </div>
             <div className="w-full md:w-2/6 p-3">
